@@ -1,0 +1,6 @@
+<div class="banner">
+    <img src="/static/images/vt-logo-white.svg" alt="">
+        % if user == "hokipoki":
+            ADMIN
+        % endif
+</div>

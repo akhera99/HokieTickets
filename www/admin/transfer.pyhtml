@@ -1,0 +1,109 @@
+<%!
+	import libgoblin, goblin_auth, json
+%>
+<%
+user, session = goblin_auth.get_user(c)
+if user == "hokipoki":
+    status = False
+    if "username" in d and "transfer_amount" in d and "message" in d:
+        # Placeholders
+        if len(d["transfer_amount"].strip()) == 0: d["transfer_amount"] = "60.00"
+        if len(d["message"].strip()) == 0: d["message"] = "Attending VT vs. UNC"
+        # Don't allow one decimal
+        if "." in d['transfer_amount'] and len(d['transfer_amount'].split('.')[1]) == 1:
+            d['transfer_amount'] += "0"
+        resp = False
+        try:
+            resp = json.loads(libgoblin.transfer(d['username'], d['transfer_amount'], d['message']))
+        except:
+            pass
+        if resp:
+            if "balance" in resp:
+                status = "<b>Success!</b> New balance for <b>" + d['username'] + "</b>: " + str(resp['balance']) + " HTK"
+            elif "error" in resp:
+                status = "<b>Error:</b> " + resp['error']
+            else:
+                status = "<b>Error:</b> Unknown error in response."
+        else:
+            status = "<b>Error:</b> Server error (check that wallet is unlocked)."
+%>
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+        <title>Admin Transfer Page</title>
+        <link rel="stylesheet" href="/static/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap" rel="stylesheet"> 
+        <script src="/static/admin.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    </head>
+    <body>
+        <div class="banner">
+		    <img src="/static/images/vt-logo-white.svg" alt="VT Logo">
+            % if user == "hokipoki":
+                ADMIN
+			% endif
+        </div>
+		<nav>
+            <div class="nav-section" id="user-logout">
+                <p>You are logged in as <b>${user}</b></p>
+                <a href="/logout.pyhtml">Logout</a>
+            </div>
+            <div class="nav-section" id="pages">
+				<ul>
+					<li><a href="/admin/attendance.pyhtml">ATTENDANCE</a></li>
+                    <li><a href="/admin/auctions.pyhtml">AUCTIONS</a></li>
+					<li><a href="/admin/lottery.pyhtml">LOTTERY</a></li>
+                    <li><a href="/admin/transfer.pyhtml">TRANSFER</a></li>
+					<li><a href="/admin/accounts.pyhtml">ACCOUNTS</a></li>
+				</ul>
+            </div>
+		</nav>
+        <div class="content">
+            % if user == "hokipoki":
+                <h1>Transfer HTK</h1>
+                <p>Transfer HTK to student accounts.</p>
+
+                % if status:
+                    <div class="status-response" style="background-color: ${'#13CE66' if 'Success' in status else '#BB0000'};">
+                        ${status}
+                    </div>
+                % endif
+    
+                <form method="POST">
+                    <div class="form-section">
+                        <div class="form-subsection">
+                            <label for="username">User to transfer to:</label> <br />
+                            <select name="username" id="userSelect" onchange="updateUserBalance()">
+                                <option selected disabled value></option>
+                                <% raw = libgoblin.get_raw_table('users') %>
+                                % for r in raw:
+                                <option value="${r.user}" data-balance="${libgoblin.format_htk(libgoblin.get_balance(r.user))}">${r.user}</option>
+                                % endfor
+                            </select>
+                        </div>
+                        <div class="form-subsection">
+                            <label>User's current balance:</label> <br />
+                            <div class="form-value">
+                                <td><span id="userBalance">0.00 HTK</span></td>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <label for="transfer_amount">Amount to transfer:</label> <br />
+                        <span class="input-area">
+                            <input type="number" name="transfer_amount" min="0.01" step="0.01" placeholder="60.00" /> HTK
+                        </span>
+                    </div>
+                    <div class="form-section">
+                        <label for="message">Reason for transfer:</label> <br />
+                        <input type="text" name="message" placeholder="Attending VT vs. UNC"/>
+                    </div>
+                    <input type="submit" value="Transfer"/>
+                </form>
+			% else:
+				You do not have permission to access this page.
+			% endif
+        </div>
+    </body>
+</html>

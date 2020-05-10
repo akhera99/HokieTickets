@@ -1,0 +1,114 @@
+<%!
+import libgoblin, goblin_auth
+from datetime import datetime as dt
+
+def today_to_date():
+    return dt.now().strftime("%Y%m%d%H%M")
+def format_date(date_time):
+    if len(date_time) != 12:
+        return ""
+    date = int(date_time) // 10000   # Take off HHMM
+    obj = dt(date // 10000, (date // 100) % 100, date % 100) #YYYY,MM,DD
+    return obj.strftime("%a. %B %d, %Y")
+def format_time(date_time):
+    if len(date_time) != 12:
+        return ""
+    date = int(date_time) // 10000  # Take off HHMM
+    time = int(date_time) % 10000   # Just HHMM
+    obj = dt(date // 10000, (date // 100) % 100, date % 100, hour=(time // 100), minute=(time % 100)) #YYYY,MM,DD
+    return obj.strftime("%-I:%M %p")
+%>
+<%
+	user, session = goblin_auth.get_user(c)
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Buy Tickets</title>
+		<link rel="stylesheet" href="/static/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap" rel="stylesheet"> 
+        <script src="/static/student.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	</head>
+    <body>
+    <div class="banner">
+		<img src="/static/images/vt-logo-white.svg" alt="VT Logo">
+        % if user == "hokipoki":
+            ADMIN
+        % endif
+	</div>
+    % if user:
+
+        ## NAV SECTION - any changes must be changed for all navs
+	<%include file="nav.pyhtml" args="user=user" />
+
+        ## MAIN CONTENT SECTION
+        <div class='content'>
+            <h1>Buy Student Tickets</h1>
+            <p>Buy student tickets from the university using Hokie Tokens (HTK).</p>
+            <h2>AVAILABLE GAMES</h2>
+            <% raw = libgoblin.filtered_date_games(today_to_date()) %>
+            <table><thead>
+            <tr>
+                <th></th>
+                <th>EVENT</th>
+                <th>DATE</th>
+                <th>PRICE (HTK)</th>
+                <th>REWARD (HTK)</th>
+                <th></th>
+            </thead><tbody>
+            % if len(raw) == 0:
+                <td>No games available.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            % else:
+                % for i, r in list(enumerate(raw)):
+                    <tr style="background-color: ${"#ddd" if i % 2 == 1 else "#f9f9f9"};">
+                        <td><img src="${libgoblin.get_logo(r.name)}" ></td>
+                        <td>
+                            <h3>${r.name}</h3>
+                            <p>${libgoblin.get_game_type(r.game_type)}</p>
+                        </td>
+                        <td>
+                            <p>${format_date(r.date)}</p>
+                            <p>${format_time(r.date)}</p>
+                        </td>
+                        <td><p>${libgoblin.format_htk(r.initial_face_value / 100)}</p></td>
+                        <td><p>${libgoblin.format_htk(r.reward / 100)}</p></td>
+                        <td>
+                        <% ticket = libgoblin.user_has_ticket(user, r.id) %>
+                        % if ticket and not libgoblin.user_in_lottery(user, r.id):
+
+                            <button class="actionButton secondary" onclick="openWindow('${user}', 0, 'view',
+                                                                            {'event_name': '${r.name}', 'event_date': '${libgoblin.format_date(r.date)}', 'qr_code': '${libgoblin.get_qr_code_data_uri(ticket.id)}', 'owner': '${ticket.owner}'})")"
+                            >View Ticket</button>
+                        % elif not libgoblin.is_ticket_available(r.id):
+                            <p>No tickets available</p>
+                        % elif libgoblin.user_in_lottery(user, r.id):
+                            <p>Entered in lottery.</p>
+                        % else:
+                            <button class="actionButton" onclick="openWindow('${user}', ${r.id}, 'buy', {'event_name': '${r.name}', 'current_balance': '${libgoblin.get_balance(user)}'})">Buy Ticket</button>
+                        %endif
+                        </td>
+                    </tr>
+                % endfor
+                </tbody></table>
+            % endif
+        </div>
+			<%include file="footer.pyhtml" args="user=user" />
+
+        <div id="window" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeWindow()">&times;</span>
+                <div class="modal-body"></div>
+                <div class="button-area"></div>
+            </div>
+        </div>
+	% else:
+		You do not have permission to access this page.  Please <a href="/login.pyhtml">login</a>.
+	% endif
+    </body>
+</html>

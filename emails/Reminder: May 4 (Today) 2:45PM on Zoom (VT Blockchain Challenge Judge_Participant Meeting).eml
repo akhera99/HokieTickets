@@ -1,0 +1,196 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:b381:0:0:0:0 with SMTP id e1csp4024840pjr;
+        Mon, 4 May 2020 10:58:38 -0700 (PDT)
+X-Google-Smtp-Source: APiQypLYg6mRvx9is1+lPV76dtEfq9maaewlMZg/lpOL688e1ElqRmqJ5OEehOEJcls7cnaJvXbh
+X-Received: by 2002:a37:c04:: with SMTP id 4mr381850qkm.137.1588615117977;
+        Mon, 04 May 2020 10:58:37 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1588615117; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=o87pS2z1Rl+STpnqfdgb/jhSLknKUtKzW3vnrQM/OfyUDEBJu5MXNyPHNzvIInb6ZV
+         srvJwXeBdlpbndM1AahLV/aY7lqmwgDdoOITDhjpwxVPZvylj5TjEDEA2dM9/03djypM
+         TwPMiDAzhIlq15z2Uc4G03nuwX2IsKLkFnxta5zURQrSdGgTyoY/eUksoVd68fMcuiE9
+         BoyWDl3PPNvcL890nV0SgZYFGjBNTdGMrr67PWNW5S82Pblz/q0ztGT6rivXpbjZvee2
+         vY88Qb2DLcoyA9H8iDcxHbnMcRTM0YYeywGAVFFFM08H+BVj9ifyria5WH5v3KSIB4jF
+         uMJg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :dkim-signature:dkim-filter:delivered-to;
+        bh=saTK1n0pbXGoKbrfhhXSKHIxznlq2KG+IQJ5uzf1Ofk=;
+        b=KxV8O/2eyl2ad2iyvLT+TlFe6hl1TUGnK6nHmR2aLOzjUsvO9Ua3WG2J/VesESqkPa
+         ouxU4f/Vdpq1Ea19zHv9xPoiJoFyoKo1qIOgrdgdMSN1SpvXNVPGbtMmwOJObzOlk0KZ
+         AzUjyL9cfdv4BEhoICKJ88A2HUOP8xBBWfYx02kGe/wZvVZY+l39ffh+tuiBg33zu4f/
+         aCSxxJDNQayVUQ9fOVbdIBwbNrSNqIfq840UH8Hcd46Uf65xZmiXcLxnKEKORnlEM7dw
+         aKe/lf1UqhDeqRx4eKfZlVbBX5nR96LF9BHfLa+ajWHXjXEEl6JRRknoX8S1TzZl06xG
+         S7Qg==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=eB4PZtCE;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu dkim=pass dkdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr2.cc.vt.edu (omr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:33:fb76:806e])
+        by mx.google.com with ESMTPS id j21si2704472qke.108.2020.05.04.10.58.37
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 04 May 2020 10:58:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) client-ip=2607:b400:92:8400:0:33:fb76:806e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=eB4PZtCE;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu dkim=pass dkdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Received: from mr4.cc.vt.edu (mr4.cc.vt.edu [IPv6:2607:b400:92:8300:0:7b:e2b1:6a29])
+	by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 044HwbiM019740
+	for <nilesrogoff@gmail.com>; Mon, 4 May 2020 13:58:37 -0400
+Received: from mail-io1-xd48.google.com (mail-io1-xd48.google.com [IPv6:2607:f8b0:4864:20::d48])
+	by mr4.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 044HwWP9021989
+	for <nilesrogoff@gmail.com>; Mon, 4 May 2020 13:58:37 -0400
+Received: by mail-io1-xd48.google.com with SMTP id t130so14238225iod.10
+        for <nilesrogoff@gmail.com>; Mon, 04 May 2020 10:58:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-filter:dkim-signature
+         :mime-version:reply-to:from:date:message-id:subject:to;
+        bh=saTK1n0pbXGoKbrfhhXSKHIxznlq2KG+IQJ5uzf1Ofk=;
+        b=W7MGaiaI7mwEDnsKha/Pnh8+rBN4jUeeO6aFHej+iDm1WXlTjhh2OVEZHllHfTpdYs
+         saQ5mhYlwHgTqVeHtRZMJKbjhtpK1/U66XF6dcOhtZDOS9bCaAE3hGEYpuynXptSsn6w
+         hZ9tt3NCMHhFArJBkax0zB7BC5ix/cUo/0JgszBQucpC/5VhqGgNuqu3iL+ThJTTc0WT
+         9ZpF7A4B0bWgOyhEv+UVHYjMSyFRW9aw+loO//1vrvL3hZJ709DUaT80eN26G0RYZ66k
+         ixRJzxf4sr8MYAUavUioQ4C4fzqoSOE7CN7GKKnYwbw7oMUGXPfsCSh4D8V8tIrCGIEE
+         nJvw==
+X-Gm-Message-State: AGi0PuaxfbIPjsVrBhFftn4LwU5Dey3Bt7VUPmeeZ2zO5N+9Z3eLNmNh
+	r0seET/qGDHE2J6KgfrnrPVkgo6xuVfyfC/HHc1/j00x0MKI5lLdAtDIAw6lJXNj3Tw5eckFEpc
+	pyR+djECNXUIVyyHNQ69i/k4TJlb+tSGp6O2HZUjQo6nHNRoB7BM=
+X-Received: by 2002:a92:740e:: with SMTP id p14mr16993307ilc.57.1588615112261;
+        Mon, 04 May 2020 10:58:32 -0700 (PDT)
+X-Received: by 2002:a92:740e:: with SMTP id p14mr16993279ilc.57.1588615111944;
+        Mon, 04 May 2020 10:58:31 -0700 (PDT)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:f38f:0:0:0:0:0 with SMTP id l15csp312137imn;
+        Mon, 4 May 2020 10:58:30 -0700 (PDT)
+X-Received: by 2002:a05:620a:1395:: with SMTP id k21mr456792qki.120.1588615110302;
+        Mon, 04 May 2020 10:58:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588615110; cv=none;
+        d=google.com; s=arc-20160816;
+        b=o5qiOIbc2YvIFGa1XtvhSTvSYdDPsYJz9kyNUKlmYcBOz5pMy29nhLTut90rdzoJNU
+         qhLesTAdAaoMe8XuWP7gfDFjhlf44pV5HgWcpU24BMt4DUl3Fj67Heul9iJtkBBxH5uf
+         kg0Xj4bZopfzoV0cCRKrvLfswN091rACBBN7fpVy8HkTLyNy2vjWyQBSbkmIsJ2TsAHw
+         kzIujXQBayxfDH4195LuHZ/ZVHQslZNToY/t8SM99ZFq1/7i7hdLfN9UUtJfawXoZ6Wx
+         SkIo8IwPGyal4qMeEgQtFsOXh/3qqYAy3t+WgXNtvc0uymNwGWNp8wL96zLb6jo1MX4I
+         QeKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :dkim-signature:dkim-filter;
+        bh=saTK1n0pbXGoKbrfhhXSKHIxznlq2KG+IQJ5uzf1Ofk=;
+        b=JZwzIi4prCGD9H+RyhYWuWjWINjNySq6xHduAVEdvgrvKjW9Bp/ClJY79fxKATyfq+
+         zZejlgAiUdZpfdeHghhIRz/TIeA9XB3XvW6TK1KXwfCSWY7gg20L0CYX6FjKUWPgmGsC
+         /f/NqTWxlYgQ1sbD/1PhZBL9QXRkcmzcbc7dLfD7BdS+JtL4VFhuNsOoJP1BoPjIsk6h
+         5U+7ES9/ZdibM64f6NQZiOfoeaQDoFCS1BkQxjvQqcS/TjE1WR6IYtbIhtHr7CnJskX8
+         WeQCJgmQNO1yRqSp3O2N2R3B1fE6w/gN0fpsxEzv5UbzFddQtBZhO1l7VPNvMnTGAQ7M
+         RZ3w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=eB4PZtCE;
+       spf=pass (google.com: domain vt.edu configured 2607:b400:92:8500:0:7f:b804:6b0a as internal address) smtp.mailfrom=cameron@cs.vt.edu
+Received: from mr3.cc.vt.edu (mr3.cc.vt.edu. [2607:b400:92:8500:0:7f:b804:6b0a])
+        by mx.google.com with ESMTPS id y10si3514610qky.300.2020.05.04.10.58.30
+        for <nilesr@vt.edu>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 04 May 2020 10:58:30 -0700 (PDT)
+Received-SPF: pass (google.com: domain vt.edu configured 2607:b400:92:8500:0:7f:b804:6b0a as internal address)
+Received: from smtp.cs.vt.edu (smtp.cs.ipv6.vt.edu [IPv6:2001:468:c80:212a:5054:ff:fe00:401])
+	by mr3.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 044HwOIC002339
+	for <nilesr@vt.edu>; Mon, 4 May 2020 13:58:29 -0400
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.cs.vt.edu 768CE8DAC58F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cs.vt.edu;
+	s=default; t=1588615099;
+	bh=saTK1n0pbXGoKbrfhhXSKHIxznlq2KG+IQJ5uzf1Ofk=;
+	h=Reply-To:From:Date:Subject:To:From;
+	b=eB4PZtCEXhzK1Ojz6/mYCn4KrG9WRfTWYmrRE4qg9Vve9iocCojy64ihiyX9mW8tf
+	 AxnEx8vtJbXUFQT+7rrLlQ2aCuUnoA5lTfHXmkoomqjPDi89k7ZpskAzcXR7Ak14ny
+	 BvT2EmanqWxY4iYXJL3JLGEYht1cQI1cW1kIneio=
+X-Received: by 2002:a6b:660a:: with SMTP id a10mr16876584ioc.15.1588615099002;
+ Mon, 04 May 2020 10:58:19 -0700 (PDT)
+MIME-Version: 1.0
+Reply-To: cameron@cs.vt.edu
+From: Kirk Cameron <cameron@cs.vt.edu>
+Date: Mon, 4 May 2020 13:58:07 -0400
+X-Gmail-Original-Message-ID: <CAOX9_e_edQ-CFQ7S-ko9QjPTKKq1sNWG6C1dkd-0rapCbEY5PA@mail.gmail.com>
+Message-ID: <CAOX9_e_edQ-CFQ7S-ko9QjPTKKq1sNWG6C1dkd-0rapCbEY5PA@mail.gmail.com>
+Subject: Reminder: May 4 (Today) 2:45PM on Zoom (VT Blockchain Challenge
+ Judge/Participant Meeting)
+To: undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+Hi everyone,
+
+Friendly reminder that today is the big day! We will meet for a few
+minutes before the call begins so I can answer any logistical
+questions about the call. Zoom link below. The agenda is:
+
+2:45 PM Teams and judges on Zoom
+3:00 PM - 3:15 PM Welcome and Overview of VT BC
+3:15 PM - 3:30 PM Slim's Crew: Electric Boogaloo (Video/1.5, Demo/5, Q&A/5)
+3:30 PM - 3:45 PM VTRADE (Video/1.5, Demo/5, Q&A/5)
+3:45 PM - 4:00 PM The Goblins (Video/1.5, Demo/5, Q&A/5)
+4:00 PM - 4:15 PM block.two (Video/1.5, Demo/5, Q&A/5)
+4:15 PM - 4:30 PM Judges Meeting
+4:30 PM Presentation of Winners and Closing
+
+For each team, I will play the Video Demo from my machine while screen
+sharing. Then I will hand over sharing control to each team in the
+order above. Once all teams have finished, the judges and I will go to
+a breakout room and then we will rejoin the call after about 15-20 min
+to announce the winners.
+
+See you all virtually at 2:45 PM and GOOD LUCK!!!
+
+-kwc
+
+Kirk Cameron is inviting you to a scheduled Zoom meeting.
+
+Topic: VT Blockchain Challenge Finale
+Time: May 4, 2020 03:00 PM Eastern Time (US and Canada)
+
+Join Zoom Meeting
+https://virginiatech.zoom.us/j/95372982318
+
+Meeting ID: 953 7298 2318
+One tap mobile
++13017158592,,95372982318# US (Germantown)
++13126266799,,95372982318# US (Chicago)
+
+Dial by your location
+        +1 301 715 8592 US (Germantown)
+        +1 312 626 6799 US (Chicago)
+        +1 929 436 2866 US (New York)
+        +1 253 215 8782 US (Tacoma)
+        +1 346 248 7799 US (Houston)
+        +1 669 900 6833 US (San Jose)
+Meeting ID: 953 7298 2318
+Find your local number: https://virginiatech.zoom.us/u/acdBMFpJes
+
+Join by SIP
+95372982318@zoomcrc.com
+
+Join by H.323
+162.255.37.11 (US West)
+162.255.36.11 (US East)
+115.114.131.7 (India Mumbai)
+115.114.115.7 (India Hyderabad)
+213.19.144.110 (EMEA)
+103.122.166.55 (Australia)
+209.9.211.110 (Hong Kong
+ China)
+64.211.144.160 (Brazil)
+69.174.57.160 (Canada)
+207.226.132.110 (Japan)
+Meeting ID: 953 7298 2318
+
+Join by Skype for Business
+https://virginiatech.zoom.us/skype/95372982318

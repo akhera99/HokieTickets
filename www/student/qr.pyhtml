@@ -1,0 +1,14 @@
+<%!
+	import libgoblin, goblin_auth
+%><%
+	user, session = goblin_auth.get_user(c)
+	id = int(d["id"])
+	t = libgoblin.get_ticket(id)
+	if t and t.owner == user:
+		environ["headers"] = [("Content-Type", "image/png")]
+		x = libgoblin.get_qr_code(id)
+		__M_writer(x)
+		return
+	else:
+		x = json.dumps({"error": "That ticket does not exist or you do not own that ticket"})
+%>${x}

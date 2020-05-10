@@ -1,0 +1,804 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		424F9DFB2432DF4A00B60964 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F9DFA2432DF4A00B60964 /* SearchBar.swift */; };
+		424F9DFD243302D300B60964 /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F9DFC243302D300B60964 /* AddAccount.swift */; };
+		424F9E0424339FD500B60964 /* TicketData.json in Resources */ = {isa = PBXBuildFile; fileRef = 424F9E0324339FD500B60964 /* TicketData.json */; };
+		424F9E0624339FF800B60964 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F9E0524339FF800B60964 /* Ticket.swift */; };
+		424F9E082433A02100B60964 /* TicketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F9E072433A02100B60964 /* TicketData.swift */; };
+		424F9E0A2433A0B500B60964 /* TicketsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F9E092433A0B500B60964 /* TicketsList.swift */; };
+		424F9E0C2433A11200B60964 /* TicketsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F9E0B2433A11200B60964 /* TicketsItem.swift */; };
+		426330ED243BD544009CF4AC /* WebRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426330EC243BD544009CF4AC /* WebRequestData.swift */; };
+		426330F0243BD5FC009CF4AC /* ScanQRBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426330EF243BD5FC009CF4AC /* ScanQRBarcode.swift */; };
+		428585782446028500927984 /* MyAccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428585772446028500927984 /* MyAccountList.swift */; };
+		4285857A2446095700927984 /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428585792446095700927984 /* TransactionHistory.swift */; };
+		4285857D2446098500927984 /* GetTicketsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285857C2446098500927984 /* GetTicketsList.swift */; };
+		4285857F244609CB00927984 /* Auction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285857E244609CB00927984 /* Auction.swift */; };
+		428585812446142B00927984 /* GetTicketsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428585802446142B00927984 /* GetTicketsItem.swift */; };
+		428585832446173F00927984 /* GetTicketsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428585822446173F00927984 /* GetTicketsDetails.swift */; };
+		4299AA292423D11200DD8058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA282423D11200DD8058 /* AppDelegate.swift */; };
+		4299AA2B2423D11200DD8058 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA2A2423D11200DD8058 /* SceneDelegate.swift */; };
+		4299AA2E2423D11200DD8058 /* FootballTickets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA2C2423D11200DD8058 /* FootballTickets.xcdatamodeld */; };
+		4299AA302423D11200DD8058 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA2F2423D11200DD8058 /* ContentView.swift */; };
+		4299AA322423D11700DD8058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4299AA312423D11700DD8058 /* Assets.xcassets */; };
+		4299AA352423D11700DD8058 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4299AA342423D11700DD8058 /* Preview Assets.xcassets */; };
+		4299AA382423D11700DD8058 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4299AA362423D11700DD8058 /* LaunchScreen.storyboard */; };
+		4299AA432423D11700DD8058 /* FootballTicketsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA422423D11700DD8058 /* FootballTicketsTests.swift */; };
+		4299AA4E2423D11700DD8058 /* FootballTicketsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA4D2423D11700DD8058 /* FootballTicketsUITests.swift */; };
+		4299AA602423D2D700DD8058 /* ScanFocusRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA5F2423D2D700DD8058 /* ScanFocusRegion.swift */; };
+		4299AA622423D2F600DD8058 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA612423D2F600DD8058 /* WebView.swift */; };
+		4299AA642423D31300DD8058 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA632423D31300DD8058 /* ScannerViewController.swift */; };
+		4299AA662423D33600DD8058 /* BarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA652423D33600DD8058 /* BarcodeScanner.swift */; };
+		4299AA682423D34900DD8058 /* FlashlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA672423D34900DD8058 /* FlashlightButton.swift */; };
+		4299AA6A2423D35C00DD8058 /* GetImageFromUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA692423D35C00DD8058 /* GetImageFromUrl.swift */; };
+		4299AA712423EFC200DD8058 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA702423EFC200DD8058 /* AccountData.swift */; };
+		4299AA732423EFD700DD8058 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA722423EFD700DD8058 /* Account.swift */; };
+		4299AA782423F35F00DD8058 /* MyFavoriteDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA752423F35E00DD8058 /* MyFavoriteDetails.swift */; };
+		4299AA792423F35F00DD8058 /* MyFavoriteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA762423F35E00DD8058 /* MyFavoriteItem.swift */; };
+		4299AA7A2423F35F00DD8058 /* MyFavoritesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA772423F35F00DD8058 /* MyFavoritesList.swift */; };
+		4299AA7C2423F6AC00DD8058 /* AccountData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4299AA7B2423F6AC00DD8058 /* AccountData.json */; };
+		4299AA7E2423F8E300DD8058 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299AA7D2423F8E300DD8058 /* UserData.swift */; };
+		42E8127C244F785B00B54F68 /* MyTicketDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E8127B244F785B00B54F68 /* MyTicketDetails.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4299AA3F2423D11700DD8058 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4299AA1D2423D11200DD8058 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4299AA242423D11200DD8058;
+			remoteInfo = FootballTickets;
+		};
+		4299AA4A2423D11700DD8058 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4299AA1D2423D11200DD8058 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4299AA242423D11200DD8058;
+			remoteInfo = FootballTickets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		424F9DFA2432DF4A00B60964 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		424F9DFC243302D300B60964 /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
+		424F9E0324339FD500B60964 /* TicketData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TicketData.json; sourceTree = "<group>"; };
+		424F9E0524339FF800B60964 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		424F9E072433A02100B60964 /* TicketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketData.swift; sourceTree = "<group>"; };
+		424F9E092433A0B500B60964 /* TicketsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsList.swift; sourceTree = "<group>"; };
+		424F9E0B2433A11200B60964 /* TicketsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsItem.swift; sourceTree = "<group>"; };
+		426330EC243BD544009CF4AC /* WebRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestData.swift; sourceTree = "<group>"; };
+		426330EF243BD5FC009CF4AC /* ScanQRBarcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRBarcode.swift; sourceTree = "<group>"; };
+		428585772446028500927984 /* MyAccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountList.swift; sourceTree = "<group>"; };
+		428585792446095700927984 /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
+		4285857C2446098500927984 /* GetTicketsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTicketsList.swift; sourceTree = "<group>"; };
+		4285857E244609CB00927984 /* Auction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auction.swift; sourceTree = "<group>"; };
+		428585802446142B00927984 /* GetTicketsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTicketsItem.swift; sourceTree = "<group>"; };
+		428585822446173F00927984 /* GetTicketsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTicketsDetails.swift; sourceTree = "<group>"; };
+		4299AA252423D11200DD8058 /* Tickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4299AA282423D11200DD8058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4299AA2A2423D11200DD8058 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4299AA2D2423D11200DD8058 /* FootballTickets.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootballTickets.xcdatamodel; sourceTree = "<group>"; };
+		4299AA2F2423D11200DD8058 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4299AA312423D11700DD8058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4299AA342423D11700DD8058 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4299AA372423D11700DD8058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4299AA392423D11700DD8058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4299AA3E2423D11700DD8058 /* FootballTicketsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootballTicketsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4299AA422423D11700DD8058 /* FootballTicketsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballTicketsTests.swift; sourceTree = "<group>"; };
+		4299AA442423D11700DD8058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4299AA492423D11700DD8058 /* FootballTicketsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootballTicketsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4299AA4D2423D11700DD8058 /* FootballTicketsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballTicketsUITests.swift; sourceTree = "<group>"; };
+		4299AA4F2423D11700DD8058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4299AA5F2423D2D700DD8058 /* ScanFocusRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanFocusRegion.swift; sourceTree = "<group>"; };
+		4299AA612423D2F600DD8058 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		4299AA632423D31300DD8058 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		4299AA652423D33600DD8058 /* BarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanner.swift; sourceTree = "<group>"; };
+		4299AA672423D34900DD8058 /* FlashlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashlightButton.swift; sourceTree = "<group>"; };
+		4299AA692423D35C00DD8058 /* GetImageFromUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageFromUrl.swift; sourceTree = "<group>"; };
+		4299AA702423EFC200DD8058 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		4299AA722423EFD700DD8058 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		4299AA752423F35E00DD8058 /* MyFavoriteDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavoriteDetails.swift; sourceTree = "<group>"; };
+		4299AA762423F35E00DD8058 /* MyFavoriteItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavoriteItem.swift; sourceTree = "<group>"; };
+		4299AA772423F35F00DD8058 /* MyFavoritesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavoritesList.swift; sourceTree = "<group>"; };
+		4299AA7B2423F6AC00DD8058 /* AccountData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountData.json; sourceTree = "<group>"; };
+		4299AA7D2423F8E300DD8058 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		42E8127B244F785B00B54F68 /* MyTicketDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketDetails.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4299AA222423D11200DD8058 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4299AA3B2423D11700DD8058 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4299AA462423D11700DD8058 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		424F9E0224339E3B00B60964 /* Manage Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				424F9E092433A0B500B60964 /* TicketsList.swift */,
+				424F9E0B2433A11200B60964 /* TicketsItem.swift */,
+			);
+			name = "Manage Tickets";
+			sourceTree = "<group>";
+		};
+		42858576244570A400927984 /* My Account */ = {
+			isa = PBXGroup;
+			children = (
+				428585772446028500927984 /* MyAccountList.swift */,
+				428585792446095700927984 /* TransactionHistory.swift */,
+				42E8127B244F785B00B54F68 /* MyTicketDetails.swift */,
+			);
+			name = "My Account";
+			sourceTree = "<group>";
+		};
+		4285857B2446096900927984 /* Get Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				4285857C2446098500927984 /* GetTicketsList.swift */,
+				4285857E244609CB00927984 /* Auction.swift */,
+				428585802446142B00927984 /* GetTicketsItem.swift */,
+				428585822446173F00927984 /* GetTicketsDetails.swift */,
+			);
+			name = "Get Tickets";
+			sourceTree = "<group>";
+		};
+		4285858424461F5200927984 /* My Tickets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "My Tickets";
+			sourceTree = "<group>";
+		};
+		4299AA1C2423D11200DD8058 = {
+			isa = PBXGroup;
+			children = (
+				4299AA272423D11200DD8058 /* FootballTickets */,
+				4299AA412423D11700DD8058 /* FootballTicketsTests */,
+				4299AA4C2423D11700DD8058 /* FootballTicketsUITests */,
+				4299AA262423D11200DD8058 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4299AA262423D11200DD8058 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4299AA252423D11200DD8058 /* Tickets.app */,
+				4299AA3E2423D11700DD8058 /* FootballTicketsTests.xctest */,
+				4299AA492423D11700DD8058 /* FootballTicketsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4299AA272423D11200DD8058 /* FootballTickets */ = {
+			isa = PBXGroup;
+			children = (
+				4299AA6C2423EE7000DD8058 /* Data Model */,
+				4299AA6B2423D38700DD8058 /* Delegates */,
+				4299AA5B2423D19400DD8058 /* Tab Bar Views */,
+				4299AA2F2423D11200DD8058 /* ContentView.swift */,
+				4299AA312423D11700DD8058 /* Assets.xcassets */,
+				4299AA362423D11700DD8058 /* LaunchScreen.storyboard */,
+				4299AA392423D11700DD8058 /* Info.plist */,
+				4299AA2C2423D11200DD8058 /* FootballTickets.xcdatamodeld */,
+				4299AA332423D11700DD8058 /* Preview Content */,
+				4299AA5F2423D2D700DD8058 /* ScanFocusRegion.swift */,
+				4299AA612423D2F600DD8058 /* WebView.swift */,
+				4299AA632423D31300DD8058 /* ScannerViewController.swift */,
+				4299AA652423D33600DD8058 /* BarcodeScanner.swift */,
+				4299AA672423D34900DD8058 /* FlashlightButton.swift */,
+				4299AA692423D35C00DD8058 /* GetImageFromUrl.swift */,
+			);
+			path = FootballTickets;
+			sourceTree = "<group>";
+		};
+		4299AA332423D11700DD8058 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4299AA342423D11700DD8058 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4299AA412423D11700DD8058 /* FootballTicketsTests */ = {
+			isa = PBXGroup;
+			children = (
+				4299AA422423D11700DD8058 /* FootballTicketsTests.swift */,
+				4299AA442423D11700DD8058 /* Info.plist */,
+			);
+			path = FootballTicketsTests;
+			sourceTree = "<group>";
+		};
+		4299AA4C2423D11700DD8058 /* FootballTicketsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4299AA4D2423D11700DD8058 /* FootballTicketsUITests.swift */,
+				4299AA4F2423D11700DD8058 /* Info.plist */,
+			);
+			path = FootballTicketsUITests;
+			sourceTree = "<group>";
+		};
+		4299AA5B2423D19400DD8058 /* Tab Bar Views */ = {
+			isa = PBXGroup;
+			children = (
+				4285858424461F5200927984 /* My Tickets */,
+				4285857B2446096900927984 /* Get Tickets */,
+				42858576244570A400927984 /* My Account */,
+				424F9E0224339E3B00B60964 /* Manage Tickets */,
+				4299AA742423F34700DD8058 /* Manage Accounts */,
+				4299AA5C2423D1B600DD8058 /* QR Barcode */,
+			);
+			name = "Tab Bar Views";
+			sourceTree = "<group>";
+		};
+		4299AA5C2423D1B600DD8058 /* QR Barcode */ = {
+			isa = PBXGroup;
+			children = (
+				426330EF243BD5FC009CF4AC /* ScanQRBarcode.swift */,
+			);
+			name = "QR Barcode";
+			sourceTree = "<group>";
+		};
+		4299AA6B2423D38700DD8058 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				4299AA282423D11200DD8058 /* AppDelegate.swift */,
+				4299AA2A2423D11200DD8058 /* SceneDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		4299AA6C2423EE7000DD8058 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				424F9E0324339FD500B60964 /* TicketData.json */,
+				4299AA7B2423F6AC00DD8058 /* AccountData.json */,
+				4299AA7D2423F8E300DD8058 /* UserData.swift */,
+				4299AA702423EFC200DD8058 /* AccountData.swift */,
+				4299AA722423EFD700DD8058 /* Account.swift */,
+				424F9E0524339FF800B60964 /* Ticket.swift */,
+				424F9E072433A02100B60964 /* TicketData.swift */,
+				426330EC243BD544009CF4AC /* WebRequestData.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		4299AA742423F34700DD8058 /* Manage Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				4299AA752423F35E00DD8058 /* MyFavoriteDetails.swift */,
+				4299AA762423F35E00DD8058 /* MyFavoriteItem.swift */,
+				4299AA772423F35F00DD8058 /* MyFavoritesList.swift */,
+				424F9DFA2432DF4A00B60964 /* SearchBar.swift */,
+				424F9DFC243302D300B60964 /* AddAccount.swift */,
+			);
+			name = "Manage Accounts";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4299AA242423D11200DD8058 /* FootballTickets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4299AA522423D11700DD8058 /* Build configuration list for PBXNativeTarget "FootballTickets" */;
+			buildPhases = (
+				4299AA212423D11200DD8058 /* Sources */,
+				4299AA222423D11200DD8058 /* Frameworks */,
+				4299AA232423D11200DD8058 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FootballTickets;
+			productName = FootballTickets;
+			productReference = 4299AA252423D11200DD8058 /* Tickets.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4299AA3D2423D11700DD8058 /* FootballTicketsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4299AA552423D11700DD8058 /* Build configuration list for PBXNativeTarget "FootballTicketsTests" */;
+			buildPhases = (
+				4299AA3A2423D11700DD8058 /* Sources */,
+				4299AA3B2423D11700DD8058 /* Frameworks */,
+				4299AA3C2423D11700DD8058 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4299AA402423D11700DD8058 /* PBXTargetDependency */,
+			);
+			name = FootballTicketsTests;
+			productName = FootballTicketsTests;
+			productReference = 4299AA3E2423D11700DD8058 /* FootballTicketsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4299AA482423D11700DD8058 /* FootballTicketsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4299AA582423D11700DD8058 /* Build configuration list for PBXNativeTarget "FootballTicketsUITests" */;
+			buildPhases = (
+				4299AA452423D11700DD8058 /* Sources */,
+				4299AA462423D11700DD8058 /* Frameworks */,
+				4299AA472423D11700DD8058 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4299AA4B2423D11700DD8058 /* PBXTargetDependency */,
+			);
+			name = FootballTicketsUITests;
+			productName = FootballTicketsUITests;
+			productReference = 4299AA492423D11700DD8058 /* FootballTicketsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4299AA1D2423D11200DD8058 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Sameer Dandekar";
+				TargetAttributes = {
+					4299AA242423D11200DD8058 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					4299AA3D2423D11700DD8058 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 4299AA242423D11200DD8058;
+					};
+					4299AA482423D11700DD8058 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 4299AA242423D11200DD8058;
+					};
+				};
+			};
+			buildConfigurationList = 4299AA202423D11200DD8058 /* Build configuration list for PBXProject "FootballTickets" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4299AA1C2423D11200DD8058;
+			productRefGroup = 4299AA262423D11200DD8058 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4299AA242423D11200DD8058 /* FootballTickets */,
+				4299AA3D2423D11700DD8058 /* FootballTicketsTests */,
+				4299AA482423D11700DD8058 /* FootballTicketsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4299AA232423D11200DD8058 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424F9E0424339FD500B60964 /* TicketData.json in Resources */,
+				4299AA382423D11700DD8058 /* LaunchScreen.storyboard in Resources */,
+				4299AA352423D11700DD8058 /* Preview Assets.xcassets in Resources */,
+				4299AA322423D11700DD8058 /* Assets.xcassets in Resources */,
+				4299AA7C2423F6AC00DD8058 /* AccountData.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4299AA3C2423D11700DD8058 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4299AA472423D11700DD8058 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4299AA212423D11200DD8058 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4299AA662423D33600DD8058 /* BarcodeScanner.swift in Sources */,
+				4299AA682423D34900DD8058 /* FlashlightButton.swift in Sources */,
+				424F9E0C2433A11200B60964 /* TicketsItem.swift in Sources */,
+				42E8127C244F785B00B54F68 /* MyTicketDetails.swift in Sources */,
+				4299AA292423D11200DD8058 /* AppDelegate.swift in Sources */,
+				4299AA602423D2D700DD8058 /* ScanFocusRegion.swift in Sources */,
+				4285857A2446095700927984 /* TransactionHistory.swift in Sources */,
+				4299AA792423F35F00DD8058 /* MyFavoriteItem.swift in Sources */,
+				424F9DFB2432DF4A00B60964 /* SearchBar.swift in Sources */,
+				428585782446028500927984 /* MyAccountList.swift in Sources */,
+				4299AA2E2423D11200DD8058 /* FootballTickets.xcdatamodeld in Sources */,
+				424F9E0624339FF800B60964 /* Ticket.swift in Sources */,
+				4285857F244609CB00927984 /* Auction.swift in Sources */,
+				4285857D2446098500927984 /* GetTicketsList.swift in Sources */,
+				428585812446142B00927984 /* GetTicketsItem.swift in Sources */,
+				4299AA712423EFC200DD8058 /* AccountData.swift in Sources */,
+				428585832446173F00927984 /* GetTicketsDetails.swift in Sources */,
+				424F9E082433A02100B60964 /* TicketData.swift in Sources */,
+				4299AA782423F35F00DD8058 /* MyFavoriteDetails.swift in Sources */,
+				4299AA7A2423F35F00DD8058 /* MyFavoritesList.swift in Sources */,
+				4299AA302423D11200DD8058 /* ContentView.swift in Sources */,
+				426330F0243BD5FC009CF4AC /* ScanQRBarcode.swift in Sources */,
+				424F9E0A2433A0B500B60964 /* TicketsList.swift in Sources */,
+				424F9DFD243302D300B60964 /* AddAccount.swift in Sources */,
+				4299AA6A2423D35C00DD8058 /* GetImageFromUrl.swift in Sources */,
+				4299AA2B2423D11200DD8058 /* SceneDelegate.swift in Sources */,
+				426330ED243BD544009CF4AC /* WebRequestData.swift in Sources */,
+				4299AA7E2423F8E300DD8058 /* UserData.swift in Sources */,
+				4299AA622423D2F600DD8058 /* WebView.swift in Sources */,
+				4299AA642423D31300DD8058 /* ScannerViewController.swift in Sources */,
+				4299AA732423EFD700DD8058 /* Account.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4299AA3A2423D11700DD8058 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4299AA432423D11700DD8058 /* FootballTicketsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4299AA452423D11700DD8058 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4299AA4E2423D11700DD8058 /* FootballTicketsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4299AA402423D11700DD8058 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4299AA242423D11200DD8058 /* FootballTickets */;
+			targetProxy = 4299AA3F2423D11700DD8058 /* PBXContainerItemProxy */;
+		};
+		4299AA4B2423D11700DD8058 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4299AA242423D11200DD8058 /* FootballTickets */;
+			targetProxy = 4299AA4A2423D11700DD8058 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4299AA362423D11700DD8058 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4299AA372423D11700DD8058 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4299AA502423D11700DD8058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4299AA512423D11700DD8058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4299AA532423D11700DD8058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FootballTickets/Preview Content\"";
+				DEVELOPMENT_TEAM = 9B3W8XR6B2;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = FootballTickets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sameerdandekar.FootballTickets;
+				PRODUCT_NAME = Tickets;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4299AA542423D11700DD8058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FootballTickets/Preview Content\"";
+				DEVELOPMENT_TEAM = 9B3W8XR6B2;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = FootballTickets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sameerdandekar.FootballTickets;
+				PRODUCT_NAME = Tickets;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4299AA562423D11700DD8058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9B3W8XR6B2;
+				INFOPLIST_FILE = FootballTicketsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sameerdandekar.FootballTicketsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FootballTickets.app/FootballTickets";
+			};
+			name = Debug;
+		};
+		4299AA572423D11700DD8058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9B3W8XR6B2;
+				INFOPLIST_FILE = FootballTicketsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sameerdandekar.FootballTicketsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FootballTickets.app/FootballTickets";
+			};
+			name = Release;
+		};
+		4299AA592423D11700DD8058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9B3W8XR6B2;
+				INFOPLIST_FILE = FootballTicketsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sameerdandekar.FootballTicketsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FootballTickets;
+			};
+			name = Debug;
+		};
+		4299AA5A2423D11700DD8058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9B3W8XR6B2;
+				INFOPLIST_FILE = FootballTicketsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sameerdandekar.FootballTicketsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FootballTickets;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4299AA202423D11200DD8058 /* Build configuration list for PBXProject "FootballTickets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4299AA502423D11700DD8058 /* Debug */,
+				4299AA512423D11700DD8058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4299AA522423D11700DD8058 /* Build configuration list for PBXNativeTarget "FootballTickets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4299AA532423D11700DD8058 /* Debug */,
+				4299AA542423D11700DD8058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4299AA552423D11700DD8058 /* Build configuration list for PBXNativeTarget "FootballTicketsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4299AA562423D11700DD8058 /* Debug */,
+				4299AA572423D11700DD8058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4299AA582423D11700DD8058 /* Build configuration list for PBXNativeTarget "FootballTicketsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4299AA592423D11700DD8058 /* Debug */,
+				4299AA5A2423D11700DD8058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4299AA2C2423D11200DD8058 /* FootballTickets.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4299AA2D2423D11200DD8058 /* FootballTickets.xcdatamodel */,
+			);
+			currentVersion = 4299AA2D2423D11200DD8058 /* FootballTickets.xcdatamodel */;
+			path = FootballTickets.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 4299AA1D2423D11200DD8058 /* Project object */;
+}

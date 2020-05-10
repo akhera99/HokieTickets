@@ -1,0 +1,81 @@
+<%!
+	import libgoblin, goblin_auth
+%>
+<%
+	user, session = goblin_auth.get_user(c)
+	if user != "hokipoki":
+		return
+	tables = libgoblin.get_declared_tables();
+	table = d["table"] if "table" in d else tables[0]
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Admin Tables</title>
+		<link rel="stylesheet" href="/static/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap" rel="stylesheet"> 
+	</head>
+	<body>
+		<div class="banner">
+			<img src="/static/vt-logo-white.svg" alt="">
+            % if user == "hokipoki":
+                ADMIN
+			% endif
+		</div>
+		<nav>
+			<div class="nav-section" id="user-logout">
+                <p>You are logged in as <b>${user}</b></p>
+                <a href="/logout.pyhtml">Logout</a>
+            </div>
+            <div class="nav-section" id="pages">
+				<ul>
+					<li><a href="/admin/raw.pyhtml">TABLES</a></li>
+					<li><a href="/admin/attendance.pyhtml">ATTENDANCE</a></li>
+                    <li><a href="/admin/auctions.pyhtml">AUCTIONS</a></li>
+					<li><a href="/admin/lottery.pyhtml">LOTTERY</a></li>
+                    <li><a href="/admin/transfer.pyhtml">TRANSFER</a></li>
+					<li><a href="/admin/accounts.pyhtml">ACCOUNTS</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="content">
+			% if user == "hokipoki":
+				<h1>Raw Tables</h1>
+				<p>View the data tables.</p>
+				<label for="tableselect">Select table:</label> <br />
+				<select name="tableselect" onchange="window.location=window.location.pathname + '?table=' + this.selectedOptions[0].value;">
+				% for tbl in tables:
+					<option value="${tbl}" ${"selected='selected'" if tbl == table else ""}>${tbl}</option>
+				% endfor
+				</select>
+				<br /><br /><br /><br />
+				% if table:
+					<% raw = libgoblin.get_raw_table(table) %>
+					% if len(raw) == 0:
+						Table is empty
+					% else:
+						<table><thead>
+						<tr>
+						% for k in raw[0].__dict__.keys()[::-1]:
+							<th>${k | h}</th>
+						% endfor
+						</thead><tbody>
+						% for r in raw:
+							<tr>
+							% for f in r[::-1]:
+								<td>${f | h}</td>
+							% endfor
+							</tr>
+						% endfor
+						</tbody></table>
+					% endif
+				% endif
+				</select>
+			% else:
+				You do not have permission to access this page.
+			% endif
+		</div>
+	</body>
+</html>

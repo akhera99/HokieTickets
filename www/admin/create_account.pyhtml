@@ -1,0 +1,31 @@
+<%!
+	import libgoblin, goblin_auth, json
+%>
+<%
+	user, session = goblin_auth.get_user(c)
+	if user != "hokipoki":
+		return
+	ui = False
+	status = False
+	if "user" in d:
+		try:
+			ui = libgoblin.get_user_info(d["user"])
+			status = "User already exists"
+		except:
+			pass
+		if not ui:
+			libgoblin.create_account(d["user"])
+			ui = libgoblin.get_user_info(d["user"])
+			status = "User created"
+%>
+% if ui:
+	${status}<br />
+	<pre>${libgoblin.debug_format(ui) | h}</pre><br />
+	${libgoblin.check_permissions_grant(ui.account_name) | h}
+	<br />
+% endif
+<form method="POST">
+	<input type="text" name="user" placeholder="Username to create" />
+	## <input type="text" name="action" value="create_account" style="display: none;" />
+	<input type="submit" value="Submit" />
+</form>

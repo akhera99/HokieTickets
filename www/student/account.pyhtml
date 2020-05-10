@@ -1,0 +1,173 @@
+<%!
+	import libgoblin, goblin_auth, time
+%>
+<%
+	user, session = goblin_auth.get_user(c)
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student Account Information</title>
+		<link rel="stylesheet" href="/static/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap" rel="stylesheet"> 
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var m = localStorage.getItem("txs");
+    if (!m) {
+        m = {};
+    } else {
+        m = JSON.parse(m);
+    }
+    Array.prototype.slice.call(document.querySelectorAll(".tx"), 0).forEach(function(e) {
+        var txid = e.getAttribute("data-txid");
+        if (!m[txid]) {
+            e.classList.toggle("tx-new");
+            e.style.backgroundColor = "pink";
+            m[txid] = true;
+        }
+    })
+    localStorage.setItem("txs", JSON.stringify(m));
+});
+        </script>
+	</head>
+    <body>
+    <div class="banner">
+		<img src="/static/images/vt-logo-white.svg" alt="">
+            % if user == "hokipoki":
+                ADMIN
+			% endif
+	</div>
+    % if user:
+
+        ## NAV SECTION - any changes must be changed for all navs
+	<%include file="nav.pyhtml" args="user=user" />
+
+        ## MAIN CONTENT SECTION
+        <div class='content'>
+
+			<h1>Account Information</h1>
+            <p>Here you can see your account balance and transaction history.</p>
+            <div id="account-info">
+                <div id="account-balance">
+                    <h2>ACCOUNT BALANCE</h2>
+                    <table>
+                        <thead><tr><th></th></thead>
+                        <tbody>
+                            <td><h3>${libgoblin.format_htk(libgoblin.get_balance(user))}</h3></td>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="transaction-history">
+                    <h2>TRANSACTION HISTORY</h2>
+                    <table>
+                        <thead><tr>
+                            <th>DATE</th>
+                            <th>TRANSACTION</th>
+                            <th>BALANCE</th>
+                        </thead>
+                        <tbody>
+							<%
+                            bal = libgoblin.get_balance(user)
+                            def get_hr_text(r):
+                                if r.action_trace.act.name == "transfer":
+                                    if r.action_trace.act.data.to == user:
+                                        target = r.action_trace.act.data.from_
+                                        text = ["Recieved ", " from "]
+                                    else:
+                                        target = r.action_trace.act.data.to
+                                        text = ["Transferred ", " to "]
+                                    if target == "hokipoki": target = "Virginia Tech"
+                                    return text[0] + r.action_trace.act.data.quantity + text[1] + target + " for \"" + r.action_trace.act.data.memo + "\""
+                                if r.action_trace.act.name == "buy":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.id)
+                                    if not ticket: return "Bought ticket id " + str(r.action_trace.act.data.id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    if not game: return "Bought a ticket to game id " + str(ticket.game_id)
+                                    return "Bought a ticket to " + game.name + " for " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "sell":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.id)
+                                    if not ticket: return "Sold ticket id " + str(r.action_trace.act.data.id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    if not game: return "Sold a ticket to game id " + str(ticket.game_id)
+                                    return "Sold a ticket to " + game.name + " for " + libgoblin.format_date(game.date) + " back to the university"
+                                if r.action_trace.act.name == "enterlottery":
+                                    game = libgoblin.get_game(r.action_trace.act.data.game_id)
+                                    if not game: return "Entered lottery for game id " + str(r.action_trace.act.data.game_id)
+                                    return "Entered the ticket lottery for the game " + game.name + " for " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "leavelottery":
+                                    game = libgoblin.get_game(r.action_trace.act.data.game_id)
+                                    if not game: return "Left lottery for game id " + str(r.action_trace.act.data.game_id)
+                                    return "Left the ticket lottery for the game " + game.name + " for " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "updateauth":
+                                    return "Account created!" # HACK
+                                if r.action_trace.act.name == "executelotto":
+                                    game = libgoblin.get_game(r.action_trace.act.data.game_id)
+                                    if not game: return "Received ticket from the ticket lottery for game ID " + str(r.action_trace.act.data.game_id)
+                                    return "Received ticket from the ticket lottery for " + game.name + " on " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "creatauction":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.ticket_id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    return "Started auctioning a ticket to " + game.name + " until " + libgoblin.format_datetime(r.action_trace.act.data.end_date) + " at a starting bid of " + libgoblin.format_htk(r.action_trace.act.data.initial_bid/100)
+                                if r.action_trace.act.name == "execauction1":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.ticket_id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    return "Claimed a ticket from winning an auction to " + game.name + " on " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "execauction2":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.ticket_id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    return "Finished auctioning a ticket to " + game.name + " on " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "cancelauctn":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.auction_id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    return "Cancelled an auction for a ticket to " + game.name + " on " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "bid":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.ticket_id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    amt = libgoblin.format_htk(r.action_trace.act.data.bid/100)
+                                    return "Bid " + amt + " on a ticket for " + game.name + " on " + libgoblin.format_date(game.date)
+                                if r.action_trace.act.name == "rewarduser":
+                                    ticket = libgoblin.get_ticket(r.action_trace.act.data.ticket_id)
+                                    if not ticket: return "Rewarded for attending a game using ticket id " + str(r.action_trace.act.data.ticket_id)
+                                    game = libgoblin.get_game(ticket.game_id)
+                                    if not game: return "Rewarded for attending game id " + str(ticket.game_id)
+                                    return "Rewarded for attending " + game.name + " for " + libgoblin.format_date(game.date)
+                                return r.action_trace.act.name + " -> " + r.action_trace.receiver + "<br /><pre>" + libgoblin.debug_format(r.action_trace.act.data) + "</pre>"
+                            def backcompute_bal(bal, r):
+                                if r.action_trace.act.name != "transfer": return bal
+                                q = float(r.action_trace.act.data.quantity.split(" ")[0])
+                                if r.action_trace.act.data.to == user:
+                                    bal -= q
+                                else:
+                                    bal += q;
+                                return bal
+                            %>
+                            % for i, l in list(enumerate(libgoblin.get_history(user)))[::-1]:
+                                <%
+                                    t = time.strftime("%A, %B %-d %Y, %-l:%M:%S %p", time.localtime(time.mktime(time.strptime(l[0].block_time.split(".")[0], "%Y-%m-%dT%H:%M:%S")) - (4 * 3600)))
+                                    bal_fmt = libgoblin.format_htk(bal)
+                                    hr = []
+				    txid = l[0].action_trace.trx_id
+                                    for r in l:
+                                        bal = backcompute_bal(bal, r)
+                                        hr.append(get_hr_text(r))
+                                %>
+                                <tr class="tx" data-txid="${txid}" style="background-color: ${"#ddd" if i % 2 == 1 else "#f9f9f9"};">
+                                    <td>${t}</td>
+                                    <td class="hr">${"<br />".join(hr)}</td>
+                                    <td>${bal_fmt}</td>
+                                </tr>
+                            % endfor
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+			<%include file="footer.pyhtml" args="user=user" />
+		% else:
+			You do not have permission to access this page.  Please <a href="/login.pyhtml">login</a>.
+		% endif
+		</div>
+	</body>
+</html>
+
+

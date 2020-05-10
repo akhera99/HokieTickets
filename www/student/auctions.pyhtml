@@ -1,0 +1,191 @@
+<%!
+import libgoblin, goblin_auth, json
+from datetime import datetime as dt
+%>
+<%
+user, session = goblin_auth.get_user(c)
+
+def today_to_date():
+    return dt.now().strftime("%Y%m%d%H%M")
+def format_date(date_time):
+    if len(date_time) != 12:
+        return ""
+    date = int(date_time) // 10000   # Take off HHMM
+    obj = dt(date // 10000, (date // 100) % 100, date % 100) #YYYY,MM,DD
+    return obj.strftime("%a. %B %d, %Y")
+def format_time(date_time):
+    if len(date_time) != 12:
+        return ""
+    date = int(date_time) // 10000  # Take off HHMM
+    time = int(date_time) % 10000   # Just HHMM
+    obj = dt(date // 10000, (date // 100) % 100, date % 100, hour=(time // 100), minute=(time % 100)) #YYYY,MM,DD
+    return obj.strftime("%-I:%M %p")
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student Ticket Auctions</title>
+		<link rel="stylesheet" href="/static/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap" rel="stylesheet"> 
+        <script src="/static/student.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	</head>
+    <body onload='setupAuctionTabs();'>
+    <div class="banner">
+		<img src="/static/images/vt-logo-white.svg" alt="">
+        % if user == "hokipoki":
+            ADMIN
+        % endif
+	</div>
+    % if user:
+
+        ## NAV SECTION - any changes must be changed for all navs
+	<%include file="nav.pyhtml" args="user=user" />
+
+        ## MAIN CONTENT SECTION
+        <div class='content'>
+
+            <h1>Student Ticket Auctions</h1>
+            <p>Find ticket auctions to enter and view your auctions.</p>
+			<div id="tabs">
+			    <div class="tabbutton tabbutton-active" id="tab1-active">My Auctions and Bids</div><div class="tabbutton" id="tab2-active">Find Auctions</div>
+			</div>
+			<div id="tab1">
+				<h2>MY AUCTIONS</h2>
+				<% auctions = libgoblin.get_auctions_by_name(user) %>
+				% if len(auctions) == 0:
+				    <tr><p>You do not have any auctions open.</p></tr>
+				% else:
+				    <table>
+					<thead><tr>
+					    <th>EVENT</th>
+					    <th>END DATE</th>
+					    <th>HIGHEST BID</th>
+					    <th></th>
+					</tr></thead><tbody>
+					    % for i, a in list(enumerate(auctions)):
+						<tr style="background-color: ${"#ddd" if i % 2 == 1 else "#f9f9f9"};">
+						<td><h3>${libgoblin.get_game(a.game_id).name}</h3></td>
+						<td>
+						    <p>${format_date(a.end_date)}</p>
+						    <p>${format_time(a.end_date)}</p>
+						</td>
+						<td><p>${libgoblin.format_htk(str(a.highest_bid)[:-2] + '.' + str(a.highest_bid)[-2:])}</p></td>
+						<td>
+						% if libgoblin.auction_ended(a.ticket_id):
+						    <button class="actionButton secondary"
+								    onclick="openWindow('${user}', '${a.ticket_id}', 'execute_auction_owner',
+													    {'event_name': 'Game'})"
+							    >Execute Auction</button>
+						% elif a.highest_bid <= libgoblin.get_ticket_by_id(a.ticket_id).face_value:
+						    <button class="actionButton secondary" 
+								    onclick="openWindow('${user}','${a.ticket_id}', 'cancel_auction', 
+													    {'event_name': '${libgoblin.get_game(a.game_id).name}'})"
+						    >Cancel Auction</button>
+						% endif
+						</td>
+					    % endfor
+					</tbody>
+				    </table>
+				% endif
+				<h2>YOUR BIDS</h2>
+				<% bids = libgoblin.get_auctions_user_bid(user) %>
+				% if len(bids) == 0:
+				    <tr><td><p>You haven't bet on any auctions.</p></td>
+				% else:
+				    <table>
+					<thead><tr>
+					    <th>EVENT</th>
+					    <th>END DATE</th>
+					    <th>YOUR BID</th>
+					    <th></th></tr>
+					</thead>
+					<tbody>
+					    % for i, b in list(enumerate(bids)):
+						<tr style="background-color: ${"#ddd" if i % 2 == 1 else "#f9f9f9"};">
+						<td><h3>${libgoblin.get_game(b.game_id).name}</h3></td>
+						<td>
+						    <p>${format_date(b.end_date)}</p>
+						    <p>${format_time(b.end_date)}</p>
+						</td>
+						<td><p>${libgoblin.format_htk(str(b.highest_bid)[:-2] + '.' + str(b.highest_bid)[-2:])}</p></td>
+						<td>
+						% if libgoblin.auction_ended(b.ticket_id):
+						    <button class="actionButton secondary"
+								    onclick="openWindow('${user}', '${b.ticket_id}', 'execute_auction_winner',
+													    {'event_name': 'Game'})"
+							    >Execute Auction</button>
+						% endif
+						</td>
+					    % endfor
+					</tbody>
+				    </table>
+				% endif
+			</div>
+			<div id="tab2" style="display: none;">
+				<h2>FIND AUCTIONS BY GAME</h2>
+				<table style="" id="auction_table_select">
+					<thead><tr>
+						<th>GAME</th>
+						<th>DATE</th>
+						<th>AUCTIONS</th>
+					</thead>
+					<tbody class="tableHeightOverride">
+						% for group in libgoblin.get_auction_groups():
+						<tr class="tableHeightOverride">
+							<td>${group[0].name}</td>
+							<td>${libgoblin.format_datetime(group[0].date)}</td>
+							<td>
+								% if len(group[1]) > 0:
+									<button class="actionButton" onclick='populateListings(${json.dumps(user)}, ${group[0].id}, ${json.dumps(group[0].name)})'>
+										${len(group[1])} open auction${libgoblin.s(group[1])}
+									</button>
+								% else:
+									No open auctions
+								% endif
+							</td>
+						</tr>
+						% endfor
+					</tbody>
+				</table>
+				<div id="auction_group_box" style="display: none;">
+					<a onclick="auctionGoBack()" style="display: block; padding-bottom: 10px; color: #666; font-size: 150%;">
+						<svg class="bi bi-arrow-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 010 .708L3.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+							<path fill-rule="evenodd" d="M2.5 8a.5.5 0 01.5-.5h10.5a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+						</svg>
+						Back to Game Selection
+					</a>
+					<table>
+						<thead><tr>
+							<th>USER</th>
+							<th>END DATE</th>
+							<th>HIGHEST BID</th>
+							<th></th>
+						</thead>
+						<tbody id="auctionListings">
+							<tr><td><p>Loading...</p></td>
+							<td></td>
+							<td></td>
+							<td></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+        </div>
+			<%include file="footer.pyhtml" args="user=user" />
+
+        <div id="window" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeWindow()">&times;</span>
+                <div class="modal-body"></div>
+                <div class="button-area"></div>
+            </div>
+        </div>
+    </body>
+    
+	% else:
+		You do not have permission to access this page.  Please <a href="/login.pyhtml">login</a>.
+	% endif
+</html>

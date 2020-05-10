@@ -1,0 +1,43 @@
+<%page args="user" />
+<%! import libgoblin %>
+<div style="text-align: right; margin: 20px 10px; font-size: 80%; color: grey;" id="footer">
+	Powered by <a href="https://eos.io" class="stealth" target="_blank">EOSIO</a><br />
+	<% keys = libgoblin.get_active_public_keys(user) %>
+	% if len(keys) == 1:
+		Your public key is <span><code class="pubkey">${keys[0]}</code></span>
+	% else:
+		Your public keys are: <ul>
+		% for k in keys:
+			<li><code class="pubkey">${k}</code></li>
+		% endfor
+		</ul>
+	% endif
+	<br />
+	You should have recieved your private key from the site administrator when your account was created.
+	<br />
+	You can contact your site administrator at any time to reset your private key
+</div>
+<script>
+Array.prototype.slice.call(document.getElementById("footer").querySelectorAll("code.pubkey"), 0).forEach(function(e) {
+	e.addEventListener("click", function() {
+		var i = document.createElement("input");
+		//i.style.display = "none";
+		i.value = "DEBUG " + e.innerText;
+		document.body.appendChild(i);
+		i.select()
+		document.execCommand('copy');
+		document.body.removeChild(i);
+		var s = document.createElement("span");
+		s.appendChild(document.createElement("br"));
+		s.appendChild(document.createTextNode("Copied to clipboard!"))
+		s.style.transition = "opacity 0.5s"
+		e.parentElement.appendChild(s);
+		setTimeout(function() {
+			s.style.opacity = 0;
+		}, 1000);
+		setTimeout(function() {
+			e.parentElement.removeChild(s);
+		}, 1500);
+	})
+});
+</script>

@@ -1,0 +1,487 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:3184:0:0:0:0 with SMTP id j4csp41657pjb;
+        Thu, 9 Apr 2020 14:12:31 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKGSIOdTmDONYLbO06WGAybofEM6tVNQ/ddPO/LJraIa2I3BYrxkEZxfJ6lllu5JcGiUCet
+X-Received: by 2002:ae9:ee01:: with SMTP id i1mr925291qkg.498.1586466751501;
+        Thu, 09 Apr 2020 14:12:31 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1586466751; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=EedZptDVtC7MdiK+E7g2FZ2vpcacn1xXF7GmhgQDTBmuDjJsDgkgPxOxsV8MVLpqJv
+         4da1K5KYvF98EIn0nKnBdbtB7Y1oN/tyVwHb14FJOSa+tfb44qcr8OA1gFulaCRCuOk5
+         gWUojwFVBGpHNN2qVNrD9BoTYAnht1FxUGkj6RgE6htON/Krn9i/Xwx/LcEP22Kf2jR0
+         PFBnxVSYZncQf1Bg48AQzg3cAMgnuwAfzCDaGOOMmjFy1S9ZKiY3gTrYE/aVYCnAFpY8
+         4k2TCv930EydBIFrIdhTAQY2LhvKSqAboueart3yQgHxGDapB6jY3LlfAE0cxvFId6yB
+         366w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version
+         :dkim-signature:dkim-signature:delivered-to;
+        bh=Fs8laVB9y7wzIvyi9oiVhOpzjnCx4NRY9ad8mcTcNbs=;
+        b=zXhpWY7OdI+fHbS3jKnavkNyJDNH8xtAH+BCiHR6fnfZhiZ3C6oUUQNflMkcL8ypmm
+         cWnB9y0+KgpXOlvSHw3C0GZgiSt24XFxmBeOhf3S51A7zwnnMzdz3s4XsWbxKgPyWsje
+         ku68f69sBv+FU3pcdCdEAp6JmprTIK4fqKTKT4lCgy9PJRBqFsSsCC/KQ3WHfCM0rv52
+         ecdl6y/ZQFUsPtL7mrr8xS6sV3Qrm0LYCxKJ1ULwZqj9n+Qs8GtGv4aSQmrHL6MZdCbh
+         IVN8TmwJFRg5mFe1lHLjWfIeVGu6Q+9spARzaxQ61yfcjZod6yDY8ErDYcSeGupeFGo3
+         +aKA==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=s7Xtz7Au;
+       dkim=pass header.i=@block.one header.s=google header.b=CZYMcxNg;
+       arc=pass (i=1 spf=pass spfdomain=block.one dkim=pass dkdomain=google.com dkim=pass dkdomain=block.one);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr2.cc.vt.edu (omr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:33:fb76:806e])
+        by mx.google.com with ESMTPS id bb2si5578236qvb.26.2020.04.09.14.12.31
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 Apr 2020 14:12:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) client-ip=2607:b400:92:8400:0:33:fb76:806e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=s7Xtz7Au;
+       dkim=pass header.i=@block.one header.s=google header.b=CZYMcxNg;
+       arc=pass (i=1 spf=pass spfdomain=block.one dkim=pass dkdomain=google.com dkim=pass dkdomain=block.one);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Received: from mr1.cc.vt.edu (mr1.cc.ipv6.vt.edu [IPv6:2607:b400:92:8300:0:31:1732:8aa4])
+	by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 039LCVC4025870
+	for <nilesrogoff@gmail.com>; Thu, 9 Apr 2020 17:12:31 -0400
+Received: from mail-il1-x145.google.com (mail-il1-x145.google.com [IPv6:2607:f8b0:4864:20::145])
+	by mr1.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 039LCPrC009801
+	for <nilesrogoff@gmail.com>; Thu, 9 Apr 2020 17:12:31 -0400
+Received: by mail-il1-x145.google.com with SMTP id c9so214139ill.17
+        for <nilesrogoff@gmail.com>; Thu, 09 Apr 2020 14:12:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-signature:dkim-signature
+         :mime-version:reply-to:sender:message-id:date:subject:from:to;
+        bh=Fs8laVB9y7wzIvyi9oiVhOpzjnCx4NRY9ad8mcTcNbs=;
+        b=cU3lj1kyjrFQCuryov1D1YgbxVGlS2uL2icKE/TXIr9P3ypj7azGkDSnvPoIySqp6+
+         fQoF4CDxL0hrBOurNCVqYIlWkAytwuYk0lr6fwlVNqofPdyoDrJ6p22ZQaYcM8TxJ9U3
+         5xex+IogqIXuVghcvWMjifi14Z08VjiQ5ccNz4aPUdVgEpxODt4iSSSVdpenk4kLCY3c
+         md/fRN6+G5cutu4UseboWOKCirtGKBleh07QUjUYJQBKQbS/OsFnA1RzV0PY9JXVpE0m
+         Npm9Db3yaGPMTfstYaxVsDuGhGwWIgc1VuFvk6e0XMN2rUnPlfgMMao9xUHiRSO30Tmt
+         0pzQ==
+X-Gm-Message-State: AGi0PuYjY/FkVipDheAS9bJQ8O90PmDWXmZxxVkIRJs23db4KB8+mW1F
+	ehuIvzPXY7OzpjEKVlomYqDEdj9iZYSUhFkMMdw2d2VHK2pJFselxlHYajrzKU/c+h0EuBd0+pr
+	3FRRGZvzEJIxZx5aSErnMLqV/xLskceOw+nTEMBYWxgHXxmRqmk0=
+X-Received: by 2002:a02:6983:: with SMTP id e125mr1482095jac.47.1586466745394;
+        Thu, 09 Apr 2020 14:12:25 -0700 (PDT)
+X-Received: by 2002:a02:6983:: with SMTP id e125mr1482080jac.47.1586466745133;
+        Thu, 09 Apr 2020 14:12:25 -0700 (PDT)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:89f4:0:0:0:0:0 with SMTP id x49csp26337imx;
+        Thu, 9 Apr 2020 14:12:23 -0700 (PDT)
+X-Received: by 2002:a37:692:: with SMTP id 140mr881433qkg.297.1586466743545;
+        Thu, 09 Apr 2020 14:12:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586466743; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Y9BXDCYVmBGOeQXkB5SH+0TgpmMvN3512dTAm6wS/1FqqEHcgYPf0q9JhTYC/Ju2rh
+         dxsPtk5j7fKcZVSSkVl72sn1EsVkgWkIAmyMds16xhUcOEcXRBb3k6DF9wplydzdjRmv
+         oGA2P9VpFivH4inWnoFmTCoW1z8iC/HUjmz66nJUIAA8mi9152xrhDIe1whHhu5TmrKt
+         +vIx1gkhrJAKXPW1cAwTEuuKoILWF5y027nQ16HRGD1yzULTqK/jnOh6IsU1ldFqVwZv
+         LT3UGS8WwqhDj4oruBev5wrLtHtpIf30p5MnoT9ZWw9rg1+yPV+PnrOMrnOG0uXMienn
+         aH+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version
+         :dkim-signature:dkim-signature;
+        bh=Fs8laVB9y7wzIvyi9oiVhOpzjnCx4NRY9ad8mcTcNbs=;
+        b=p2UmNT7CCH+8cZ0x8KFCdnmiZvOoVt52TuKqLnGULF/HvDStpFq4tPLp26YIUM8/xl
+         J0ftRR5Hbww82TmDGKoPZ97WlfIcYNYOCaaOt4Vzn2eCIHijqCKBaVxY3NHdHacNMGrI
+         2ZJ2yBVCRDdCDVff1VJPBbugCsGOd/dCoEZs0mf80h5ARrr9IGfQDjrwnapCzNIcYKyv
+         OU6Ah1BR2fA+epGCHLVJ2+gNJ7JRFFA9NPjzOnnhpf2AErkmbgMru6OYMCAaOlezeaKy
+         HlSHBaJrUeNZ220kmBlhyTKdHisMWNlcOmEx1bGlLyF6H++jLnl1m4lvr/MUrERUDVFz
+         a8Fg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=s7Xtz7Au;
+       dkim=pass header.i=@block.one header.s=google header.b=CZYMcxNg;
+       spf=pass (google.com: domain of mark.woods@block.one designates 205.220.172.170 as permitted sender) smtp.mailfrom=mark.woods@block.one
+Received: from mr6.cc.vt.edu (mr6.cc.vt.edu. [2607:b400:92:8500:0:af:2d00:4488])
+        by mx.google.com with ESMTPS id n10si138159qkh.2.2020.04.09.14.12.23
+        for <nilesr@vt.edu>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 Apr 2020 14:12:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of mark.woods@block.one designates 205.220.172.170 as permitted sender) client-ip=205.220.172.170;
+Received: from mx0b-00494701.pphosted.com (mx0b-00494701.pphosted.com [205.220.172.170])
+	by mr6.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 039LCIZW027273
+	for <nilesr@vt.edu>; Thu, 9 Apr 2020 17:12:23 -0400
+Received: from pps.filterd (m0191409.ppops.net [127.0.0.1])
+	by mx0a-00494701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 039LB3pv020252
+	for <nilesr@vt.edu>; Fri, 10 Apr 2020 05:12:17 +0800
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com [209.85.210.70])
+	by mx0a-00494701.pphosted.com with ESMTP id 3096m3rtva-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <nilesr@vt.edu>; Fri, 10 Apr 2020 05:12:17 +0800
+Received: by mail-ot1-f70.google.com with SMTP id r26so9215531otq.10
+        for <nilesr@vt.edu>; Thu, 09 Apr 2020 14:12:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:reply-to:sender:message-id:date:subject:from:to;
+        bh=Fs8laVB9y7wzIvyi9oiVhOpzjnCx4NRY9ad8mcTcNbs=;
+        b=s7Xtz7AuPS6dlUO7xXPZrVKxvj7bpy99KxYAmejlGxTnjK71k2L6+W/8twzByQBS+9
+         TXOus2U7ZgAoPwJeuP0P/mYc1TqzzQ0evhl9Pw83PwyVt0WwTXNrUcL3GydkUwixpxp5
+         p34fJsjMgNlI6K7++RdohDsNBoqCvbLy2k6pic+DKxBkunWP08MC2HTficIDeVp9Dw+i
+         9ezsURJ0vOaD4bR03AbuI+pHl16myNzNisiQ4rtqWAUG2FpqiSauS3v19gSc3FDEIJm3
+         qLSan94XFrwga8UYEBNr1Eaig+hoCUtZr/51bCN0FODT7ZmkMRm3ryXRWjd4a7K6xmXN
+         tI5w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=block.one; s=google;
+        h=mime-version:reply-to:sender:message-id:date:subject:from:to;
+        bh=Fs8laVB9y7wzIvyi9oiVhOpzjnCx4NRY9ad8mcTcNbs=;
+        b=CZYMcxNgQigzlOxuEWLJFutmN9rwl1jSSRD5sb3MDzeP5N89eHmTzv8J2lyGUXwLQO
+         AyvFo92CiO9Tl7nguQujInsf9Y3V+USypuGKbO+711da/Nj9ACrtXl+q2IET5FMVpswI
+         7hkpNkzjHENKLpLcoRXQBqs4OZBYLwYSDD+cWaacCPJVy73Eb1xVJAIiD9GPS8LR7FRM
+         Gdk4iVNYtWmlEjrgNQvzKIZW4igGl6hoXxXks0dguXldhNae2bkUPJOpPbDJxPz5o8y4
+         3+d1DErrxySpD4FdsGNxS82Zj1/T3Wj46nUdpOKkTgQ9h/QtO2uzyWYjE5upXtakYOpu
+         bnvw==
+X-Received: by 2002:a9d:5e0d:: with SMTP id d13mr1715126oti.162.1586466736920;
+        Thu, 09 Apr 2020 14:12:16 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 2002:a9d:5e0d:: with SMTP id d13mr1715111oti.162.1586466736593;
+ Thu, 09 Apr 2020 14:12:16 -0700 (PDT)
+Reply-To: mark.woods@block.one
+Sender: Google Calendar <calendar-notification@google.com>
+Message-ID: <0000000000004872eb05a2e212ea@google.com>
+Date: Thu, 09 Apr 2020 21:12:16 +0000
+Subject: Invitation: Goblins - VT Blockchain @ Mon Apr 20, 2020 2pm - 3pm
+ (EDT) (nilesr@vt.edu)
+From: mark.woods@block.one
+To: nilesr@vt.edu, nathanmk@vt.edu, sameerd@vt.edu, rachelk4@vt.edu,
+        ankita99@vt.edu
+Content-Type: multipart/mixed; boundary="0000000000004872d705a2e212e9"
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-09_08:2020-04-07,2020-04-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ mlxlogscore=999 bulkscore=0 clxscore=1011 adultscore=0 malwarescore=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2004090150
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--0000000000004872d705a2e212e9
+Content-Type: multipart/alternative; boundary="0000000000004872d605a2e212e7"
+
+--0000000000004872d605a2e212e7
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+WW91IGhhdmUgYmVlbiBpbnZpdGVkIHRvIHRoZSBmb2xsb3dpbmcgZXZlbnQuDQoNClRpdGxlOiBH
+b2JsaW5zIC0gVlQgQmxvY2tjaGFpbg0KV2hlbjogTW9uIEFwciAyMCwgMjAyMCAycG0g4oCTIDNw
+bSBFYXN0ZXJuIFRpbWUgLSBOZXcgWW9yaw0KDQpKb2luaW5nIGluZm86IEpvaW4gWm9vbSBNZWV0
+aW5nDQpodHRwczovL2Jsb2Nrb25lLnpvb20udXMvai8yMzgwNDYwMTk/cHdkPWMxZ3lUbkYzU1dF
+eGFVUkdUVVZaWm5GU1dsaFJkejA5ICANCihJRDogMjM4MDQ2MDE5LCBwYXNzd29yZDogYjE4Zzl6
+MFQpDQoNCkpvaW4gYnkgcGhvbmUNCihVUykgKzEgNjQ2LTg3Ni05OTIzDQooSEspICs4NTIgNTgw
+OCA2MDg4DQoNCkpvaW5pbmcgaW5zdHJ1Y3Rpb25zOiAgDQpodHRwczovL3d3dy5nb29nbGUuY29t
+L3VybD9xPWh0dHBzOi8vYXBwbGljYXRpb25zLnpvb20udXMvYWRkb24vaW52aXRhdGlvbi9kZXRh
+aWw/bWVldGluZ1V1aWQlM0QzJTI1MkZMcjNva3BTOWElMjUyQmlBU3BDVzVvb3clMjUzRCUyNTNE
+JTI2c2lnbmF0dXJlJTNEZDRhZWVkNjQ3YTYyZGFkODhjNTZlNDY5MDgxN2U1ZDg3ZDAzOWMwNWJj
+YzY1YjA2ODY5MTg3NDVkNzczMDA4YSZzYT1EJnVzZz1BT3ZWYXczclNnSjVVRkJRT29aVFBNOXpo
+VzVnDQoNCkpvaW5pbmcgbm90ZXM6IFBhc3N3b3JkOiBiMThnOXowVA0KDQpDYWxlbmRhcjogbmls
+ZXNyQHZ0LmVkdQ0KV2hvOg0KICAgICAqIG1hcmsud29vZHNAYmxvY2sub25lIC0gb3JnYW5pemVy
+DQogICAgICogbmF0aGFubWtAdnQuZWR1DQogICAgICogc2FtZWVyZEB2dC5lZHUNCiAgICAgKiBy
+YWNoZWxrNEB2dC5lZHUNCiAgICAgKiBuaWxlc3JAdnQuZWR1DQogICAgICogYW5raXRhOTlAdnQu
+ZWR1DQoNCkV2ZW50IGRldGFpbHM6ICANCmh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vY2FsZW5kYXIv
+ZXZlbnQ/YWN0aW9uPVZJRVcmZWlkPU1uWTNOR2xuYTJaME5qaGhiVGd4YlhGbWRqUXdhWFpxWXpN
+Z2JtbHNaWE55UUhaMExtVmtkUSZ0b2s9TWpBamJXRnlheTUzYjI5a2MwQmliRzlqYXk1dmJtVTVN
+VEEzTkRBNE5EaGhNR1UxTkRJeU9XUXdZVEkyWVRVNE16WXlaRFUyT0dWaVl6RmpNR1ZrJmN0ej1B
+bWVyaWNhJTJGTmV3X1lvcmsmaGw9ZW4mZXM9MQ0KDQpJbnZpdGF0aW9uIGZyb20gR29vZ2xlIENh
+bGVuZGFyOiBodHRwczovL3d3dy5nb29nbGUuY29tL2NhbGVuZGFyLw0KDQpZb3UgYXJlIHJlY2Vp
+dmluZyB0aGlzIGVtYWlsIGF0IHRoZSBhY2NvdW50IG5pbGVzckB2dC5lZHUgYmVjYXVzZSB5b3Ug
+YXJlICANCnN1YnNjcmliZWQgZm9yIGludml0YXRpb25zIG9uIGNhbGVuZGFyIG5pbGVzckB2dC5l
+ZHUuDQoNClRvIHN0b3AgcmVjZWl2aW5nIHRoZXNlIGVtYWlscywgcGxlYXNlIGxvZyBpbiB0byAg
+DQpodHRwczovL3d3dy5nb29nbGUuY29tL2NhbGVuZGFyLyBhbmQgY2hhbmdlIHlvdXIgbm90aWZp
+Y2F0aW9uIHNldHRpbmdzIGZvciAgDQp0aGlzIGNhbGVuZGFyLg0KDQpGb3J3YXJkaW5nIHRoaXMg
+aW52aXRhdGlvbiBjb3VsZCBhbGxvdyBhbnkgcmVjaXBpZW50IHRvIHNlbmQgYSByZXNwb25zZSB0
+byAgDQp0aGUgb3JnYW5pemVyIGFuZCBiZSBhZGRlZCB0byB0aGUgZ3Vlc3QgbGlzdCwgb3IgaW52
+aXRlIG90aGVycyByZWdhcmRsZXNzICANCm9mIHRoZWlyIG93biBpbnZpdGF0aW9uIHN0YXR1cywg
+b3IgdG8gbW9kaWZ5IHlvdXIgUlNWUC4gTGVhcm4gbW9yZSBhdCAgDQpodHRwczovL3N1cHBvcnQu
+Z29vZ2xlLmNvbS9jYWxlbmRhci9hbnN3ZXIvMzcxMzUjZm9yd2FyZGluZw0K
+--0000000000004872d605a2e212e7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<span itemscope itemtype=3D"http://schema.org/InformAction"><span style=3D"=
+display:none" itemprop=3D"about" itemscope itemtype=3D"http://schema.org/Pe=
+rson"><meta itemprop=3D"description" content=3D"Invitation from mark.woods@=
+block.one"/></span><span itemprop=3D"object" itemscope itemtype=3D"http://s=
+chema.org/Event"><div style=3D""><table cellspacing=3D"0" cellpadding=3D"8"=
+ border=3D"0" summary=3D"" style=3D"width:100%;font-family:Arial,Sans-serif=
+;border:1px Solid #ccc;border-width:1px 2px 2px 1px;background-color:#fff;"=
+><tr><td><meta itemprop=3D"eventStatus" content=3D"http://schema.org/EventS=
+cheduled"/><h4 style=3D"padding:6px 10px;margin:0 0 4px 0;font-family:Arial=
+,Sans-serif;font-size:13px;line-height:1.4;border:1px Solid #d9f2db;backgro=
+und:#d9f2db;color:#222;font-weight:normal"><strong>You have been invited to=
+ the following event.</strong></h4><div style=3D"padding:2px"><span itempro=
+p=3D"publisher" itemscope itemtype=3D"http://schema.org/Organization"><meta=
+ itemprop=3D"name" content=3D"Google Calendar"/></span><meta itemprop=3D"ev=
+entId/googleCalendar" content=3D"2v74igkft68am81mqfv40ivjc3"/><h3 style=3D"=
+padding:0 0 6px 0;margin:0;font-family:Arial,Sans-serif;font-size:16px;font=
+-weight:bold;color:#222"><span itemprop=3D"name">Goblins - VT Blockchain</s=
+pan></h3><table style=3D"display:inline-table" cellpadding=3D"0" cellspacin=
+g=3D"0" border=3D"0" summary=3D"Event details"><tr><td style=3D"padding:0 1=
+em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-spac=
+e:nowrap" valign=3D"top"><div><i style=3D"font-style:normal">When</i></div>=
+</td><td style=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-siz=
+e:13px;color:#222" valign=3D"top"><time itemprop=3D"startDate" datetime=3D"=
+20200420T180000Z"></time><time itemprop=3D"endDate" datetime=3D"20200420T19=
+0000Z"></time>Mon Apr 20, 2020 2pm =E2=80=93 3pm <span style=3D"color:#888"=
+>Eastern Time - New York</span></td></tr><tr><td style=3D"padding:0 1em 4px=
+ 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-space:nowra=
+p" valign=3D"top"><div><i style=3D"font-style:normal">Joining info</i></div=
+></td><td style=3D"padding-bottom:4px;font-family:Arial,Sans-serif;font-siz=
+e:13px;color:#222" valign=3D"top">Join Zoom Meeting</td></tr><tr><td style=
+=3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:=
+#888;white-space:nowrap"></td><td style=3D"padding-bottom:10px;font-family:=
+Arial,Sans-serif;font-size:13px;color:#222" valign=3D"top"><span itemprop=
+=3D"potentialaction" itemscope itemtype=3D"http://schema.org/JoinAction"><s=
+pan itemprop=3D"name" content=3D"blockone.zoom.us/j/238046019?pwd..."><span=
+ itemprop=3D"target" itemscope itemtype=3D"http://schema.org/EntryPoint"><s=
+pan itemprop=3D"url" content=3D"https://blockone.zoom.us/j/238046019?pwd=3D=
+c1gyTnF3SWExaURGTUVZZnFSWlhRdz09"><span itemprop=3D"httpMethod" content=3D"=
+GET"><a href=3D"https://blockone.zoom.us/j/238046019?pwd=3Dc1gyTnF3SWExaURG=
+TUVZZnFSWlhRdz09" style=3D"color:#20c;white-space:nowrap" target=3D"_blank"=
+>blockone.zoom.us/j/238046019?pwd...</a></span></span></span></span></span>=
+ <span style=3D"color:#888">(ID: 238046019, password: b18g9z0T)</span></td>=
+</tr><tr><td style=3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;fon=
+t-size:13px;color:#888;white-space:nowrap"></td><td style=3D"padding-bottom=
+:10px;font-family:Arial,Sans-serif;font-size:13px;color:#222" valign=3D"top=
+"></td></tr><td style=3D"padding:0 1em 4px 0;font-family:Arial,Sans-serif;f=
+ont-size:13px;color:#888;white-space:nowrap"></td><td style=3D"padding-bott=
+om:4px;font-family:Arial,Sans-serif;font-size:13px;color:#222" valign=3D"to=
+p">Join by phone</td><tr><td style=3D"padding:0 1em 4px 0;font-family:Arial=
+,Sans-serif;font-size:13px;color:#888;white-space:nowrap"></td><td style=3D=
+"padding-bottom:4px;font-family:Arial,Sans-serif;font-size:13px;color:#222"=
+ valign=3D"top"><span style=3D"color:#888">(US) </span><a href=3D"tel:+1646=
+8769923,,238046019#" style=3D"color:#20c;white-space:nowrap" target=3D"_bla=
+nk">+1 646-876-9923</a> </td></tr><tr><td style=3D"padding:0 1em 10px 0;fon=
+t-family:Arial,Sans-serif;font-size:13px;color:#888;white-space:nowrap"></t=
+d><td style=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-size:1=
+3px;color:#222" valign=3D"top"><span style=3D"color:#888">(HK) </span><a hr=
+ef=3D"tel:+85258086088,,238046019#" style=3D"color:#20c;white-space:nowrap"=
+ target=3D"_blank">+852 5808 6088</a> </td></tr><tr><td style=3D"padding:0 =
+1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-spa=
+ce:nowrap"></td><td style=3D"padding-bottom:10px;font-family:Arial,Sans-ser=
+if;font-size:13px;color:#222" valign=3D"top"></td></tr><tr><td style=3D"pad=
+ding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;wh=
+ite-space:nowrap"></td><td style=3D"padding-bottom:10px;font-family:Arial,S=
+ans-serif;font-size:13px;color:#222" valign=3D"top"><a href=3D"https://www.=
+google.com/url?q=3Dhttps://applications.zoom.us/addon/invitation/detail?mee=
+tingUuid%3D3%252FLr3okpS9a%252BiASpCW5oow%253D%253D%26signature%3Dd4aeed647=
+a62dad88c56e4690817e5d87d039c05bcc65b0686918745d773008a&amp;sa=3DD&amp;usg=
+=3DAOvVaw3rSgJ5UFBQOoZTPM9zhW5g" style=3D"color:#20c;white-space:nowrap" ta=
+rget=3D"_blank">Joining instructions</a></td></tr><tr><td style=3D"padding:=
+0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-s=
+pace:nowrap" valign=3D"top">Joining notes</td><td style=3D"padding-bottom:1=
+0px;font-family:Arial,Sans-serif;font-size:13px;color:#222" valign=3D"top">=
+Password: b18g9z0T</td></tr><tr><td style=3D"padding:0 1em 10px 0;font-fami=
+ly:Arial,Sans-serif;font-size:13px;color:#888;white-space:nowrap" valign=3D=
+"top"><div><i style=3D"font-style:normal">Calendar</i></div></td><td style=
+=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-size:13px;color:#=
+222" valign=3D"top">nilesr@vt.edu</td></tr><tr><td style=3D"padding:0 1em 1=
+0px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-space:no=
+wrap" valign=3D"top"><div><i style=3D"font-style:normal">Who</i></div></td>=
+<td style=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-size:13p=
+x;color:#222" valign=3D"top"><table cellspacing=3D"0" cellpadding=3D"0"><tr=
+><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;font-size:13p=
+x;color:#222"><span style=3D"font-family:Courier New,monospace">&#x2022;</s=
+pan></td><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;font-=
+size:13px;color:#222"><div><div style=3D"margin:0 0 0.3em 0"><span itemprop=
+=3D"attendee" itemscope itemtype=3D"http://schema.org/Person"><span itempro=
+p=3D"name" class=3D"notranslate">mark.woods@block.one</span><meta itemprop=
+=3D"email" content=3D"mark.woods@block.one"/></span><span itemprop=3D"organ=
+izer" itemscope itemtype=3D"http://schema.org/Person"><meta itemprop=3D"nam=
+e" content=3D"mark.woods@block.one"/><meta itemprop=3D"email" content=3D"ma=
+rk.woods@block.one"/></span><span style=3D"font-size:11px;color:#888"> - or=
+ganizer</span></div></div></td></tr><tr><td style=3D"padding-right:10px;fon=
+t-family:Arial,Sans-serif;font-size:13px;color:#222"><span style=3D"font-fa=
+mily:Courier New,monospace">&#x2022;</span></td><td style=3D"padding-right:=
+10px;font-family:Arial,Sans-serif;font-size:13px;color:#222"><div><div styl=
+e=3D"margin:0 0 0.3em 0"><span itemprop=3D"attendee" itemscope itemtype=3D"=
+http://schema.org/Person"><span itemprop=3D"name" class=3D"notranslate">nat=
+hanmk@vt.edu</span><meta itemprop=3D"email" content=3D"nathanmk@vt.edu"/></=
+span></div></div></td></tr><tr><td style=3D"padding-right:10px;font-family:=
+Arial,Sans-serif;font-size:13px;color:#222"><span style=3D"font-family:Cour=
+ier New,monospace">&#x2022;</span></td><td style=3D"padding-right:10px;font=
+-family:Arial,Sans-serif;font-size:13px;color:#222"><div><div style=3D"marg=
+in:0 0 0.3em 0"><span itemprop=3D"attendee" itemscope itemtype=3D"http://sc=
+hema.org/Person"><span itemprop=3D"name" class=3D"notranslate">sameerd@vt.e=
+du</span><meta itemprop=3D"email" content=3D"sameerd@vt.edu"/></span></div>=
+</div></td></tr><tr><td style=3D"padding-right:10px;font-family:Arial,Sans-=
+serif;font-size:13px;color:#222"><span style=3D"font-family:Courier New,mon=
+ospace">&#x2022;</span></td><td style=3D"padding-right:10px;font-family:Ari=
+al,Sans-serif;font-size:13px;color:#222"><div><div style=3D"margin:0 0 0.3e=
+m 0"><span itemprop=3D"attendee" itemscope itemtype=3D"http://schema.org/Pe=
+rson"><span itemprop=3D"name" class=3D"notranslate">rachelk4@vt.edu</span><=
+meta itemprop=3D"email" content=3D"rachelk4@vt.edu"/></span></div></div></t=
+d></tr><tr><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;fon=
+t-size:13px;color:#222"><span style=3D"font-family:Courier New,monospace">&=
+#x2022;</span></td><td style=3D"padding-right:10px;font-family:Arial,Sans-s=
+erif;font-size:13px;color:#222"><div><div style=3D"margin:0 0 0.3em 0"><spa=
+n itemprop=3D"attendee" itemscope itemtype=3D"http://schema.org/Person"><sp=
+an itemprop=3D"name" class=3D"notranslate">nilesr@vt.edu</span><meta itempr=
+op=3D"email" content=3D"nilesr@vt.edu"/></span></div></div></td></tr><tr><t=
+d style=3D"padding-right:10px;font-family:Arial,Sans-serif;font-size:13px;c=
+olor:#222"><span style=3D"font-family:Courier New,monospace">&#x2022;</span=
+></td><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;font-siz=
+e:13px;color:#222"><div><div style=3D"margin:0 0 0.3em 0"><span itemprop=3D=
+"attendee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=
+=3D"name" class=3D"notranslate">ankita99@vt.edu</span><meta itemprop=3D"ema=
+il" content=3D"ankita99@vt.edu"/></span></div></div></td></tr></table></td>=
+</tr></table><div style=3D"float:right;font-weight:bold;font-size:13px"> <a=
+ href=3D"https://www.google.com/calendar/event?action=3DVIEW&amp;eid=3DMnY3=
+NGlna2Z0NjhhbTgxbXFmdjQwaXZqYzMgbmlsZXNyQHZ0LmVkdQ&amp;tok=3DMjAjbWFyay53b2=
+9kc0BibG9jay5vbmU5MTA3NDA4NDhhMGU1NDIyOWQwYTI2YTU4MzYyZDU2OGViYzFjMGVk&amp;=
+ctz=3DAmerica%2FNew_York&amp;hl=3Den&amp;es=3D1" style=3D"color:#20c;white-=
+space:nowrap" itemprop=3D"url">more details &raquo;</a><br></div></div><p s=
+tyle=3D"color:#222;font-size:13px;margin:0"><span style=3D"color:#888">Goin=
+g (nilesr@vt.edu)?&nbsp;&nbsp;&nbsp;</span><wbr><strong><span itemprop=3D"p=
+otentialaction" itemscope itemtype=3D"http://schema.org/RsvpAction"><meta i=
+temprop=3D"attendance" content=3D"http://schema.org/RsvpAttendance/Yes"/><s=
+pan itemprop=3D"handler" itemscope itemtype=3D"http://schema.org/HttpAction=
+Handler"><link itemprop=3D"method" href=3D"http://schema.org/HttpRequestMet=
+hod/GET"/><a href=3D"https://www.google.com/calendar/event?action=3DRESPOND=
+&amp;eid=3DMnY3NGlna2Z0NjhhbTgxbXFmdjQwaXZqYzMgbmlsZXNyQHZ0LmVkdQ&amp;rst=
+=3D1&amp;tok=3DMjAjbWFyay53b29kc0BibG9jay5vbmU5MTA3NDA4NDhhMGU1NDIyOWQwYTI2=
+YTU4MzYyZDU2OGViYzFjMGVk&amp;ctz=3DAmerica%2FNew_York&amp;hl=3Den&amp;es=3D=
+1" style=3D"color:#20c;white-space:nowrap" itemprop=3D"url">Yes</a></span><=
+/span><span style=3D"margin:0 0.4em;font-weight:normal"> - </span><span ite=
+mprop=3D"potentialaction" itemscope itemtype=3D"http://schema.org/RsvpActio=
+n"><meta itemprop=3D"attendance" content=3D"http://schema.org/RsvpAttendanc=
+e/Maybe"/><span itemprop=3D"handler" itemscope itemtype=3D"http://schema.or=
+g/HttpActionHandler"><link itemprop=3D"method" href=3D"http://schema.org/Ht=
+tpRequestMethod/GET"/><a href=3D"https://www.google.com/calendar/event?acti=
+on=3DRESPOND&amp;eid=3DMnY3NGlna2Z0NjhhbTgxbXFmdjQwaXZqYzMgbmlsZXNyQHZ0LmVk=
+dQ&amp;rst=3D3&amp;tok=3DMjAjbWFyay53b29kc0BibG9jay5vbmU5MTA3NDA4NDhhMGU1ND=
+IyOWQwYTI2YTU4MzYyZDU2OGViYzFjMGVk&amp;ctz=3DAmerica%2FNew_York&amp;hl=3Den=
+&amp;es=3D1" style=3D"color:#20c;white-space:nowrap" itemprop=3D"url">Maybe=
+</a></span></span><span style=3D"margin:0 0.4em;font-weight:normal"> - </sp=
+an><span itemprop=3D"potentialaction" itemscope itemtype=3D"http://schema.o=
+rg/RsvpAction"><meta itemprop=3D"attendance" content=3D"http://schema.org/R=
+svpAttendance/No"/><span itemprop=3D"handler" itemscope itemtype=3D"http://=
+schema.org/HttpActionHandler"><link itemprop=3D"method" href=3D"http://sche=
+ma.org/HttpRequestMethod/GET"/><a href=3D"https://www.google.com/calendar/e=
+vent?action=3DRESPOND&amp;eid=3DMnY3NGlna2Z0NjhhbTgxbXFmdjQwaXZqYzMgbmlsZXN=
+yQHZ0LmVkdQ&amp;rst=3D2&amp;tok=3DMjAjbWFyay53b29kc0BibG9jay5vbmU5MTA3NDA4N=
+DhhMGU1NDIyOWQwYTI2YTU4MzYyZDU2OGViYzFjMGVk&amp;ctz=3DAmerica%2FNew_York&am=
+p;hl=3Den&amp;es=3D1" style=3D"color:#20c;white-space:nowrap" itemprop=3D"u=
+rl">No</a></span></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;<wbr><a href=3D"ht=
+tps://www.google.com/calendar/event?action=3DVIEW&amp;eid=3DMnY3NGlna2Z0Njh=
+hbTgxbXFmdjQwaXZqYzMgbmlsZXNyQHZ0LmVkdQ&amp;tok=3DMjAjbWFyay53b29kc0BibG9ja=
+y5vbmU5MTA3NDA4NDhhMGU1NDIyOWQwYTI2YTU4MzYyZDU2OGViYzFjMGVk&amp;ctz=3DAmeri=
+ca%2FNew_York&amp;hl=3Den&amp;es=3D1" style=3D"color:#20c;white-space:nowra=
+p" itemprop=3D"url">more options &raquo;</a></p></td></tr><tr><td style=3D"=
+background-color:#f6f6f6;color:#888;border-top:1px Solid #ccc;font-family:A=
+rial,Sans-serif;font-size:11px"><p>Invitation from <a href=3D"https://www.g=
+oogle.com/calendar/" target=3D"_blank" style=3D"">Google Calendar</a></p><p=
+>You are receiving this email at the account nilesr@vt.edu because you are =
+subscribed for invitations on calendar nilesr@vt.edu.</p><p>To stop receivi=
+ng these emails, please log in to https://www.google.com/calendar/ and chan=
+ge your notification settings for this calendar.</p><p>Forwarding this invi=
+tation could allow any recipient to send a response to the organizer and be=
+ added to the guest list, or invite others regardless of their own invitati=
+on status, or to modify your RSVP. <a href=3D"https://support.google.com/ca=
+lendar/answer/37135#forwarding">Learn More</a>.</p></td></tr></table></div>=
+</span></span>
+--0000000000004872d605a2e212e7
+Content-Type: text/calendar; charset="UTF-8"; method=REQUEST
+Content-Transfer-Encoding: 7bit
+
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20200420T180000Z
+DTEND:20200420T190000Z
+DTSTAMP:20200409T211216Z
+ORGANIZER;CN=mark.woods@block.one:mailto:mark.woods@block.one
+UID:2v74igkft68am81mqfv40ivjc3@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=nathanmk@vt.edu;X-NUM-GUESTS=0:mailto:nathanmk@vt.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=mark.woods@block.one;X-NUM-GUESTS=0:mailto:mark.woods@block.one
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=sameerd@vt.edu;X-NUM-GUESTS=0:mailto:sameerd@vt.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=rachelk4@vt.edu;X-NUM-GUESTS=0:mailto:rachelk4@vt.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=nilesr@vt.edu;X-NUM-GUESTS=0:mailto:nilesr@vt.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=ankita99@vt.edu;X-NUM-GUESTS=0:mailto:ankita99@vt.edu
+X-MICROSOFT-CDO-OWNERAPPTID:1182182858
+CREATED:20200409T211117Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nPlease do not edit this section of the descriptio
+ n.\n\nJoin Zoom Meeting\nhttps://blockone.zoom.us/j/238046019?pwd=c1gyTnF3S
+ WExaURGTUVZZnFSWlhRdz09 (ID: 238046019\, password: b18g9z0T)\n\nJoin by pho
+ ne\n(US) +1 646-876-9923\n(HK) +852 5808 6088\n\nJoining instructions: http
+ s://www.google.com/url?q=https://applications.zoom.us/addon/invitation/deta
+ il?meetingUuid%3D3%252FLr3okpS9a%252BiASpCW5oow%253D%253D%26signature%3Dd4a
+ eed647a62dad88c56e4690817e5d87d039c05bcc65b0686918745d773008a&sa=D&usg=AOvV
+ aw3rSgJ5UFBQOoZTPM9zhW5g\n\nPassword: b18g9z0T\n\nView your event at https:
+ //www.google.com/calendar/event?action=VIEW&eid=MnY3NGlna2Z0NjhhbTgxbXFmdjQ
+ waXZqYzMgbmlsZXNyQHZ0LmVkdQ&tok=MjAjbWFyay53b29kc0BibG9jay5vbmU5MTA3NDA4NDh
+ hMGU1NDIyOWQwYTI2YTU4MzYyZDU2OGViYzFjMGVk&ctz=America%2FNew_York&hl=en&es=1
+ .\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~::~:~::-
+LAST-MODIFIED:20200409T211215Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Goblins - VT Blockchain
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
+
+--0000000000004872d605a2e212e7--
+--0000000000004872d705a2e212e9
+Content-Type: application/ics; name="invite.ics"
+Content-Disposition: attachment; filename="invite.ics"
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBTEVOREFSDQpQUk9ESUQ6LS8vR29vZ2xlIEluYy8vR29vZ2xlIENhbGVuZGFyIDcw
+LjkwNTQvL0VODQpWRVJTSU9OOjIuMA0KQ0FMU0NBTEU6R1JFR09SSUFODQpNRVRIT0Q6UkVRVUVT
+VA0KQkVHSU46VkVWRU5UDQpEVFNUQVJUOjIwMjAwNDIwVDE4MDAwMFoNCkRURU5EOjIwMjAwNDIw
+VDE5MDAwMFoNCkRUU1RBTVA6MjAyMDA0MDlUMjExMjE2Wg0KT1JHQU5JWkVSO0NOPW1hcmsud29v
+ZHNAYmxvY2sub25lOm1haWx0bzptYXJrLndvb2RzQGJsb2NrLm9uZQ0KVUlEOjJ2NzRpZ2tmdDY4
+YW04MW1xZnY0MGl2amMzQGdvb2dsZS5jb20NCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JP
+TEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPQ0KIFRSVUU7Q049
+bmF0aGFubWtAdnQuZWR1O1gtTlVNLUdVRVNUUz0wOm1haWx0bzpuYXRoYW5ta0B2dC5lZHUNCkFU
+VEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPUFD
+Q0VQVEVEO1JTVlA9VFJVRQ0KIDtDTj1tYXJrLndvb2RzQGJsb2NrLm9uZTtYLU5VTS1HVUVTVFM9
+MDptYWlsdG86bWFyay53b29kc0BibG9jay5vbmUNCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFM
+O1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPQ0KIFRSVUU7
+Q049c2FtZWVyZEB2dC5lZHU7WC1OVU0tR1VFU1RTPTA6bWFpbHRvOnNhbWVlcmRAdnQuZWR1DQpB
+VFRFTkRFRTtDVVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
+RUVEUy1BQ1RJT047UlNWUD0NCiBUUlVFO0NOPXJhY2hlbGs0QHZ0LmVkdTtYLU5VTS1HVUVTVFM9
+MDptYWlsdG86cmFjaGVsazRAdnQuZWR1DQpBVFRFTkRFRTtDVVRZUEU9SU5ESVZJRFVBTDtST0xF
+PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD0NCiBUUlVFO0NOPW5p
+bGVzckB2dC5lZHU7WC1OVU0tR1VFU1RTPTA6bWFpbHRvOm5pbGVzckB2dC5lZHUNCkFUVEVOREVF
+O0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
+VElPTjtSU1ZQPQ0KIFRSVUU7Q049YW5raXRhOTlAdnQuZWR1O1gtTlVNLUdVRVNUUz0wOm1haWx0
+bzphbmtpdGE5OUB2dC5lZHUNClgtTUlDUk9TT0ZULUNETy1PV05FUkFQUFRJRDoxMTgyMTgyODU4
+DQpDUkVBVEVEOjIwMjAwNDA5VDIxMTExN1oNCkRFU0NSSVBUSU9OOi06On46fjo6fjp+On46fjp+
+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fg0KIDp+On46fjp+
+On46fjp+On46On46fjo6LVxuUGxlYXNlIGRvIG5vdCBlZGl0IHRoaXMgc2VjdGlvbiBvZiB0aGUg
+ZGVzY3JpcHRpbw0KIG4uXG5cbkpvaW4gWm9vbSBNZWV0aW5nXG5odHRwczovL2Jsb2Nrb25lLnpv
+b20udXMvai8yMzgwNDYwMTk/cHdkPWMxZ3lUbkYzUw0KIFdFeGFVUkdUVVZaWm5GU1dsaFJkejA5
+IChJRDogMjM4MDQ2MDE5XCwgcGFzc3dvcmQ6IGIxOGc5ejBUKVxuXG5Kb2luIGJ5IHBobw0KIG5l
+XG4oVVMpICsxIDY0Ni04NzYtOTkyM1xuKEhLKSArODUyIDU4MDggNjA4OFxuXG5Kb2luaW5nIGlu
+c3RydWN0aW9uczogaHR0cA0KIHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cT1odHRwczovL2FwcGxp
+Y2F0aW9ucy56b29tLnVzL2FkZG9uL2ludml0YXRpb24vZGV0YQ0KIGlsP21lZXRpbmdVdWlkJTNE
+MyUyNTJGTHIzb2twUzlhJTI1MkJpQVNwQ1c1b293JTI1M0QlMjUzRCUyNnNpZ25hdHVyZSUzRGQ0
+YQ0KIGVlZDY0N2E2MmRhZDg4YzU2ZTQ2OTA4MTdlNWQ4N2QwMzljMDViY2M2NWIwNjg2OTE4NzQ1
+ZDc3MzAwOGEmc2E9RCZ1c2c9QU92Vg0KIGF3M3JTZ0o1VUZCUU9vWlRQTTl6aFc1Z1xuXG5QYXNz
+d29yZDogYjE4Zzl6MFRcblxuVmlldyB5b3VyIGV2ZW50IGF0IGh0dHBzOg0KIC8vd3d3Lmdvb2ds
+ZS5jb20vY2FsZW5kYXIvZXZlbnQ/YWN0aW9uPVZJRVcmZWlkPU1uWTNOR2xuYTJaME5qaGhiVGd4
+YlhGbWRqUQ0KIHdhWFpxWXpNZ2JtbHNaWE55UUhaMExtVmtkUSZ0b2s9TWpBamJXRnlheTUzYjI5
+a2MwQmliRzlqYXk1dmJtVTVNVEEzTkRBNE5EaA0KIGhNR1UxTkRJeU9XUXdZVEkyWVRVNE16WXla
+RFUyT0dWaVl6RmpNR1ZrJmN0ej1BbWVyaWNhJTJGTmV3X1lvcmsmaGw9ZW4mZXM9MQ0KIC5cbi06
+On46fjo6fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+
+On46fjp+On46fjp+Og0KIH46fjp+On46On46fjo6LQ0KTEFTVC1NT0RJRklFRDoyMDIwMDQwOVQy
+MTEyMTVaDQpMT0NBVElPTjoNClNFUVVFTkNFOjANClNUQVRVUzpDT05GSVJNRUQNClNVTU1BUlk6
+R29ibGlucyAtIFZUIEJsb2NrY2hhaW4NClRSQU5TUDpPUEFRVUUNCkVORDpWRVZFTlQNCkVORDpW
+Q0FMRU5EQVINCg==
+--0000000000004872d705a2e212e9--

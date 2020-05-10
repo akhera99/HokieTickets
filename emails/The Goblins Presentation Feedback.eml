@@ -1,0 +1,424 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:b381:0:0:0:0 with SMTP id e1csp10068525pjr;
+        Sat, 9 May 2020 08:00:28 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIDnjR/HQODvyYrQTRxfQzrX+nGEiPKwG8qiJrC8kR9hv1z3QXrKkHtkPCG1szzZXPB9Asl
+X-Received: by 2002:ac8:70c:: with SMTP id g12mr8002152qth.71.1589036428397;
+        Sat, 09 May 2020 08:00:28 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1589036428; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=Ua2r6rvwkqAeNywP+1tQGyxLnnY3ZZitFGcUGOdA7dCRc3zhTHr4TGn61Igoo//r5H
+         oBWfDIsMfCKOxPxyStda37nPLsPczmZd15sMDWdC+QMnaUGSDUpVH5bixW8ZX+uMSYD9
+         cfP6bMfPg2zBXKIjsyJZxXNlKDsASs/igWUy+PlfFJQmh4JbKyxUIh+II8a5tlN10m5T
+         fv0pHIWpbC96rmrPRApJIu2bKN/jJkvW+bWGxglo7w8uP/j84VGo7nSiY+Cn44JNByUA
+         hYpZN3Pj8bstR21KHAI0A1IfRX1PPvPgV+i9lTR8EgnhV6v6qIJWGbJ/UMQO2xL66zCN
+         TRGQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:reply-to:in-reply-to:references
+         :mime-version:dkim-signature:dkim-filter:delivered-to;
+        bh=/G2wBZ4gohexncxCwtQ+BePSGSGaN5ckzIhjPftAty0=;
+        b=CtbZZmrJbPvePgL622/m6AcdyvBI4CRo+pN7RAAUjw9Igu7cmg9SDyBVk5hAWP4SdN
+         U8CijDM9phXI6Kh5U5060XUTPKv/DHV/OG2yn17ABphdbaGScfO8QrH22kW1+OtdJjtR
+         VTY2IHJwBvxD7XoovfJmAXY8UxgmHMwI2QvlEvSeAeQjhbu2+zUiWCyNieBQfzZ99Yub
+         KXt5lS3XTV1AGmFCcDSLagJlCRNJZQ6+z6SDoG3+x/eYzJIznnA+zqlPfqT9Xg+knXfT
+         c8NeIlwU0fHO7jvWT/SLJRYq8FzmNT8JLO/paqK4gMmC219ddyVxpqkFCRGI7TgT2tdm
+         Y9tw==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=H9bofjaM;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu dkim=pass dkdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr2.cc.vt.edu (omr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:33:fb76:806e])
+        by mx.google.com with ESMTPS id dl9si2612690qvb.223.2020.05.09.08.00.28
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 09 May 2020 08:00:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) client-ip=2607:b400:92:8400:0:33:fb76:806e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=H9bofjaM;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu dkim=pass dkdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Received: from mr3.cc.vt.edu (mr3.cc.ipv6.vt.edu [IPv6:2607:b400:92:8500:0:7f:b804:6b0a])
+	by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 049F0Sh0027545
+	for <nilesrogoff@gmail.com>; Sat, 9 May 2020 11:00:28 -0400
+Received: from mail-io1-xd45.google.com (mail-io1-xd45.google.com [IPv6:2607:f8b0:4864:20::d45])
+	by mr3.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 049F0MGV017276
+	for <nilesrogoff@gmail.com>; Sat, 9 May 2020 11:00:27 -0400
+Received: by mail-io1-xd45.google.com with SMTP id r17so527974ioa.1
+        for <nilesrogoff@gmail.com>; Sat, 09 May 2020 08:00:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-filter:dkim-signature
+         :mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=/G2wBZ4gohexncxCwtQ+BePSGSGaN5ckzIhjPftAty0=;
+        b=rezxry7z2Jk6GKFmbpWqc1drSMKw/yA+GAOkZts36dtA4uU1/FRdEYotlZFUaNWaIz
+         EgYi+AgMhpbSORUiRJZiA0Zd/XXfSvprcLAAz3ow141EXEcZAjQ+ePUlMAyY5jWQpDN0
+         wB8stiUOfjU3AqE8Iw8jRYdSlt8cpE40fuhdbDr/ky1+Jy6pB3XjatwyIEyqxdyAZt8e
+         KX6yDeeuDd9zruqg9oaGkVMTz6A1VYhPxT1pevT0n7XJvYEN1wZ1eWk6tD1u2bSE40Pr
+         gZSNu03i/lTv2prkMyqckAykivJvWC/S1ud8CxsCpX84KRCGv5N/gw8/ovmiy4rWnXbG
+         vA5w==
+X-Gm-Message-State: AGi0PuaZyHpPkdl8652RE82/1Wk8+wVpRxnJZj1Pvzsae8bn7szzx8GR
+	TQeHbcQ67KEmtFpe5HNUuGwwOXgrWPTI0KBhg3RxE985RAM7i1BImjcaYr8KToqUqZNphsq8+bp
+	LcDUf1HlJhmbs2PWV4ih4UfUfK01lt9rj3SdDJLu1hSRCPq9HrjA=
+X-Received: by 2002:a5e:9816:: with SMTP id s22mr7237091ioj.8.1589036422620;
+        Sat, 09 May 2020 08:00:22 -0700 (PDT)
+X-Received: by 2002:a5e:9816:: with SMTP id s22mr7237046ioj.8.1589036421959;
+        Sat, 09 May 2020 08:00:21 -0700 (PDT)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ad5:4802:0:0:0:0:0 with SMTP id t2csp627398ims;
+        Sat, 9 May 2020 08:00:20 -0700 (PDT)
+X-Received: by 2002:a0c:a986:: with SMTP id a6mr7320374qvb.79.1589036419972;
+        Sat, 09 May 2020 08:00:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1589036419; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QYH6Kok2pkUNEZ4ko6Hs8zg3x8ywXx/hDFdXmLDBUbSC5yafXyOvP8ezY5+s8WeZ+C
+         g4kMofeckgZY7XVynv5dmpfycAwE3tXlFkuio72qVvKdK7TU4ZvON3btsreiDqmUK30A
+         m+FGMXjQpIGjC4CiBJUb7uLJNUKtGuwnihhBZvfUK2YGjdpcfBobP6ghQ/zGJ0Y7Xgki
+         eKbtM7PVUMEbcyrXG9zMJanHkvt5WM5BzpAJrW7votfQQ5cBrzQpWh1SGCo5i+PT0UMv
+         HdOjV+fZaxqjfAaU0PfQfDDph4gT1lJz6uwUtSsHG8jv+9FUtwijam/6TdJSxEH3oCET
+         ygsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:reply-to:in-reply-to:references
+         :mime-version:dkim-signature:dkim-filter;
+        bh=/G2wBZ4gohexncxCwtQ+BePSGSGaN5ckzIhjPftAty0=;
+        b=sWI1sqXmmn0hDAFV/XxmiMuYgXE9kbw2QazfHXYTrlJYIqVFS3XJpcHlEt7MPu1RgU
+         dR+qLvna/h0c9lME6hUd+U8VAoaKROclPoNkekRm37MWXKMOae9m5eeIY/fh/YXgfKEd
+         UYzFf96M9oVEJufSlqALJPQZF2Fp3zK+iWiywmrEGbupfXISNuJEsm8Z0HYoMq0Kzvii
+         0QQhD1HiddCVx9K59g1vEoq063mMq5AsijlNxeXR9Ws0jGrTOKEtXaedion54F7VzBnD
+         ELs4gCxPtMDiGVl7DZm5gyxm20Ip8v96KYguxW7LUCDakc19zIPiEnF+Dp45KpwmzJIV
+         /wMA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=H9bofjaM;
+       spf=pass (google.com: domain vt.edu configured 2607:b400:92:8400:0:72:232:758b as internal address) smtp.mailfrom=cameron@cs.vt.edu
+Received: from mr5.cc.vt.edu (mr5.cc.vt.edu. [2607:b400:92:8400:0:72:232:758b])
+        by mx.google.com with ESMTPS id y35si2635442qtd.334.2020.05.09.08.00.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 09 May 2020 08:00:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain vt.edu configured 2607:b400:92:8400:0:72:232:758b as internal address)
+Received: from smtp.cs.vt.edu (smtp.cs.ipv6.vt.edu [IPv6:2001:468:c80:212a:5054:ff:fe00:401])
+	by mr5.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 049F09Y6021818;
+	Sat, 9 May 2020 11:00:14 -0400
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.cs.vt.edu DEC5F8026404
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cs.vt.edu;
+	s=default; t=1589036408;
+	bh=/G2wBZ4gohexncxCwtQ+BePSGSGaN5ckzIhjPftAty0=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=H9bofjaMB9vzCH79ZHpnFCKa1UQGnVr0TQkHG/YWRjMDBsKisSr0Q5X1Xfeq4IU/z
+	 BMN6w8vMTIOpe7l59NO5gw89LbH9PgpvhbYZQfgAJkRE84WvnqpEOhJ90HVr75tF1Z
+	 mime2cQpDg7gcsUAN3XOF+17ERz19Q9AUJTGO1L8=
+X-Received: by 2002:a6b:7319:: with SMTP id e25mr7604762ioh.193.1589036408500;
+ Sat, 09 May 2020 08:00:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <CABroGiW5hRY7+Nj_=yU4ZWA3YECJHKTMmyLv_ySDdoWa_kXM-w@mail.gmail.com>
+In-Reply-To: <CABroGiW5hRY7+Nj_=yU4ZWA3YECJHKTMmyLv_ySDdoWa_kXM-w@mail.gmail.com>
+Reply-To: cameron@cs.vt.edu
+From: Kirk Cameron <cameron@cs.vt.edu>
+Date: Sat, 9 May 2020 10:59:56 -0400
+X-Gmail-Original-Message-ID: <CAOX9_e_nAVUKHdsKPkbZwNTZvw1NvF5YnPBabOu1Z_eu6ThYyA@mail.gmail.com>
+Message-ID: <CAOX9_e_nAVUKHdsKPkbZwNTZvw1NvF5YnPBabOu1Z_eu6ThYyA@mail.gmail.com>
+Subject: The Goblins Presentation Feedback
+To: Rachel Kitchen <rachelk4@vt.edu>
+Cc: Ankita Khera <ankita99@vt.edu>, Sameer Dandekar <sameerd@vt.edu>,
+        Nathan Kennedy <nathanmk@vt.edu>, Niles Rogoff <nilesr@vt.edu>
+Content-Type: multipart/mixed; boundary="000000000000aa29fd05a5385e83"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--000000000000aa29fd05a5385e83
+Content-Type: multipart/alternative; boundary="000000000000aa29fa05a5385e81"
+
+--000000000000aa29fa05a5385e81
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+Here are the comments received from your peers in the class during the
+presentation. I have anonymized and quickly reviewed these, but please
+notify me immediately if you find anything inappropriate in the comments.
+These comments or scores are only for you to get feedback on your
+presentations from a larger audience and have not been used in any way to
+calculate or affect your grade. My hope is that if you see several
+independent comments that are similar, it most likely means something. A
+single random comment is less worth noting.
+
+Have a great summer! -kwc
+
+--000000000000aa29fa05a5385e81
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-fami=
+ly:-webkit-standard;font-size:medium">Hi,</span><div style=3D"color:rgb(0,0=
+,0)"><br></div><div style=3D"color:rgb(0,0,0)">Here are the comments receiv=
+ed from your peers in the class during the presentation. I have anonymized =
+and quickly reviewed these, but please notify me immediately if you find an=
+ything inappropriate in the comments. These comments or scores are only for=
+ you to get feedback on your presentations from a larger audience and have =
+not been used in any way to calculate=C2=A0or affect your grade. My hope is=
+ that if you see several independent comments that are similar, it most lik=
+ely means something. A single random comment is less worth noting.</div><di=
+v style=3D"color:rgb(0,0,0)"><br></div><div style=3D"color:rgb(0,0,0)">Have=
+ a great summer! -kwc</div></div></div>
+
+--000000000000aa29fa05a5385e81--
+--000000000000aa29fd05a5385e83
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; 
+	name="the-goblins-050920.xlsx"
+Content-Disposition: attachment; filename="the-goblins-050920.xlsx"
+Content-Transfer-Encoding: base64
+Content-ID: <f_k9zr87ak0>
+X-Attachment-Id: f_k9zr87ak0
+
+UEsDBBQABgAIAAAAIQBi7p1oXgEAAJAEAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACs
+lMtOwzAQRfdI/EPkLUrcskAINe2CxxIqUT7AxJPGqmNbnmlp/56J+xBCoRVqN7ESz9x7MvHNaLJu
+bbaCiMa7UgyLgcjAVV4bNy/Fx+wlvxcZknJaWe+gFBtAMRlfX41mmwCYcbfDUjRE4UFKrBpoFRY+
+gOOd2sdWEd/GuQyqWqg5yNvB4E5W3hE4yqnTEOPRE9RqaSl7XvPjLUkEiyJ73BZ2XqVQIVhTKWJS
+uXL6l0u+cyi4M9VgYwLeMIaQvQ7dzt8Gu743Hk00GrKpivSqWsaQayu/fFx8er8ojov0UPq6NhVo
+Xy1bnkCBIYLS2ABQa4u0Fq0ybs99xD8Vo0zL8MIg3fsl4RMcxN8bZLqej5BkThgibSzgpceeRE85
+NyqCfqfIybg4wE/tYxx8bqbRB+QERfj/FPYR6brzwEIQycAhJH2H7eDI6Tt77NDlW4Pu8ZbpfzL+
+BgAA//8DAFBLAwQUAAYACAAAACEAtVUwI/QAAABMAgAACwAIAl9yZWxzLy5yZWxzIKIEAiigAAIA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKyS
+TU/DMAyG70j8h8j31d2QEEJLd0FIuyFUfoBJ3A+1jaMkG92/JxwQVBqDA0d/vX78ytvdPI3qyCH2
+4jSsixIUOyO2d62Gl/pxdQcqJnKWRnGs4cQRdtX11faZR0p5KHa9jyqruKihS8nfI0bT8USxEM8u
+VxoJE6UchhY9mYFaxk1Z3mL4rgHVQlPtrYawtzeg6pPPm3/XlqbpDT+IOUzs0pkVyHNiZ9mufMhs
+IfX5GlVTaDlpsGKecjoieV9kbMDzRJu/E/18LU6cyFIiNBL4Ms9HxyWg9X9atDTxy515xDcJw6vI
+8MmCix+o3gEAAP//AwBQSwMEFAAGAAgAAAAhAIE+lJfzAAAAugIAABoACAF4bC9fcmVscy93b3Jr
+Ym9vay54bWwucmVscyCiBAEooAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+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
+--000000000000aa29fd05a5385e83--

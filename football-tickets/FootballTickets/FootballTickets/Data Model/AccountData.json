@@ -1,0 +1,45 @@
+[
+    {
+        "id": "B178759E-638F-4C05-A32D-140912385756",
+        "fullname": "Sameer Dandekar",
+        "username": "sameer",
+        "accountBalance": "0.00",
+        "tickets": "None",
+    },
+    {
+        "id": "B17C956D-5DC2-47F5-BC4A-5CED4CCC3A1F",
+        "fullname": "Niles Rogoff",
+        "username": "nathanmk",
+        "accountBalance": "140.00",
+        "tickets": "None",
+    },
+    {
+        "id": "89CC2E33-1C36-4B44-9F6A-DFA2A4F26534",
+        "fullname": "Nathan Kennedy",
+        "username": "nathanmk",
+        "accountBalance": "300.00",
+        "tickets": "None",
+    },
+    {
+        "id": "B7F1AF1D-1653-4AD4-9632-C5243CD74583",
+        "fullname": "Rachel Kitchen",
+        "username": "rachelk4",
+        "accountBalance": "60.00",
+        "tickets": "None",
+    },
+    {
+        "id": "B7F1AF1D-1653-4AD4-9632-C5243CD74583",
+        "fullname": "Kirk Cameron",
+        "username": "cameron420",
+        "accountBalance": "620.00",
+        "tickets": "None",
+    },
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "fullname": "Ankita Khera",
+        "username": "ankita",
+        "accountBalance": "3,300.69",
+        "tickets": "None",
+    }
+    
+]

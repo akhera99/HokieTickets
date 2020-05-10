@@ -1,0 +1,28 @@
+[
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "owner": "hokipoki",
+        "gameID": "0",
+        "ticketID": "0",
+        "price": 6000,
+        "gameNumber": 1,
+        "name": "Virginia Tech vs. UNC",
+        "opponent": "UNC",
+        "location": "Lane Stadium",
+        "date": "October 24, 2020",
+        "reward": 500
+    },
+    {
+        "id": "96CED975-A4A9-4CCA-B158-C9B29A063A92",
+        "owner": "hokipoki",
+        "gameID": "0",
+        "ticketID": "0",
+        "price": 6000,
+        "gameNumber": 1,
+        "name": "Virginia Tech vs. BC",
+        "opponent": "BC",
+        "location": "Lane Stadium",
+        "date": "November 7, 2020",
+        "reward": 500
+    }
+]

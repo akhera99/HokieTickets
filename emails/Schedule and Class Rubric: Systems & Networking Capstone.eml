@@ -1,0 +1,356 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:3184:0:0:0:0 with SMTP id j4csp1090715pjb;
+        Fri, 10 Apr 2020 12:54:08 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJfrZ7iRnetEsfHsMdRO/3E0V02f4m4lmf9gSYa5BB5MAI+G0lJFwyhqRELbDOIGTLTbW5g
+X-Received: by 2002:adf:f5d0:: with SMTP id k16mr6129245wrp.227.1586548448417;
+        Fri, 10 Apr 2020 12:54:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586548448; cv=none;
+        d=google.com; s=arc-20160816;
+        b=gzArqolJTpIo5htupAMIKGSN6Cz59tYRmsvqLbYVAHuPrH9ZEy+msNiqJUj/T2k8t7
+         prOZA8uwNQNH30NDPrlAu9AXO55umhX4IaAPCyNydRLsvqpEQIY/xmLpwNKaJz9sKgNj
+         ug8huGGT50XuW39BC/otU0JHbKr/5Lnn2oJ0KYZb2Q1XIh7CIiwkxTB5WOcGy+YArpCd
+         N9TOUqLRgDd1F9rg90+Wt5B0kX7wV6MK48k/W+5oegsXyZYUqQaCrBbUCnbvThxbxOs3
+         NTDIj0WRZL3JjScYSxuTn7ISIl+1/eBLdEJsbfbW33k2mgB3f8DkE0iuSH5cPHCMLseY
+         ohmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:auto-submitted:content-transfer-encoding:mime-version
+         :subject:message-id:to:reply-to:from:date:dkim-signature
+         :dkim-signature:feedback-id:delivered-to:dkim-signature;
+        bh=yU781V/qvWyNOGGo6rd4BtfmMbTvOm466GRFNygNi8w=;
+        b=ze5XfZXZqtO6yDrfzRu2KqYnBNQtyxnmKMQtkRB+k4kUQfsNeBg3h3j07YfeA5SQwG
+         8Gw2AJTqMpNqWoZLSlIxc62MlDlugcjvBsraHifXkDBFcAkDpU1762WtYVFFnGqUYGo6
+         pCBc4ZbSDUMffM4cWMnEQSi7ht/NZ3olLWFiAWaelEJAIecgVs3X6GZkqE2Bg6jy3Vzc
+         9TbxmuMLY8qhqYU6fuXVb7SNoBoz+vlQMEneKEU/wbma+kBjxssWg78AVRw7icryk4zJ
+         emuJaB/BRcHJydXft6g+1aC85V61J0tT7yinD1ejfxMuYGaNtgFDKf+gFmrUEO0x6J3M
+         aEaQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@improvmx.com header.s=20191126 header.b=XzP2as1I;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=Gz+tnHqw;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b="SFlNW/Zd";
+       spf=neutral (google.com: 5.39.55.178 is neither permitted nor denied by domain of bounces-imx+78a4db6e332819d31b22a12bd5aa4354e1a77a605480ad4a830aee12fe7e65a0@niles.xyz) smtp.mailfrom=bounces-imx+78a4db6e332819d31b22a12bd5aa4354e1a77a605480ad4a830aee12fe7e65a0@niles.xyz
+Return-Path: <bounces-imx+78a4db6e332819d31b22a12bd5aa4354e1a77a605480ad4a830aee12fe7e65a0@niles.xyz>
+Received: from mail20.mxc.infra.improvmx.com (mail20.mxc.infra.improvmx.com. [5.39.55.178])
+        by mx.google.com with ESMTPS id k17si2870823wrm.239.2020.04.10.12.54.07
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Apr 2020 12:54:08 -0700 (PDT)
+Received-SPF: neutral (google.com: 5.39.55.178 is neither permitted nor denied by domain of bounces-imx+78a4db6e332819d31b22a12bd5aa4354e1a77a605480ad4a830aee12fe7e65a0@niles.xyz) client-ip=5.39.55.178;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@improvmx.com header.s=20191126 header.b=XzP2as1I;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=Gz+tnHqw;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b="SFlNW/Zd";
+       spf=neutral (google.com: 5.39.55.178 is neither permitted nor denied by domain of bounces-imx+78a4db6e332819d31b22a12bd5aa4354e1a77a605480ad4a830aee12fe7e65a0@niles.xyz) smtp.mailfrom=bounces-imx+78a4db6e332819d31b22a12bd5aa4354e1a77a605480ad4a830aee12fe7e65a0@niles.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=improvmx.com;
+ i=@improvmx.com; q=dns/txt; s=20191126; t=1586548447; h=date : from :
+ to : subject : content-type : feedback-id : message-id;
+ bh=yU781V/qvWyNOGGo6rd4BtfmMbTvOm466GRFNygNi8w=;
+ b=XzP2as1IKQB1dukLkw3kzwo28koOc/Bu7KVt6z/T77bn/Z+Z3MDXJmYqLZkg1pcbdi7yD
+ MokNgLuFAk93nmG2iL+GH/YNUwLCO16fNRKXi77O+tw2OTTv8+f1kOF0ysmHVqHP2DrOceu
+ agztPmXgXSATKCR6ULyxRoQ9/+OEKL1nguRp9faTRKbqWLMGtClo205Oup4+DPz4fqtYdzw
+ 0nBBOcGpI+DRj1KuIZ474aDhxAegTTv/nSNpb0XVwAWq+52Qx1C+9L06KQkFXS/ssnOgVMp
+ VWZrtJEGHtPr5cPP2tJU7wC1MOHEVbcvadt2isEfHaEn6DUV4p+458fysB8Q==
+Delivered-To: me@niles.xyz
+Feedback-ID: bmlsZXMueHl6:forward:ImprovMX
+X-Forwarding-Service: ImprovMX v3.0.0
+Return-Path: <0100017165a80acb-33ac0596-bc7d-47d7-ae19-2e1b8d358906-000000@amazonses.com>
+Authentication-Results: mxa.infra.improvmx.com;
+    spf=pass (improvmx.com: domain of amazonses.com designates 54.240.14.154 as permitted sender) smtp.mailfrom=amazonses.com;
+    dkim=pass (signature was verified) header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=Gz+tnHqw;
+    dkim=pass (signature was verified) header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=SFlNW/Zd
+Received-SPF: pass (improvmx.com: domain of amazonses.com designates 54.240.14.154 as permitted sender) receiver=mxa.infra.improvmx.com; client-ip=54.240.14.154; helo=a14-154.smtp-out.amazonses.com;
+Received: From a14-154.smtp-out.amazonses.com (a14-154.smtp-out.amazonses.com. [54.240.14.154]);
+    By mxa.infra.improvmx.com using ESMTP (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256/256);
+    For me@niles.xyz;
+    Fri, 10 Apr 2020 19:54:06 -0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6s5mwthdy2mujaxi3xuxuckrikhn6her; d=instructure.com;
+	t=1586548443;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding;
+	bh=TgAdV9k5fvABOPtkDeRXtkOdM2GxaEaaRTAsK7PGutE=;
+	b=Gz+tnHqwKNHSrj2EWyWuByywWmh9Eb/dxWBDnhiIVAsnOqPadPkj/rD0bu1MRNBy
+	J7J7KyF4OriNEQZ7iaj4BTWDoEKbVC0RFbsBAy39LdZ7evsNOOtL0wrFlwsSKhnGgP2
+	98O5Ym+9bKQ5QkocZFtwEJDT0sctVJtFbHMi3yws=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1586548443;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=TgAdV9k5fvABOPtkDeRXtkOdM2GxaEaaRTAsK7PGutE=;
+	b=SFlNW/ZdPyF0aAxcf4++nUhs7kY/Hqe9mfxn4L9z7gNVHUfEKgvtWARyYGmeafAR
+	n2u+0b06bUOv4qm329BxbP/NZ25m239AGC5McTsY99i6FtU1LEJDsCs11l5zn2I+p0u
+	5N/grg+I1+ka+dyTqLZOqQoziDDXh3UcnqirUQIw=
+X-On-bounce-route-to: notification-service-failures-prod
+Date: Fri, 10 Apr 2020 19:54:03 +0000
+From: Systems & Networking Capstone <notifications@instructure.com>
+Reply-To: reply+8465ed0542e5a1e7-4511~191211408-1586548441@notifications.canvaslms.com
+To: me@niles.xyz
+Message-ID: <0100017165a80acb-33ac0596-bc7d-47d7-ae19-2e1b8d358906-000000@email.amazonses.com>
+Subject: Schedule and Class Rubric: Systems & Networking Capstone
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5e90cedb7589a_378110a7bd8598c1";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Auto-Submitted: auto-generated
+X-SES-Outgoing: 2020.04.10-54.240.14.154
+Feedback-ID: 1.us-east-1.6bnAGrq+H33YQMZ/rl7AdPgJjS+jB1rbcCIER0hXfVM=:AmazonSES
+
+
+----==_mimepart_5e90cedb7589a_378110a7bd8598c1
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+          Hi Everyone,
+
+As promised, here is an update on all things I can think of for the coming couple weeks. [Please note the "assignments" mentioned below will be available at 5pm today on Canvas.]
+*
+I THE SCHEDULE:
+*
+Tuesday, April 14 3:30-4:45PM: Zoom ALL HANDS Meeting for the class
+--> We will cover the expectations for the presentations and video/report submissions as well as answer any remaining questions you have.
+Here is a Zoom link we will try to use:
+https://virginiatech.zoom.us/my/prof.cameron
+*
+Thursday, April 16 3:30-4:45PM: Select team meetings during class
+--> This is time we can use if your team would like to meet during this week. This is not required, I just want to set aside time for anyone that wants to meet.
+*
+Tuesday, April 21 3:30-4:45PM:
+Thursday, April 23 3:30-4:45PM:
+*
+Friday, April 24 11:59PM: Term Project "Report" is DUE
+--> See the assignments for details, but basically, you need to upload a PDF with some information (team name, etc. + link to repo + uploaded video file name, etc.).
+--> Notably, VT Blockchain Challenge submits are also due on April 24 by midnight.
+--> Finalists will be asked to present on Zoom May 4, 3-5PM.
+*
+Saturday, May 9 7:45-9:45AM: Final Class Presentations (Zoom)
+*
+II CLASS RUBRIC
+*
+All grades to date are posted on Canvas as well as all remaining assignments. Only the Term Project "Report" listed above requires a direct submission (a PDF with some info and a video upload + link to repo). The other remaining assignments (Term Project and Final Presentation) are just placeholders with descriptions so I can post your grades later.
+*
+Here is the rubric we will use (from the syllabus) and some notes:
+*
+10% Project Proposal (done)
+15% Gannt Work Plan (done)
+10% Final Project Report (Upload PDF to Canvas, Video to google drive, due April 24, Repo due May 1) See assignment description for details.
+50% Term Project (DUE April 24, nothing to submit) See assignment description for details.
+10% Final Project Presentation/Demo (nothing to submit, Prexo on May 9, 2020 7:45AM-9:45AM) See assignment description for details.
+5% Meeting minutes and attendance at team meetings (Expect to do well unless you've been told otherwise, at final exam you will be asked to submit reviews of prezos)
+*
+That's how your letter grade will be calculated. I've pushed you all pretty hard so far and I expect everyone to do well...but don't let off the throttle :-) Assuming of course you are going to stick with standard grading (which would be my advice). I will of course allow anyone that needs to apply the Provost-approved alternative grading as needed. I will try to post your final letter grade after the presentations so you can let me know if you'd like to exercise the Provost's options.
+
+If you have any questions or I left anything out you need more information on, drop me an email or ask me on Tuesday April 14 when we all meet.
+
+Stay safe and healthy,
+
+Dr. Cameron
+
+
+https://canvas.vt.edu/courses/104581/announcements/744437
+
+
+
+
+
+
+          ________________________________________
+
+          You received this email because you are participating in one or more classes using Canvas.  To change or turn off email notifications, visit:
+https://canvas.vt.edu/profile/communication
+
+
+----==_mimepart_5e90cedb7589a_378110a7bd8598c1
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width">
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+  <style type=3D"text/css">
+/*
+Changes to font size (14->16) for smaller screens
+table[class=3Dbody] is the only selector that works for all vendors
+*/
+@media only screen and (max-width: 620px) {
+  table[class=3Dbody] p,
+  table[class=3Dbody] ul,
+  table[class=3Dbody] ol,
+  table[class=3Dbody] td,
+  table[class=3Dbody] span,
+  table[class=3Dbody] a {
+    font-size: 16px !important;
+  }
+  /* remove padding for mobile so no gray shows */
+  table[class=3Dbody] .bodycell {
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  /* reduce padding from 20->10 for mobile */
+  table[class=3Dbody] .maincell {
+    padding: 10px !important;
+  }
+}
+/*
+ExternalClass fixes Outlook.com / Hotmail emails
+*/
+@media all {
+  .ExternalClass {
+    width: 100%;
+  }
+  .ExternalClass,
+  .ExternalClass p,
+  .ExternalClass span,
+  .ExternalClass font,
+  .ExternalClass td,
+  .ExternalClass div {
+    line-height: 100%;
+  }
+}
+  </style>
+</head>
+<!--
+background: white (could be gray)
+default sans serif fonts, 14px, 1.3, #444444
+vendor prefixes for Outlook (-ms) and iOS (-webkit)
+Margin is capitalized to fix Outlook.com
+-->
+<body class=3D"" style=3D"background-color:#ffffff; font-family:'Open San=
+s', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', T=
+ahoma, 'Sans Serif'; font-size:14px; color: #444444; line-height:1.3; Mar=
+gin:0; padding:0; -ms-text-size-adjust:100%; -webkit-font-smoothing:antia=
+liased; -webkit-text-size-adjust:100%;">
+
+  <!-- body: background table (if body has a color, this should match) --=
+>
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"body" =
+style=3D"border-collapse:separate; background-color:#ffffff; width:100%; =
+box-sizing:border-box; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tr>
+      <!-- width and max-width so it can scale for mobile -->
+      <td class=3D"bodycell" style=3D"max-width:600px; width:100%; font-f=
+amily:'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida S=
+ans Unicode', Tahoma, 'Sans Serif'; font-size:14px; vertical-align:top; d=
+isplay:block; box-sizing:border-box; padding:10px; Margin:0 auto !importa=
+nt;">
+
+<!-- for older versions of Outlook that don't support max-width -->
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"600" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0"><tr><td>
+<![endif]-->
+
+        <!-- main: white box for content -->
+        <table class=3D"main" style=3D"background:#fff; width:100%; borde=
+r-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; ">
+          <tr>
+            <td class=3D"maincell" style=3D"font-family:sans-serif; font-=
+size:14px; vertical-align:top; box-sizing:border-box; padding:20px;">
+
+                    =
+
+<p>Hi Everyone,</p>
+<p>As promised, here is an update on all things I can think of for the co=
+ming couple weeks. [Please note the "assignments" mentioned below will be=
+ available at 5pm today on Canvas.]<br>*<br>I THE SCHEDULE:<br>*<br>Tuesd=
+ay, April 14 3:30-4:45PM: Zoom ALL HANDS Meeting for the class<br>--&gt; =
+We will cover the expectations for the presentations and video/report sub=
+missions as well as answer any remaining questions you have.<br>Here is a=
+ Zoom link we will try to use:<br>https://virginiatech.zoom.us/my/prof.ca=
+meron<br>*<br>Thursday, April 16 3:30-4:45PM: Select team meetings during=
+ class<br>--&gt; This is time we can use if your team would like to meet =
+during this week. This is not required, I just want to set aside time for=
+ anyone that wants to meet.<br>*<br>Tuesday, April 21 3:30-4:45PM:<br>Thu=
+rsday, April 23 3:30-4:45PM:<br>*<br>Friday, April 24 11:59PM: Term Proje=
+ct "Report" is DUE<br>--&gt; See the assignments for details, but basical=
+ly, you need to upload a PDF with some information (team name, etc. + lin=
+k to repo + uploaded video file name, etc.).<br>--&gt; Notably, VT Blockc=
+hain Challenge submits are also due on April 24 by midnight.<br>--&gt; Fi=
+nalists will be asked to present on Zoom May 4, 3-5PM.<br>*<br>Saturday, =
+May 9 7:45-9:45AM: Final Class Presentations (Zoom)<br>*<br>II CLASS RUBR=
+IC<br>*<br>All grades to date are posted on Canvas as well as all remaini=
+ng assignments. Only the Term Project "Report" listed above requires a di=
+rect submission (a PDF with some info and a video upload + link to repo).=
+ The other remaining assignments (Term Project and Final Presentation) ar=
+e just placeholders with descriptions so I can post your grades later.<br=
+>*<br>Here is the rubric we will use (from the syllabus) and some notes:<=
+br>*<br>10% Project Proposal (done)<br>15% Gannt Work Plan (done)<br>10% =
+Final Project Report (Upload PDF to Canvas, Video to google drive, due Ap=
+ril 24, Repo due May 1) See assignment description for details.<br>50% Te=
+rm Project (DUE April 24, nothing to submit) See assignment description f=
+or details.<br>10% Final Project Presentation/Demo (nothing to submit, Pr=
+exo on May 9, 2020 7:45AM-9:45AM) See assignment description for details.=
+<br>5% Meeting minutes and attendance at team meetings (Expect to do well=
+ unless you've been told otherwise, at final exam you will be asked to su=
+bmit reviews of prezos)<br>*<br>That's how your letter grade will be calc=
+ulated. I've pushed you all pretty hard so far and I expect everyone to d=
+o well...but don't let off the throttle :-) Assuming of course you are go=
+ing to stick with standard grading (which would be my advice). I will of =
+course allow anyone that needs to apply the Provost-approved alternative =
+grading as needed. I will try to post your final letter grade after the p=
+resentations so you can let me know if you'd like to exercise the Provost=
+'s options.</p>
+<p>If you have any questions or I left anything out you need more informa=
+tion on, drop me an email or ask me on Tuesday April 14 when we all meet.=
+</p>
+<p>Stay safe and healthy,</p>
+<p>Dr. Cameron</p>
+
+
+
+            </td>
+          </tr>
+        </table>
+        <!-- /.main -->
+
+        <!-- logo: branding -->
+        <table class=3D"logo" style=3D"width:100%; box-sizing:border-box;=
+ border-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; ">=
+
+          <tr>
+            <td class=3D"logocell" style=3D"text-align:center; vertical-a=
+lign:top; box-sizing:border-box; padding:10px;">
+              <img src=3D"https://du11hjcvx0uqb.cloudfront.net/dist/image=
+s/email_signature-d2c5880612.png" alt=3D"">
+            </td>
+          </tr>
+        </table>
+        <!-- /.logo -->
+
+        <!-- footer: gray text below main -->
+        <table class=3D"footer" style=3D"width:100%; box-sizing:border-bo=
+x; border-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; =
+">
+          <tr>
+            <td class=3D"footercell" style=3D"font-family:sans-serif; fon=
+t-size:14px; vertical-align:top; color:#a8b9c6; font-size:12px; text-alig=
+n:center; padding:10px; box-sizing:border-box; ">
+
+                <a href=3D"https://canvas.vt.edu/courses/104581/announcem=
+ents/744437">
+    View announcement
+  </a> &nbsp;|&nbsp;
+
+              <a href=3D"https://canvas.vt.edu/profile/communication" sty=
+le=3D"white-space: nowrap;">Update your notification settings</a>
+
+            </td>
+          </tr>
+        </table>
+        <!-- /.footer -->
+
+<!--[if (gte mso 9)|(IE)]>
+</td></tr></table>
+<![endif]-->
+
+      </td>
+    </tr>
+  </table>
+  <!-- /.body -->
+
+</body>
+</html>
+
+----==_mimepart_5e90cedb7589a_378110a7bd8598c1--

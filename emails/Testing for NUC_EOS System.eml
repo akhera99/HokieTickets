@@ -1,0 +1,149 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:d082:0:0:0:0 with SMTP id k2csp1830368pju;
+        Thu, 6 Feb 2020 11:32:33 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzfBEib4oFhLAs3/JBvotKQR0mX5tK1fmlgXfgJ7Jem6MIoVRQfYUh/NdZfn9hvyT3W8OVu
+X-Received: by 2002:a05:620a:204d:: with SMTP id d13mr3881040qka.56.1581017553569;
+        Thu, 06 Feb 2020 11:32:33 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1581017553; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=CvYe2Cvr2cnxM3rumH6sz2tyFBAn5srM+/9tdUX8c/Yao9evafJw++1JJBcwoXCrHi
+         +RQ2BOqZ/eB5xRDlSxixPTWl39QH05mSUZYw+OOqa5itnP/tBzKu1X6WeS1GDNKebh9N
+         frHx1DLQj8mpTrTc7TuMnGjmM2rzbSoEzgvkbwLD7XMoKL/+Fi0zGCqvNlT3/qSv8QxG
+         I2b3ZhhNUFFsU5+edendpoauBb2dA+LhBIUCiQKo+0oDOh2LQwFA5rPQSE34jMb6Bw6F
+         BIfSCRH1b82ryNTc88NQlPsGfoLY1I8czBu1gVLBWySAynp3FyL4CdbhyXoXDR1mAvIo
+         VldQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:reply-to:mime-version
+         :dkim-signature:dkim-filter:delivered-to;
+        bh=wqUfUbKMPLt2drF+mzo+OjS+aDOJIz45iu1VPheD7LQ=;
+        b=vF0emP6lIjw8m2L2c38A/KjOnnEm6X2NlQdDfSk8UPEhvH42gDeH/nWhrB7t53TmTa
+         002Q/3wmuupPMHuoaq9X0sLt+wuSgzScvaB5aeWrDG2Dl6KncImbLsuvRoivC2jR9WDf
+         ozR5jPdk0ByaUrk1fByAXkVMIUbAAtfp9SW5U7hdSsgi5VeFlgMKpu9cV5pluWoKjQsr
+         csnwXuuQ2ns9K+inT3BHfTw/UcV/tgr7k+y9OqXMXhTWQYO90MAh6M+/YnneLe8Ztgh9
+         ygyl6uSX82xVK6LpZdTvC1WpKKWwL+LnPilzWEsUf1LEoBny4xULJ0FFgecdWWQrzfc5
+         wc6w==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=ApcKLAOe;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu dkim=pass dkdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr2.cc.vt.edu (omr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:33:fb76:806e])
+        by mx.google.com with ESMTPS id n21si222556qtp.21.2020.02.06.11.32.33
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Feb 2020 11:32:33 -0800 (PST)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) client-ip=2607:b400:92:8400:0:33:fb76:806e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=ApcKLAOe;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu dkim=pass dkdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Received: from mr1.cc.vt.edu (mr1.cc.ipv6.vt.edu [IPv6:2607:b400:92:8300:0:31:1732:8aa4])
+	by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 016JWXsF011182
+	for <nilesrogoff@gmail.com>; Thu, 6 Feb 2020 14:32:33 -0500
+Received: from mail-il1-x145.google.com (mail-il1-x145.google.com [IPv6:2607:f8b0:4864:20::145])
+	by mr1.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 016JWSL2025987
+	for <nilesrogoff@gmail.com>; Thu, 6 Feb 2020 14:32:33 -0500
+Received: by mail-il1-x145.google.com with SMTP id w6so5321038ill.12
+        for <nilesrogoff@gmail.com>; Thu, 06 Feb 2020 11:32:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-filter:dkim-signature
+         :mime-version:reply-to:from:date:message-id:subject:to:cc;
+        bh=wqUfUbKMPLt2drF+mzo+OjS+aDOJIz45iu1VPheD7LQ=;
+        b=kVlD/ME7USw/Y3HSEDxQCX8TV4f54wsnO3AnVm34KfP0cQPLPbKre39XIas8s3SbKq
+         JVgsifVN8SD3iuZjaOLyMzB+WR1PnEhuJF1/PJFh4T4odKhZM4ixp0rQ601eVUWW2HUt
+         u+rtvyXqBszklzyG5AHR8830iXLKveLepp6vVS8Z+nGk9hd4PuhUOscfZ68FrDeT7E4t
+         myOgWW6C6hD5KkdokcCIwKiOhViibPWNyu8sdSNu/Jkrvmnqh267XjvF0cDILkLAKbzU
+         OK9kSlez4/UMXdwK5xec73n0a4vGJlvcLTOyuXOGhDAWp0DoXp1RWBlcWjU7l8Ju+MkL
+         CNEw==
+X-Gm-Message-State: APjAAAUL+05dF4zwGfYuxmhCIjAvwSA8T9GCafrlA2LciNrx69ipwuff
+	LVbmzvganEwS6J03J0FIhoheBKP5md+duCxrIdMhw6vSw/p48iwGoZbAHl2zS5P8Qg/ux0AATzC
+	QRNff5LkF2Z/ev0LLFEiLhaph1z5PPWKaaSgY1dVbkvZ9ACfzjd4=
+X-Received: by 2002:a92:a1c5:: with SMTP id b66mr5200668ill.190.1581017547900;
+        Thu, 06 Feb 2020 11:32:27 -0800 (PST)
+X-Received: by 2002:a92:a1c5:: with SMTP id b66mr5200623ill.190.1581017547309;
+        Thu, 06 Feb 2020 11:32:27 -0800 (PST)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:ac22:0:0:0:0:0 with SMTP id i31csp2320850imb;
+        Thu, 6 Feb 2020 11:32:26 -0800 (PST)
+X-Received: by 2002:a37:7d01:: with SMTP id y1mr4150571qkc.452.1581017546137;
+        Thu, 06 Feb 2020 11:32:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581017546; cv=none;
+        d=google.com; s=arc-20160816;
+        b=EKxqXWrXhmX7DRTssI7yO87aOyBCAzt8oSB3I86n2tRBRkgQTjGyT/JhQAsXCke4AN
+         JSoq9ea+LeU31ZTjQcm845Szotq5IKK1cJQgM62KBW7RCU/Og2vrLUyNGaYM+1Fz+6Ma
+         X5g55z9mZfOoH413aoiWjTwKsH6rtjDMtfo5Bhv+2giRxrG/ilglObKaFEnXOkYdW3h0
+         8HCnM46rZ98HFrDtJ7rDoLDYNhQZYjlTdQdqM2yMou+owBZoJGJNSEXN0XpQKRbq1vpm
+         wlLIpWjkqodispUkFXBAvEEjh7YK15jh3dZJcS8A3cCV5Y9Tnb+jPwGmLtcHSVrRBr07
+         dG8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:reply-to:mime-version
+         :dkim-signature:dkim-filter;
+        bh=wqUfUbKMPLt2drF+mzo+OjS+aDOJIz45iu1VPheD7LQ=;
+        b=Go4N972ha7dg7gA2/h9gGxu3GOI5ir3EcAQWTirUacP8kVFvajNz3efDQ8sGXI4XSI
+         rZnd48jBPgTj9eMyGAeFDAgSxEx9i/o+7KPGS9oLoFTz9F7gn+Uvb0swrPco128hiq1W
+         6grwDOItEvYl/DxGgOBwX8gO03jt6KAhAuan+dLdX+llIsF4NDfeJsE1BQVnyqdr4G13
+         6Rh+j83hrIpZYwVB8Vv73WGr2F0CWkSt6LcnnQ11MIMgWH7NDy+42XnqhyuxZbopJxyK
+         UC50+Z56KLJNaLtpkPvxJwYodvq/geTuwWhTbXvGNpFJJrRs9jnKEgNjOkzJ0WQww/GN
+         NDuw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@cs.vt.edu header.s=default header.b=ApcKLAOe;
+       spf=pass (google.com: domain vt.edu configured 2607:b400:92:8500:0:af:2d00:4488 as internal address) smtp.mailfrom=cameron@cs.vt.edu
+Received: from mr6.cc.vt.edu (mr6.cc.ipv6.vt.edu. [2607:b400:92:8500:0:af:2d00:4488])
+        by mx.google.com with ESMTPS id o34si236264qtd.109.2020.02.06.11.32.25
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Feb 2020 11:32:26 -0800 (PST)
+Received-SPF: pass (google.com: domain vt.edu configured 2607:b400:92:8500:0:af:2d00:4488 as internal address)
+Received: from smtp.cs.vt.edu (smtp.cs.ipv6.vt.edu [IPv6:2001:468:c80:212a:5054:ff:fe00:401])
+	by mr6.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 016JWKde024129;
+	Thu, 6 Feb 2020 14:32:25 -0500
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.cs.vt.edu 6242F802B09C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cs.vt.edu;
+	s=default; t=1581017540;
+	bh=wqUfUbKMPLt2drF+mzo+OjS+aDOJIz45iu1VPheD7LQ=;
+	h=Reply-To:From:Date:Subject:To:Cc:From;
+	b=ApcKLAOeQ7D0AFY2w2uARWs3yNXaj76h1u3ZHFPvjux0a6OuuNhrFPm//HLmPg1dL
+	 hmpVE4hy/T5/e+NjtNA2A5h895c49l+Q2LICLa609Q2yos26MMbrhgP4gysbvcqXe1
+	 Bv7E4dPLeUH6ka/BpHgjBEe4GR7AykF214BV7AvE=
+X-Received: by 2002:a5e:9246:: with SMTP id z6mr35953278iop.232.1581017539907;
+ Thu, 06 Feb 2020 11:32:19 -0800 (PST)
+MIME-Version: 1.0
+Reply-To: cameron@cs.vt.edu
+From: Kirk Cameron <cameron@cs.vt.edu>
+Date: Thu, 6 Feb 2020 14:32:08 -0500
+X-Gmail-Original-Message-ID: <CAOX9_e-T3-0cOQc3BTYQS_eSR+XRrt6etRyP8PUrit+JUHr6zQ@mail.gmail.com>
+Message-ID: <CAOX9_e-T3-0cOQc3BTYQS_eSR+XRrt6etRyP8PUrit+JUHr6zQ@mail.gmail.com>
+Subject: Testing for NUC/EOS System
+To: nilesr@vt.edu
+Cc: Jon Bernard <jobernar@vt.edu>
+Content-Type: text/plain; charset="UTF-8"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+Hi Niles,
+
+I recall you expressed an interest in using one of the NUCs for
+development ASAP. Since you have experience using EOS/blockchain, I
+was thinking you might make a good tester (i.e. guinea pig) to try out
+the cluster.You basically need to work with Jon (cc'd) and follow the
+directions here:
+
+http://kronk.cs.vt.edu
+
+Would you have time in the next day or so to create an account and log
+in to one of the cluster nodes (e.g., n02)? I would greatly appreciate
+it.
+
+We are looking to identify any issues with the installation, key
+missing software, errors in the instructions, etc.
+
+Thanks for letting me know ASAP. If it works well enough for you, your
+team can proceed with using the node Jon assigns you.
+
+-kwc

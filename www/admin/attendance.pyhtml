@@ -1,0 +1,113 @@
+<%!
+	import libgoblin, goblin_auth, json
+%>
+<%
+user, session = goblin_auth.get_user(c)
+if user == "hokipoki":
+    reward_status = False
+    penalty_status = False
+    if "game" in d: # Penalties
+        penalty_status = "game in d"
+        try:
+            penalty_status = libgoblin.penalize_users(int(d['game']))
+        except:
+            pass
+        if penalty_status:
+            penalty_status = "Success! " + str(len(penalty_status)) + " users have been penalized."
+    elif "ticket" in d: # Rewards
+        try:
+            reward_status = libgoblin.reward_user(int(d['ticket']))
+        except:
+            pass
+        if reward_status:
+            if "success" in reward_status:
+                reward_status = "Success! User has been rewarded."
+
+%>
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+        <title>Admin Attendance Control</title>
+        <link rel="stylesheet" href="/static/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap" rel="stylesheet"> 
+        <script src="/static/admin.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    </head>
+    <body>
+        <div class="banner">
+		    <img src="/static/images/vt-logo-white.svg" alt="VT Logo">
+            % if user == "hokipoki":
+                ADMIN
+			% endif
+        </div>
+		<nav>
+            <div class="nav-section" id="user-logout">
+                <p>You are logged in as <b>${user}</b></p>
+                <a href="/logout.pyhtml">Logout</a>
+            </div>
+            <div class="nav-section" id="pages">
+				<ul>
+					<li><a href="/admin/attendance.pyhtml">ATTENDANCE</a></li>
+                    <li><a href="/admin/auctions.pyhtml">AUCTIONS</a></li>
+					<li><a href="/admin/lottery.pyhtml">LOTTERY</a></li>
+                    <li><a href="/admin/transfer.pyhtml">TRANSFER</a></li>
+					<li><a href="/admin/accounts.pyhtml">ACCOUNTS</a></li>
+				</ul>
+            </div>
+		</nav>
+        <div class="content">
+            % if user == "hokipoki":
+                <h1>Reward Attendance</h1>
+                <p>Validate that a user has attended the game on their ticket.</p>
+                <p>This is a backup in case a QR code cannot be scanned. Scanning a student's QR code for a game performs the same action as this form.</p>
+
+                % if reward_status:
+                    <div class="status-response" style="background-color: ${'#13CE66' if 'Success' in reward_status else '#BB0000'};">
+                        ${reward_status}
+                    </div>
+                % endif
+
+                <form method="POST">
+                    <div class="form-section">
+                        <label for="ticket">Select Ticket:</label> <br />
+                        <select name="ticket">
+                            <option selected disabled value></option>
+                            <% tickets = libgoblin.get_raw_table('tickets') %>
+                            % for t in tickets:
+                                % if t.attended == 0 and t.owner != "hokipoki":
+                                <option value="${t.id}">Owner: ${t.owner} Game: ${t.game_id}</option>
+                                %endif
+                            % endfor
+                        </select>
+                    </div>
+                    <input type="submit" value="Validate"/>
+                </form>
+
+                <h1>Penalize Non-Attending Users</h1>
+                <p>Administer penalties to all users who didn't attend a game.</p>
+
+                % if penalty_status:
+                    <div class="status-response" style="background-color: ${'#13CE66' if 'Success' in penalty_status else '#BB0000'};">
+                        ${penalty_status}
+                    </div>
+                % endif
+
+                <form method="POST">
+                    <div class="form-section">
+                        <label for="game">Select Game:</label><br />
+                        <select name="game">
+                            <option selected disabled value></option>
+                            <% games = libgoblin.get_raw_table('games') %>
+                            % for g in games:
+                                <option value="${g.id}">${g.name}</option>
+                            % endfor
+                        </select>
+                    </div>
+                    <input type="submit" value="Penalize Users"/>
+			% else:
+				You do not have permission to access this page.
+			% endif
+        </div>
+    </body>
+</html>

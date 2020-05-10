@@ -1,0 +1,64 @@
+<%!
+	import libgoblin, goblin_auth, time
+%>
+<%
+if "user" in d and "pass" in d:
+	user, session = goblin_auth.try_login(d, environ)
+	if user:
+		session["last_login"] = time.time()
+else:
+	user, session = goblin_auth.get_user(c)
+
+%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login to HokieTickets</title>
+		<link rel="stylesheet" href="/static/button.css" />
+		<link rel="stylesheet" href="/static/style.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap"> 
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	</head>
+	<body style="background-color: #f9f9f9;">
+    <div class="banner">
+		<img src="/static/images/vt-logo-white.svg" alt="VT Logo">
+		% if user == "hokipoki":
+			ADMIN
+		% endif
+	</div>
+	<div class="content">
+		## % if user:
+		## <img src="/static/18FB_LaneStadium_Corner_40k.png">
+		## % endif
+		<div id="login">
+			## <p><a href="/">Home</a></p>
+			% if user:
+				<h1>Welcome to <span style="color: #E87722;">Hokie</span><span style="color:#8B1F41;">Tickets</span></h1>
+				<p>You are logged in as ${user | h}</p>
+				% if user == "hokipoki":
+					<p>You are the administrator.</p>
+					<p>Redirecting you to the Admin Accounts page...</p>
+					<meta http-equiv="Refresh" content="0; url=/admin/accounts.pyhtml" />
+				% else:
+					<meta http-equiv="Refresh" content="0; url=/student/account.pyhtml" />
+					<p>Redirecting you to Student Account page...</p>
+					<br />
+				% endif
+			% else:
+				% if session:
+					<p>Error logging you in: ${session | h}</p><br />
+				% endif
+				<h1>Login to <span style="color: #E87722;">Hokie</span><span style="color:#8B1F41;">Tickets</span></h1>
+				<form method="post">
+					<label for="user">Virginia Tech PID</label>
+					<input type="text" name="user" placeholder="Username" />
+					<label for="pass">Password</label>
+					<input type="password" name="pass" placeholder="Password" />
+					<input type="submit" name="submit" value="Sign In" />
+				</form>
+			% endif
+			<p style="font-size:15px;">Made with <a href="https://eos.io" target="_blank" class="stealth">EOSIO</a></p>
+			</div>
+		</div>
+	</body>
+</html>

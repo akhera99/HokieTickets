@@ -1,0 +1,387 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:b381:0:0:0:0 with SMTP id e1csp2016143pjr;
+        Thu, 30 Apr 2020 05:37:40 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIVz7WmoTCkifLc2ClTEPIpyhXgJOK9xmO85TAxbjV1xqguzCcapVWR2ucuh95L/SjiAoqB
+X-Received: by 2002:aed:3e87:: with SMTP id n7mr3440717qtf.301.1588250260651;
+        Thu, 30 Apr 2020 05:37:40 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1588250260; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=NQZuCa1BMfr7xvKnknTfUVLCDTTuT1YflK6icpeReEWpQV6T7DyD8C1PLKVe1JtViD
+         EsjTEaycc0TIqeffedUTQux1iisa3I1Vcn3LvlEBK4dMUfmCzg+VjqSZjF7ygd9jyGZf
+         zArfkRsArj4e4kuqGidTqGybYgwQzQ0siUldYPHFQGYbew7KRxXuLhGhCFxxb9ap8Hgt
+         sdxlhbZW0uj9tbY53aBGFktwan8DU6fX54llHpVBvU+FsVSqN9Onbj168cz4PBtVMmS3
+         oTVy30GCEoaIQYg0lJELq0Lfbbc1jNrBuaOoHritfim5tlIiuvwUeGCwr7uP/Cgd2f6w
+         ogSA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :cc:to:from:delivered-to;
+        bh=eSpVp0/TWe/7gcfEteEgtw0h310rRKScTDgzaQkso3g=;
+        b=F886dLCplX5Ic+Nwv5+5WB0GEUP5jj9MUunRUxgLmMqjyA0g+rQQOINQHrOtOvnrXr
+         yul9xltqcrk8oc4QvLPbKqYpea0FhPSIENPVJ3jpEQI5Mw1tMLZpEc8GezatGakZVim6
+         gVXItJNDNYaVWeLL9R7JIerpNISAL/78nesj1r8bfV2b0QbhG06SiE0gG3/78DvVD4fi
+         0ivqfY9v2UuIV3nVyEwTEaUxBetqMWnHUljvNozDZuoW0IyKfJlZ7kgGSJykwLW5k3CX
+         EGC0o75DbB0nDxSoEuhNQdzLSIQZac8jaLibnUCu4UPqSXRnipUQe24gOeK9YZeOZVqw
+         wMsQ==
+ARC-Authentication-Results: i=2; mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr2.cc.vt.edu (omr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:33:fb76:806e])
+        by mx.google.com with ESMTPS id j18si1328261qke.13.2020.04.30.05.37.39
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Apr 2020 05:37:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) client-ip=2607:b400:92:8400:0:33:fb76:806e;
+Authentication-Results: mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Authentication-Results: smtp.cs.vt.edu; dkim=permerror (bad message/signature format)
+Received: from mr3.cc.vt.edu (mr3.cc.vt.edu [IPv6:2607:b400:92:8500:0:7f:b804:6b0a])
+	by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 03UCbd1L007510
+	for <nilesrogoff@gmail.com>; Thu, 30 Apr 2020 08:37:39 -0400
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com [209.85.166.200])
+	by mr3.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 03UCbYoc002310
+	for <nilesrogoff@gmail.com>; Thu, 30 Apr 2020 08:37:39 -0400
+Received: by mail-il1-f200.google.com with SMTP id k5so1069775ilg.7
+        for <nilesrogoff@gmail.com>; Thu, 30 Apr 2020 05:37:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-original-authentication-results:x-gm-message-state:delivered-to
+         :from:to:cc:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=eSpVp0/TWe/7gcfEteEgtw0h310rRKScTDgzaQkso3g=;
+        b=jCczdRZIfgqCK8AQ87sRGKCxRL9wYCjWH8QhYn4GL+8VDVNTm69CYDGMzwWrSW4wA7
+         JwZh+Cxm1MBkIggswaFT3l5J3rsdwR/6KKCa20XSeW5Tfm1pI7jeB7kduYrgWKmMH++j
+         xgMbMr5VZu7mN90hUeYvMh5Pj2Hbf/L8iAvvxfMXprqrHoITPrPQWqUKfIoesmIgDMmH
+         xC+Ar/tN1CCN8/gWSErNZFSYHZukNDuZGLgoBAsbHUxOJzOWrw/05twFjB/nEWLmarmR
+         fd/L2z+tCRXs49f+4yvZ669xwtXn3ILT8HglUxkOU7d2k/uiqjd0R9UYb+jVh7cygu1o
+         2QVQ==
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com: domain vt.edu configured 2607:b400:92:8400:0:90:e077:bf22 as internal address) smtp.mailfrom=juliapc7@cs.vt.edu
+X-Gm-Message-State: AGi0PuZDmJJrippq9X9WPtxs/ufEBubQtDxy51Aq2dRtwlPXXO4iWUbS
+	5EtJa7mu8aEWYO9wAksnIFnzDTzJtu+mF7TzH7hlGOrd7Q5rsRWRZtRI4XTpSJR+XLBOEw6kQNo
+	c0HgtCZfFR83Ne2GCFP5riwmwjdjf94AVPT2mtMZPwavUkS+xBPA=
+X-Received: by 2002:a02:ac1:: with SMTP id 184mr1562073jaw.138.1588250254367;
+        Thu, 30 Apr 2020 05:37:34 -0700 (PDT)
+X-Received: by 2002:a02:ac1:: with SMTP id 184mr1562045jaw.138.1588250254076;
+        Thu, 30 Apr 2020 05:37:34 -0700 (PDT)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:f38f:0:0:0:0:0 with SMTP id l15csp2028380imn;
+        Thu, 30 Apr 2020 05:37:32 -0700 (PDT)
+X-Received: by 2002:ad4:5592:: with SMTP id e18mr2816701qvx.13.1588250252483;
+        Thu, 30 Apr 2020 05:37:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588250252; cv=none;
+        d=google.com; s=arc-20160816;
+        b=i46aXw4mXdjn5aGCQfaeONT2CF3JNKuAeqHKKziev7+T8U88cXa7+TxSFqWATFMKI/
+         P95MwMMT20OPg25b5kjghAjrgc4GG+oaAnn0XMTBAkesuJsQdXAsHjUkjTyxQ1Ac4osR
+         Yhmm84gZCEdtypoEx5UuD4mdWgW0uA4d4xVIvkPIqVUeQWPjm/xPzU3S2dVaalqeyiFV
+         F1EVwevnD94bwslwXfw7sTULHiCBGtpX4HSVCN8ONmlIDYaX9mil9cRPYab+a11uPfm1
+         n5pT5CEcw4u2MlO7N7Xgckm/8e2QlA+MVjAKE9WyxKCR4D7+0RHQVT4VKPBl/qcSyBYn
+         JxBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :cc:to:from;
+        bh=eSpVp0/TWe/7gcfEteEgtw0h310rRKScTDgzaQkso3g=;
+        b=jXuqyzIPhpSJlpNv4lZ2fkO3coKWCa2XwGoCiAoLXQgERcBBmrciCzkf4Nzat/Jxzb
+         ZoPM4Fcv3nuKc21fRJwjdHd/D9P0QX72X7mF2/M0P2wPVdSoMYXFdW4pqu/FWJMsCNEZ
+         Dq4EcOa0sjlhe36D1He8ojVk8u5/Oh3CWeZCMpymB/KJSZd5v11d+nAnVx9YcJQ4/uMZ
+         VnbdvlRjb6p6sNdlFv0U4KhJoOy7IqBRgkuhfu6NfwNJf7K5mJun/RX6TPCDKwwqxtmp
+         s7AAffJmcjcLs17z8JzmM9d2QvnRCcYWbp1FQgLMCXFAtqojxdp3FTFpfdT2GIeZVJ8p
+         M19Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain vt.edu configured 2607:b400:92:8400:0:90:e077:bf22 as internal address) smtp.mailfrom=juliapc7@cs.vt.edu
+Received: from mr2.cc.vt.edu (mr2.cc.vt.edu. [2607:b400:92:8400:0:90:e077:bf22])
+        by mx.google.com with ESMTPS id v27si1376129qth.270.2020.04.30.05.37.31
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Apr 2020 05:37:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain vt.edu configured 2607:b400:92:8400:0:90:e077:bf22 as internal address)
+Received: from smtp.cs.vt.edu (smtp.cs.ipv6.vt.edu [IPv6:2001:468:c80:212a:5054:ff:fe00:401])
+	by mr2.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 03UCbQ0w026155;
+	Thu, 30 Apr 2020 08:37:31 -0400
+From: "Julia Costello" <juliapc7@cs.vt.edu>
+To: <cs-source@cs.vt.edu>
+Cc: <cameron@cs.vt.edu>
+Subject: MANDATORY Blockchain Prep Zoom Meeting - TODAY at 3:30 pm - Meeting Details
+Date: Thu, 30 Apr 2020 08:37:08 -0400
+Message-ID: <008e01d61eec$10f40130$32dc0390$@cs.vt.edu>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_008F_01D61ECA.89E372A0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdYe6+IoESPfa6usRwK8O/Sl/T5UIQ==
+Content-Language: en-us
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_008F_01D61ECA.89E372A0
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,
+
+=20
+
+Just a reminder that the Blockchain prep meeting is today at 3:30 pm. =
+This is a mandatory meeting for 1 person from each team to attend if you =
+wish to participate in the finals.=20
+
+=20
+
+See Zoom meeting details below.
+
+=20
+
+Thanks!
+
+=20
+
+Julia
+
+=20
+
+=20
+
+Kirk Cameron is inviting you to a scheduled Zoom meeting.
+
+=20
+
+Topic: VT BC Prep for Finale
+
+Time: Apr 30, 2020 03:30 PM Eastern Time (US and Canada)
+
+=20
+
+Join Zoom Meeting
+
+https://virginiatech.zoom.us/j/95139819576
+
+=20
+
+Meeting ID: 951 3981 9576
+
+One tap mobile
+
++13017158592,,95139819576# US (Germantown)
+
++13126266799,,95139819576# US (Chicago)
+
+=20
+
+Dial by your location
+
+        +1 301 715 8592 US (Germantown)
+
+        +1 312 626 6799 US (Chicago)
+
+        +1 929 436 2866 US (New York)
+
+        +1 253 215 8782 US (Tacoma)
+
+        +1 346 248 7799 US (Houston)
+
+        +1 669 900 6833 US (San Jose)
+
+Meeting ID: 951 3981 9576
+
+Find your local number: https://virginiatech.zoom.us/u/abaWqJU5Xq
+
+=20
+
+Join by SIP
+
+95139819576@zoomcrc.com <mailto:95139819576@zoomcrc.com>=20
+
+=20
+
+Join by H.323
+
+162.255.37.11 (US West)
+
+162.255.36.11 (US East)
+
+115.114.131.7 (India Mumbai)
+
+115.114.115.7 (India Hyderabad)
+
+213.19.144.110 (EMEA)
+
+103.122.166.55 (Australia)
+
+209.9.211.110 (Hong Kong
+
+ China)
+
+64.211.144.160 (Brazil)
+
+69.174.57.160 (Canada)
+
+207.226.132.110 (Japan)
+
+Meeting ID: 951 3981 9576
+
+=20
+
+Join by Skype for Business
+
+https://virginiatech.zoom.us/skype/95139819576
+
+=20
+
+
+------=_NextPart_000_008F_01D61ECA.89E372A0
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Hi =
+All,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Just a =
+</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>reminder =
+that the Blockchain prep meeting is today at 3:30 pm. This is a =
+mandatory meeting for 1 person from each team to attend if you wish to =
+participate in the finals. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>See Zoom =
+meeting details below.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Thanks!<o:p><=
+/o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+><o:p>&nbsp;</o:p></span></p><div><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Julia<o:p></o=
+:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+><o:p>&nbsp;</o:p></span></p></div><div><div><p class=3DMsoNormal>Kirk =
+Cameron is inviting you to a scheduled Zoom =
+meeting.<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Topic: VT BC Prep for =
+Finale<o:p></o:p></p></div><div><p class=3DMsoNormal>Time: Apr 30, 2020 =
+03:30 PM Eastern Time (US and Canada)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Join Zoom Meeting<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><a =
+href=3D"https://virginiatech.zoom.us/j/95139819576">https://virginiatech.=
+zoom.us/j/95139819576</a><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Meeting ID: 951 3981 9576<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>One tap mobile<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>+13017158592,,95139819576# US =
+(Germantown)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>+13126266799,,95139819576# US =
+(Chicago)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Dial by your location<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; +1 301 715 8592 US =
+(Germantown)<o:p></o:p></p></div><div><p class=3DMsoNormal>&nbsp; &nbsp; =
+&nbsp; &nbsp; +1 312 626 6799 US (Chicago)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; +1 929 436 2866 US (New =
+York)<o:p></o:p></p></div><div><p class=3DMsoNormal>&nbsp; &nbsp; &nbsp; =
+&nbsp; +1 253 215 8782 US (Tacoma)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; +1 346 248 7799 US =
+(Houston)<o:p></o:p></p></div><div><p class=3DMsoNormal>&nbsp; &nbsp; =
+&nbsp; &nbsp; +1 669 900 6833 US (San Jose)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>Meeting ID: 951 3981 9576<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>Find your local number: <a =
+href=3D"https://virginiatech.zoom.us/u/abaWqJU5Xq">https://virginiatech.z=
+oom.us/u/abaWqJU5Xq</a><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Join by SIP<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><a =
+href=3D"mailto:95139819576@zoomcrc.com">95139819576@zoomcrc.com</a><o:p><=
+/o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Join by H.323<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>162.255.37.11 (US West)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>162.255.36.11 (US East)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>115.114.131.7 (India =
+Mumbai)<o:p></o:p></p></div><div><p class=3DMsoNormal>115.114.115.7 =
+(India Hyderabad)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>213.19.144.110 (EMEA)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>103.122.166.55 (Australia)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>209.9.211.110 (Hong Kong<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>&nbsp;China)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>64.211.144.160 (Brazil)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>69.174.57.160 (Canada)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>207.226.132.110 (Japan)<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>Meeting ID: 951 3981 9576<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Join by Skype for Business<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><a =
+href=3D"https://virginiatech.zoom.us/skype/95139819576">https://virginiat=
+ech.zoom.us/skype/95139819576</a><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div></div></body></html>
+------=_NextPart_000_008F_01D61ECA.89E372A0--
+

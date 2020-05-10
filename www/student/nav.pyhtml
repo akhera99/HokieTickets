@@ -1,0 +1,17 @@
+<%page args="user" />
+<nav>
+    <div class="nav-section" id="user-logout">
+        <p>You are logged in as <b>${user}</b></p>
+        <a href="/logout.pyhtml">Logout</a>
+    </div>
+    <div class="nav-section" id="pages">
+        <ul>
+            <li><a href="/student/tickets.pyhtml">MY TICKETS</a></li>
+            <li><a href="/student/auctions.pyhtml">AUCTIONS</a></li>
+            <li><a href="/student/lottery.pyhtml">LOTTERY</a></li>
+            <li><a href="/student/buy.pyhtml">BUY TICKETS</a></li>
+            <li><a href="/student/account.pyhtml">ACCOUNT</a></li>
+        </ul>
+    </div>
+</nav>
+

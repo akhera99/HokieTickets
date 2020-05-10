@@ -1,0 +1,379 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:c24f:0:0:0:0 with SMTP id d15csp1258414pjx;
+        Thu, 23 Jan 2020 14:52:47 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxBMlmxiWq0PpFnbXb2V01WVwMn4RA4kSsOq2Gky2LtCRV2O4mJ3bEg7G90olQqL5Py6dop
+X-Received: by 2002:a05:620a:108d:: with SMTP id g13mr585691qkk.121.1579819967119;
+        Thu, 23 Jan 2020 14:52:47 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1579819967; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=dpS4Gauu5S2cNpgM53/GPB/ep7tDYRzx2TVWrl70tzD/ogEASgmY8qBMR+Jg3iFuK5
+         xRrZ+WEdDq34wwl91TO2cRbU7otBQ93wbMyAKsScAKCbTqk2ULwc+SOFizqLV5Opt1QT
+         JjhpO/qb/mqaIyYhv4yOYeqzQgP36mI35xOaOS6/TnjXYIfy+1v15FtlRr08s5AMOgpF
+         If+se8i+P3NtUNxBAqekCTwGT4rnJnu/A4PLs3KG9Rp/DD6f+6htEYAOcTOLsifsgOKd
+         ybsN4Xiu1sNrgBCGVNegxYquf4Jj37ohYb+r3YACM5CgDn/sJtF8x0TkZ/atvC2G6Kt8
+         9j7w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:auto-submitted:content-transfer-encoding:mime-version
+         :subject:message-id:to:reply-to:from:date:dkim-signature
+         :dkim-signature:delivered-to;
+        bh=bMkiUJzcWNxxBSmQEukCFadoE1TY8fAkVV4r/y0XSCk=;
+        b=0R4AGN9wVtDzhQpamLEw9JI5H4Dd8ODth9NXhF8stblHeYEg0kg0BC8QmjIqxTou/9
+         QMNH4nSX/Z7LeRYs9EfSiQ1KtniVgoDo5OEnstYjc2BfLe1moO2nzuZIqOjWvfLdxq8L
+         scYAH0UUm4l/rb97EvHLxE/JpJ+DNMbnrgenIm3sZ9r1WtbpRgstTmj2VW3w9ow5JYPN
+         a22KJ/rGAVoi2ICmdIDlhfCJQarvP84/IVVXnFkkzHLAS9Ri8Y1HLMuag44/t6qNxN2l
+         yOHWonxj3PcI1xk1RZldCbt5E8IQmupw1w9f6+ICLDNBt0EWYqVbHA2ROER3TTQHkeR5
+         jIkw==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=PRqzf+R1;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b="jwKm/D6M";
+       arc=pass (i=1 spf=pass spfdomain=amazonses.com dkim=pass dkdomain=instructure.com dkim=pass dkdomain=amazonses.com);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr2.cc.vt.edu (omr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:33:fb76:806e])
+        by mx.google.com with ESMTPS id 90si2720353qtc.397.2020.01.23.14.52.46
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Jan 2020 14:52:47 -0800 (PST)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) client-ip=2607:b400:92:8400:0:33:fb76:806e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=PRqzf+R1;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b="jwKm/D6M";
+       arc=pass (i=1 spf=pass spfdomain=amazonses.com dkim=pass dkdomain=instructure.com dkim=pass dkdomain=amazonses.com);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8400:0:33:fb76:806e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Received: from mr6.cc.vt.edu (mr6.cc.ipv6.vt.edu [IPv6:2607:b400:92:8500:0:af:2d00:4488])
+	by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 00NMqkVW016634
+	for <nilesrogoff@gmail.com>; Thu, 23 Jan 2020 17:52:46 -0500
+Received: from mail-il1-x148.google.com (mail-il1-x148.google.com [IPv6:2607:f8b0:4864:20::148])
+	by mr6.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 00NMqf8d006915
+	for <nilesrogoff@gmail.com>; Thu, 23 Jan 2020 17:52:46 -0500
+Received: by mail-il1-x148.google.com with SMTP id t4so63267ili.21
+        for <nilesrogoff@gmail.com>; Thu, 23 Jan 2020 14:52:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-signature:dkim-signature:date
+         :from:reply-to:to:message-id:subject:mime-version
+         :content-transfer-encoding:auto-submitted:feedback-id;
+        bh=bMkiUJzcWNxxBSmQEukCFadoE1TY8fAkVV4r/y0XSCk=;
+        b=YNHbIf9llAmtrWFuaQNeup91DQvZKJnHGBdXN4iro/BhVDuwC571j8+10Nf+Miw49a
+         tzxzHCfn2Q+RcBRzY++ygp7wRVjeb6nI3a4VuLQCfmdbE4Y8+SVp8N27R9ueKy5/zL2E
+         kMqQG4NmFE8bXD4uHYWV67rrQ66KbxbjyL6SVlnxJlM+cUqz1NGmRqgEBWlcu8EJYbL/
+         ZJkuVHudT2LZq9SRxs7tj6MzK7q+u6kCN0Rd9rvPmiA7JoXj7D4byvRzsXd0L2Lul2jg
+         qgkOFnAT2gKnBQJ/acVgJrGBBRQJNnJw98dHXjx88cvdMxNHC09Kis/X2b40AeEayVXd
+         PqZQ==
+X-Gm-Message-State: APjAAAVJ2lEzu0K8fjr+L5d4Ur89t4CYPQdpMciVlhZiU66bGn0R2DH1
+	woRco8sbEXOWzvE7tb6BS2h9gH3sm2ZvPYeEMaDCGUkVEy2BX1mF8QcliPiNgH729sgoc3Wl3g+
+	TVWExWoo/r+V5ltWsAcmKWXvsZIiC/vrWozJI2nGboyrPpUKmDms=
+X-Received: by 2002:a92:bf12:: with SMTP id z18mr533582ilh.7.1579819961434;
+        Thu, 23 Jan 2020 14:52:41 -0800 (PST)
+X-Received: by 2002:a92:bf12:: with SMTP id z18mr533575ilh.7.1579819961168;
+        Thu, 23 Jan 2020 14:52:41 -0800 (PST)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:ac22:0:0:0:0:0 with SMTP id i31csp1410768imb;
+        Thu, 23 Jan 2020 14:52:40 -0800 (PST)
+X-Received: by 2002:a37:9186:: with SMTP id t128mr613299qkd.180.1579819960032;
+        Thu, 23 Jan 2020 14:52:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579819960; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PRfLa+uENwE/4a1IbwJNMPozNUN9kBODXu5mkIt9LroEwpfeKpVDYMZrc8pHuZ524P
+         OSqu78Jn1HMZWhZPWdGgZLh0oa1JqEQaEd9pJKToq2RBugq2co4fJ1uG7Zd6t0WoZ6Ri
+         +zoGZ5HCBQKZLs8yQYfn7xi89A21WQLYghYpzE4JX0UzWE6W5q2/9zruXAWuyBYcrdEV
+         YOO3EY90p6AdIoLtJQ8Y2K4+/xyCG31Q1YWBM2/9iRfyBNLS8syCYcgslBm4+kiKFf8P
+         fCfJtwvNEr7h9Ru16G9b+oFGluSQbafVtkEm3SLMG9NK/zNuuHeeMPw+/gmD5nHNQOyQ
+         1kHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:auto-submitted:content-transfer-encoding:mime-version
+         :subject:message-id:to:reply-to:from:date:dkim-signature
+         :dkim-signature;
+        bh=bMkiUJzcWNxxBSmQEukCFadoE1TY8fAkVV4r/y0XSCk=;
+        b=h/3hE13v2k3hkcnnpB0sjH8SgDUfQ5IVs4KGC242wJz2vjT0oxZ+62V5XAH5o6Wd2r
+         5TaLLNVbZaQ86haUWgYbDXTgHx2SNTuWjzkoP9Slo9GvF3wX0PclOhfO8xPYVH1jVvLE
+         58jKW72JSP0kKfXd1RVeQw4X4lbWdpwF2TueWZ6zV95Ho9OrQYmt+fXPzFrWsQ8+Genp
+         MWIX5BVYswKr8vE4M8YltNA/g1jG9qWOKMsrpVL29oHsMi3j+4yNx0wwrDhie27/PCw3
+         2EmgUsS2DGx/KPRouhrBbXMF9W0y4Et3sgN620RMpasRbKgVwSp0Ueyouj/fDYYOeOCW
+         ztuw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=PRqzf+R1;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b="jwKm/D6M";
+       spf=pass (google.com: domain of 0100016fd49b7031-94b59aaf-aa49-4599-918f-14964eaf3c05-000000@amazonses.com designates 54.240.14.107 as permitted sender) smtp.mailfrom=0100016fd49b7031-94b59aaf-aa49-4599-918f-14964eaf3c05-000000@amazonses.com
+Received: from mr1.cc.vt.edu (mr1.cc.ipv6.vt.edu. [2607:b400:92:8300:0:31:1732:8aa4])
+        by mx.google.com with ESMTPS id a125si2814944qkd.262.2020.01.23.14.52.39
+        for <nilesr@vt.edu>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Jan 2020 14:52:40 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0100016fd49b7031-94b59aaf-aa49-4599-918f-14964eaf3c05-000000@amazonses.com designates 54.240.14.107 as permitted sender) client-ip=54.240.14.107;
+Received: from a14-107.smtp-out.amazonses.com (a14-107.smtp-out.amazonses.com [54.240.14.107])
+	by mr1.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 00NMqYi8011202
+	for <nilesr@vt.edu>; Thu, 23 Jan 2020 17:52:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6s5mwthdy2mujaxi3xuxuckrikhn6her; d=instructure.com;
+	t=1579819954;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding;
+	bh=Wrpk/bGDyiSdXtiC8WMpslMyZTYoMDjvJEXfA4fzwRE=;
+	b=PRqzf+R1w6U0lbHHsffkIA0sFwqHG3U8bC9wCulBzg3UPqFcns3afSdTIpuuSlZT
+	3g3DF+Qu3rlXCtsENtM7kDsQm3TI90fLuAFf6SpoXXJxvsao0nhyNqIb3fPOfW0yaIW
+	dxDVJnIZEADHABFY5XYKBqdsM7dxbVoS+aTGQrtw=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1579819954;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=Wrpk/bGDyiSdXtiC8WMpslMyZTYoMDjvJEXfA4fzwRE=;
+	b=jwKm/D6M2nSsGhcs0kjidC8EyGK4Q2B4kJ4Tz3hqtceudPT4kVqU1td1m5SG1OWM
+	agkcRIauKsK2kpsoddB/LRRBY+Jxp+bhS/0Ipo5XdD317xHIRXf1gdty2o2FuoSU9BX
+	F1Slcb8sTPMcIaUAQMuaFdbakG9e1wkcpSAjrh8k=
+X-On-bounce-route-to: notification-service-failures-prod
+Date: Thu, 23 Jan 2020 22:52:34 +0000
+From: Systems & Networking Capstone <notifications@instructure.com>
+Reply-To: reply+d3d526ef350fe42b-4511~160426200-1579819951@notifications.canvaslms.com
+To: nilesr@vt.edu
+Message-ID: <0100016fd49b7031-94b59aaf-aa49-4599-918f-14964eaf3c05-000000@email.amazonses.com>
+Subject: Some pointers from Today's Lecture: Systems & Networking Capstone
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5e2a23b16ecc6_1a0c9dbbd8169cc";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Auto-Submitted: auto-generated
+X-SES-Outgoing: 2020.01.23-54.240.14.107
+Feedback-ID: 1.us-east-1.6bnAGrq+H33YQMZ/rl7AdPgJjS+jB1rbcCIER0hXfVM=:AmazonSES
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+
+----==_mimepart_5e2a23b16ecc6_1a0c9dbbd8169cc
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+          Hi Everyone,=0D
+=0D
+Here are pointers to some of the demos I did today. Enjoy! -Dr. Cameron=0D=
+
+=0D
+Anders' Blockchain and Public/Private Videos:=0D
+=0D
+[https://andersbrownworth.com/blockchain/] (https://andersbrownworth.com/=
+blockchain/)=0D
+=0D
+Anders' Blockchain Demo:=0D
+=0D
+[https://andersbrownworth.com/blockchain/hash] (https://andersbrownworth.=
+com/blockchain/hash)=0D
+=0D
+Anders' Public/Private Signature Demo:=0D
+=0D
+[https://andersbrownworth.com/blockchain/public-private-keys/keys] (https=
+://andersbrownworth.com/blockchain/public-private-keys/keys)=0D
+=0D
+Byzantine General Video:=0D
+=0D
+[Byzantine Generals Problem] (https://www.youtube.com/watch?v=3DdfsRQyYXO=
+sQ)=0D
+=0D
+Homework: READ Satoshi's Bitcoin Paper (also in Files on the Canvas websi=
+te):=0D
+=0D
+[https://bitcoin.org/bitcoin.pdf] (https://bitcoin.org/bitcoin.pdf)=0D
+=0D
+[CS@VT] (mailto:CS@VT)=C2=A0Blockchain Initiative Site:=0D
+=0D
+[https://cs.vt.edu/blockchain.html] (https://cs.vt.edu/blockchain.html)=0D=
+
+=0D
+=C2=A0=0D
+=0D
+=C2=A0=0D
+=0D
+=0D
+https://canvas.vt.edu/courses/104581/announcements/678667=0D
+=0D
+=0D
+=0D
+=0D
+=0D
+=0D
+          ________________________________________=0D
+=0D
+          You received this email because you are participating in one or=
+ more classes using Canvas.  To change or turn off email notifications, v=
+isit:=0D
+https://canvas.vt.edu/profile/communication=0D
+=0D
+
+----==_mimepart_5e2a23b16ecc6_1a0c9dbbd8169cc
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+<head>=0D
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width">=0D
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">=0D
+  <style type=3D"text/css">=0D
+/*=0D
+Changes to font size (14->16) for smaller screens=0D
+table[class=3Dbody] is the only selector that works for all vendors=0D
+*/=0D
+@media only screen and (max-width: 620px) {=0D
+  table[class=3Dbody] p,=0D
+  table[class=3Dbody] ul,=0D
+  table[class=3Dbody] ol,=0D
+  table[class=3Dbody] td,=0D
+  table[class=3Dbody] span,=0D
+  table[class=3Dbody] a {=0D
+    font-size: 16px !important;=0D
+  }=0D
+  /* remove padding for mobile so no gray shows */=0D
+  table[class=3Dbody] .bodycell {=0D
+    padding: 0 !important;=0D
+    width: 100% !important;=0D
+  }=0D
+  /* reduce padding from 20->10 for mobile */=0D
+  table[class=3Dbody] .maincell {=0D
+    padding: 10px !important;=0D
+  }=0D
+}=0D
+/*=0D
+ExternalClass fixes Outlook.com / Hotmail emails=0D
+*/=0D
+@media all {=0D
+  .ExternalClass {=0D
+    width: 100%;=0D
+  }=0D
+  .ExternalClass,=0D
+  .ExternalClass p,=0D
+  .ExternalClass span,=0D
+  .ExternalClass font,=0D
+  .ExternalClass td,=0D
+  .ExternalClass div {=0D
+    line-height: 100%;=0D
+  }=0D
+}=0D
+  </style>=0D
+</head>=0D
+<!--=0D
+background: white (could be gray)=0D
+default sans serif fonts, 14px, 1.3, #444444=0D
+vendor prefixes for Outlook (-ms) and iOS (-webkit)=0D
+Margin is capitalized to fix Outlook.com=0D
+-->=0D
+<body class=3D"" style=3D"background-color:#ffffff; font-family:'Open San=
+s', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', T=
+ahoma, 'Sans Serif'; font-size:14px; color: #444444; line-height:1.3; Mar=
+gin:0; padding:0; -ms-text-size-adjust:100%; -webkit-font-smoothing:antia=
+liased; -webkit-text-size-adjust:100%;">=0D
+=0D
+  <!-- body: background table (if body has a color, this should match) --=
+>=0D
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"body" =
+style=3D"border-collapse:separate; background-color:#ffffff; width:100%; =
+box-sizing:border-box; mso-table-lspace:0pt; mso-table-rspace:0pt;">=0D
+    <tr>=0D
+      <!-- width and max-width so it can scale for mobile -->=0D
+      <td class=3D"bodycell" style=3D"max-width:600px; width:100%; font-f=
+amily:'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida S=
+ans Unicode', Tahoma, 'Sans Serif'; font-size:14px; vertical-align:top; d=
+isplay:block; box-sizing:border-box; padding:10px; Margin:0 auto !importa=
+nt;">=0D
+=0D
+<!-- for older versions of Outlook that don't support max-width -->=0D
+<!--[if (gte mso 9)|(IE)]>=0D
+<table width=3D"600" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0"><tr><td>=0D
+<![endif]-->=0D
+=0D
+        <!-- main: white box for content -->=0D
+        <table class=3D"main" style=3D"background:#fff; width:100%; borde=
+r-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; ">=0D
+          <tr>=0D
+            <td class=3D"maincell" style=3D"font-family:sans-serif; font-=
+size:14px; vertical-align:top; box-sizing:border-box; padding:20px;">=0D
+=0D
+                    =0D
+<p>Hi Everyone,</p>=0D
+<p>Here are pointers to some of the demos I did today. Enjoy! -Dr. Camero=
+n</p>=0D
+<p>Anders' Blockchain and Public/Private Videos:</p>=0D
+<p><a href=3D"https://andersbrownworth.com/blockchain/">https://andersbro=
+wnworth.com/blockchain/</a></p>=0D
+<p>Anders' Blockchain Demo:</p>=0D
+<p><a href=3D"https://andersbrownworth.com/blockchain/hash">https://ander=
+sbrownworth.com/blockchain/hash</a></p>=0D
+<p>Anders' Public/Private Signature Demo:</p>=0D
+<p><a href=3D"https://andersbrownworth.com/blockchain/public-private-keys=
+/keys">https://andersbrownworth.com/blockchain/public-private-keys/keys</=
+a></p>=0D
+<p>Byzantine General Video:</p>=0D
+<p><a href=3D"https://www.youtube.com/watch?v=3DdfsRQyYXOsQ">Byzantine Ge=
+nerals Problem</a></p>=0D
+<p>Homework: READ Satoshi's Bitcoin Paper (also in Files on the Canvas we=
+bsite):</p>=0D
+<p><a href=3D"https://bitcoin.org/bitcoin.pdf">https://bitcoin.org/bitcoi=
+n.pdf</a></p>=0D
+<p><a href=3D"mailto:CS@VT">CS@VT</a>=C2=A0Blockchain Initiative Site:</p=
+>=0D
+<p><a href=3D"https://cs.vt.edu/blockchain.html">https://cs.vt.edu/blockc=
+hain.html</a></p>=0D
+<p>=C2=A0</p>=0D
+<p>=C2=A0</p>=0D
+=0D
+=0D
+=0D
+            </td>=0D
+          </tr>=0D
+        </table>=0D
+        <!-- /.main -->=0D
+=0D
+        <!-- logo: branding -->=0D
+        <table class=3D"logo" style=3D"width:100%; box-sizing:border-box;=
+ border-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; ">=
+=0D
+          <tr>=0D
+            <td class=3D"logocell" style=3D"text-align:center; vertical-a=
+lign:top; box-sizing:border-box; padding:10px;">=0D
+              <img src=3D"https://du11hjcvx0uqb.cloudfront.net/dist/image=
+s/email_signature-d2c5880612.png" alt=3D"">=0D
+            </td>=0D
+          </tr>=0D
+        </table>=0D
+        <!-- /.logo -->=0D
+=0D
+        <!-- footer: gray text below main -->=0D
+        <table class=3D"footer" style=3D"width:100%; box-sizing:border-bo=
+x; border-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; =
+">=0D
+          <tr>=0D
+            <td class=3D"footercell" style=3D"font-family:sans-serif; fon=
+t-size:14px; vertical-align:top; color:#a8b9c6; font-size:12px; text-alig=
+n:center; padding:10px; box-sizing:border-box; ">=0D
+=0D
+                <a href=3D"https://canvas.vt.edu/courses/104581/announcem=
+ents/678667">=0D
+    View announcement=0D
+  </a> &nbsp;|&nbsp;=0D
+=0D
+              <a href=3D"https://canvas.vt.edu/profile/communication" sty=
+le=3D"white-space: nowrap;">Update your notification settings</a>=0D
+=0D
+            </td>=0D
+          </tr>=0D
+        </table>=0D
+        <!-- /.footer -->=0D
+=0D
+<!--[if (gte mso 9)|(IE)]>=0D
+</td></tr></table>=0D
+<![endif]-->=0D
+=0D
+      </td>=0D
+    </tr>=0D
+  </table>=0D
+  <!-- /.body -->=0D
+=0D
+</body>=0D
+</html>=0D
+
+----==_mimepart_5e2a23b16ecc6_1a0c9dbbd8169cc--

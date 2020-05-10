@@ -1,0 +1,317 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:3184:0:0:0:0 with SMTP id j4csp4111848pjb;
+        Mon, 20 Apr 2020 13:35:33 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJoNsW4STNrCDwcYDkWcMLFyTnEzO/2vCbpx5r7fdLsbjLAQv66DNUZT9k0BZx6BYVRDOhM
+X-Received: by 2002:a05:6214:1812:: with SMTP id o18mr17133446qvw.64.1587414933677;
+        Mon, 20 Apr 2020 13:35:33 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1587414933; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=zhBVstFDhukRVlaQRgfP4s0BnuOuRyR59xB4Kf5/gYWMUa6uR+qK6pZGc7y3llRgT1
+         KiV72cbLpYYt/rNr0daUXsngWEi8RBfRETS6owlJSwZaimf+BEiXTKICYLgVtCzOU22p
+         oCU14cG2nwATk451PPkOE+7tEENBhqf/YdXm9T2/q6BlogQAEf5TYiY3EqOpWGEDZLku
+         no6VfbgH0CCzALklG8oVv3RJ7d5Z1MgQrHEMDAMd5X6CLA6iaHWi16ULEEGCdH32D5xU
+         JQCDWqOPNhLvr2DhaNs578xqNQ2+yA5XSgQwH9SJvM/LgN/i3W5Wx+G8EeByugcEf291
+         Wzuw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version
+         :dkim-signature:dkim-signature:delivered-to;
+        bh=SygONAT2BBG7wiYQZ5gOM5eKPpvb2j9d5HOfKer+r/M=;
+        b=AhhFchgxl/6BLDVJeU9/dKukhplu9nwFPc2IUZt7Sye4cPIZFP4qMmlrMM+JPkAK12
+         T3iXhEd1rg575u9mwK2K01fev8XnioiwhfjODVIN+lu9fwzDNJKRqkqcCekpHYS7T/D4
+         Tzv1VGZRccuuX5RhEYwUi+YNdbwfRVLV6Z+mT+M7oBQKPIsyiX3Kp1NRL/f+VRwfsUL7
+         9PjqPQzNAaSn53ux1VXNXj1AwJ7lIIDinJDDS6vTDupKB4S/GbbdJxvFnElFbn/48baM
+         G4tnXAfdj/tpW1P1fp4TDRuLl4kwBe3mpOatf9bfiPjbkK6OtzUdcnonMDbBFhawwipG
+         cL+w==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b="mo8/3g4A";
+       dkim=pass header.i=@block.one header.s=google header.b=ljhz2387;
+       arc=pass (i=1 spf=pass spfdomain=block.one dkim=pass dkdomain=google.com dkim=pass dkdomain=block.one);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr1.cc.vt.edu (omr1.cc.ipv6.vt.edu. [2607:b400:92:8300:0:c6:2117:b0e])
+        by mx.google.com with ESMTPS id 93si207916qtg.220.2020.04.20.13.35.33
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 Apr 2020 13:35:33 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) client-ip=2607:b400:92:8300:0:c6:2117:b0e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b="mo8/3g4A";
+       dkim=pass header.i=@block.one header.s=google header.b=ljhz2387;
+       arc=pass (i=1 spf=pass spfdomain=block.one dkim=pass dkdomain=google.com dkim=pass dkdomain=block.one);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Received: from mr4.cc.vt.edu (mail.ipv6.vt.edu [IPv6:2607:b400:92:9:0:9d:8fcb:4116])
+	by omr1.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 03KKZXeG022775
+	for <nilesrogoff@gmail.com>; Mon, 20 Apr 2020 16:35:33 -0400
+Received: from mail-io1-xd47.google.com (mail-io1-xd47.google.com [IPv6:2607:f8b0:4864:20::d47])
+	by mr4.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 03KKZRhr028298
+	for <nilesrogoff@gmail.com>; Mon, 20 Apr 2020 16:35:32 -0400
+Received: by mail-io1-xd47.google.com with SMTP id v3so13537122iod.23
+        for <nilesrogoff@gmail.com>; Mon, 20 Apr 2020 13:35:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-signature:dkim-signature
+         :mime-version:reply-to:sender:message-id:date:subject:from:to;
+        bh=SygONAT2BBG7wiYQZ5gOM5eKPpvb2j9d5HOfKer+r/M=;
+        b=UHQqUs0Y3Ncrq301L2ffZqk45m36Q9GiLEedrELT01xg9e/pZGmC4Zg297Ykevao53
+         9auShUfJk++9sa4XlpFOaEtWBkI1RA6aUu1g2qomG00DOZpE5qOLo+cGjmkQuyZ4bpwB
+         ilwpsWRfkx6bd8fIf3vi05Cp9bnY1kFfKfbc+ITpjxeOQ7Caa8ixy3PGib3z7HwtOoNy
+         0/gbWC4sfOxlAIo+aXLNf1EpKznp62DqTw+vGeObrpMjDjP2k7URPl1EWYGxm70PtJgW
+         ECVLvlwl6FWfttwB2BNqsHqiGXrcgupfC5CabNASOF+mrVUHuvgg2MJJ6sAriMbCH+/Y
+         eUgg==
+X-Gm-Message-State: AGi0PuZy+H5501YJMYis4sPhgqLcdxV6vnPEUWBrB77mgyi+cme7PAor
+	vOCgStYFNbiAcSkxUhIApV2NrF0OLfMnQrjrWWEsFyTfT0eEzRJAjCGIjYipC4bGZhFIcwErdGF
+	LmVazhRvu+tpk7erCE9LEuYxdwmDWOEWDd2Jdc2yK+a5G//TpOWI=
+X-Received: by 2002:a05:6e02:544:: with SMTP id i4mr3908450ils.145.1587414927366;
+        Mon, 20 Apr 2020 13:35:27 -0700 (PDT)
+X-Received: by 2002:a05:6e02:544:: with SMTP id i4mr3908436ils.145.1587414927084;
+        Mon, 20 Apr 2020 13:35:27 -0700 (PDT)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:f38f:0:0:0:0:0 with SMTP id l15csp4548849imn;
+        Mon, 20 Apr 2020 13:35:25 -0700 (PDT)
+X-Received: by 2002:a05:6214:1853:: with SMTP id d19mr16493709qvy.150.1587414925809;
+        Mon, 20 Apr 2020 13:35:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587414925; cv=none;
+        d=google.com; s=arc-20160816;
+        b=da7mdPH07DmhE6O07lB3UumwqLwGMcIXzC2hOkgNfDFaRrMj9WSRxBONh5OJ3Y34Z1
+         6OLY5KFDXnKiuUmSMesB2WV8B5UDSl8nuoWuVQZuDumEBcLqhWALWbP6Y4lM5WEDCF1j
+         YQtu3Q4nCKiBdvjAYJSCZG5pI+4uPlGAWw6SHhtbz+HxzPv7Tba43UBu1Q1ZHhNcWBRQ
+         3rQGMrmReflabS4ZLhILyEYUUoaf7HTZ7VBZJSneiHlRtR5C49tSvDqQXYlCEUdrAxhG
+         wAzqOiWHV9FZIqZXU3KSXHKvZSof6L7f0AZvDTqODkhbrvZFzJ5zN2q4UKZz4aIMRPzx
+         IAwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version
+         :dkim-signature:dkim-signature;
+        bh=SygONAT2BBG7wiYQZ5gOM5eKPpvb2j9d5HOfKer+r/M=;
+        b=DSPAENgAxf+xld89ZbNjbj1g5r+Ize+P0sTFarpzS83lEOHkocjPHKDZTOUIT08hS6
+         I0LQuyCrJxZVCL/oGcBZnUXhax4o1l5U2pnVylwVqafci8uVvaLAmDUUy5jqgxrfAqhI
+         yYDZPAuiRIDVPwet391V6HB3G64dNoO72hjxnD++uYjP0AO8xarGMv1AUlnS5RbZMT+p
+         7znjEuYNMY4/8YICIoI/00HCBl6g5f2pdhI85wtjYc8porDFeLE85YjD1xi8Eiiz4xWw
+         +O/RXkBlSJvITD5tVcP/CQoIuXTh3Gba5W7x+Wi7uTSPuE4VHpH2x5NarrtkQswQOHsJ
+         6IoQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b="mo8/3g4A";
+       dkim=pass header.i=@block.one header.s=google header.b=ljhz2387;
+       spf=pass (google.com: domain of mark.woods@block.one designates 205.220.172.170 as permitted sender) smtp.mailfrom=mark.woods@block.one
+Received: from mr2.cc.vt.edu (mr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:90:e077:bf22])
+        by mx.google.com with ESMTPS id w44si213384qtj.63.2020.04.20.13.35.25
+        for <nilesr@vt.edu>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 Apr 2020 13:35:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of mark.woods@block.one designates 205.220.172.170 as permitted sender) client-ip=205.220.172.170;
+Received: from mx0b-00494701.pphosted.com (mx0b-00494701.pphosted.com [205.220.172.170])
+	by mr2.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 03KKZJit004893
+	for <nilesr@vt.edu>; Mon, 20 Apr 2020 16:35:25 -0400
+Received: from pps.filterd (m0191409.ppops.net [127.0.0.1])
+	by mx0a-00494701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 03KKUM18028687
+	for <nilesr@vt.edu>; Tue, 21 Apr 2020 04:35:19 +0800
+Received: from mail-yb1-f197.google.com (mail-yb1-f197.google.com [209.85.219.197])
+	by mx0a-00494701.pphosted.com with ESMTP id 30fkbugxg3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <nilesr@vt.edu>; Tue, 21 Apr 2020 04:35:18 +0800
+Received: by mail-yb1-f197.google.com with SMTP id y73so5191498ybe.22
+        for <nilesr@vt.edu>; Mon, 20 Apr 2020 13:35:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:reply-to:sender:message-id:date:subject:from:to;
+        bh=SygONAT2BBG7wiYQZ5gOM5eKPpvb2j9d5HOfKer+r/M=;
+        b=mo8/3g4Alrf/Dsynx+p72jIjfIbhJzP9UHOYgG/HVjoUodj/MMaqwqn5awPexGYv+V
+         FaogRf/OEN/STbDZjlSYWZnurl/P9qWbnbFxBcfquNAgBuKYDGfz1eJESElVkahmDRIC
+         zfS9KYTLUkJprc9gdMejR6F7z+eDc3rve6PRhkVfSYLJnhccG69+re7nKdBvYgr9HztN
+         bdbdZApCbpoGgio2Fxqu+3rppQ7Lo6PhbOGJFBi08UqzlLbgpsZ7GOJzUpSukcz34cGh
+         UnZJSruqPLYvi5SQA/T1zzLh+rsQc351+gSaLGysZ9VmoU6xGG1v3sdeA035FHX2aeF4
+         GwkQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=block.one; s=google;
+        h=mime-version:reply-to:sender:message-id:date:subject:from:to;
+        bh=SygONAT2BBG7wiYQZ5gOM5eKPpvb2j9d5HOfKer+r/M=;
+        b=ljhz2387e7q4+fcOksubjli5k4CX/AyxuciiM21hxLpWSK48WxNJTtNs1uI27Nr+vI
+         rGZ1PFm5o8s8m9z+WaDrADsRJEKQI2InqzCRQHPFGFXcDxW/hrPJlRrbVK/VWevBy4S9
+         7GTP4ShbAmXaUavo5jcFzVFZqPdBmzjZlIpjrzvYBvSTyEMvwAdhhOdJIyfIFCDf1iL2
+         Pu8cuWiK6Ene+s+JELiOU6UmkTYzuNiTSIfTZ9TJFrwJdPIgwHYOkey822kwTNZk+qBH
+         bHv/EYjD2WxUfb8jSCVHPC98YAsEGRaZdOm7NEvUqAL8gAsLSAD7lw1JJCZskQ48QDpB
+         bXwQ==
+X-Received: by 2002:a25:9907:: with SMTP id z7mr23303662ybn.94.1587414918270;
+        Mon, 20 Apr 2020 13:35:18 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 2002:a25:9907:: with SMTP id z7mr23303638ybn.94.1587414918079;
+ Mon, 20 Apr 2020 13:35:18 -0700 (PDT)
+Reply-To: mark.woods@block.one
+Sender: Google Calendar <calendar-notification@google.com>
+Message-ID: <0000000000004dc9eb05a3bed6e7@google.com>
+Date: Mon, 20 Apr 2020 20:35:18 +0000
+Subject: Goblins - VT Blockchain
+From: mark.woods@block.one
+To: rachelk4@vt.edu, nathanmk@vt.edu, sameerd@vt.edu, ankita99@vt.edu,
+        nilesr@vt.edu
+Content-Type: multipart/alternative; boundary="0000000000004dc9cd05a3bed6e4"
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-20_08:2020-04-20,2020-04-20 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 spamscore=0 phishscore=0 mlxscore=0
+ mlxlogscore=986 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2003020000 definitions=main-2004200161
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--0000000000004dc9cd05a3bed6e4
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+SXQgd2FzIGdyZWF0IG1lZXRpbmcgeW91IGFsbCB0b2RheSEgQW5kIEkgbG9vayBmb3J3YXJkIC8g
+ZXhwZWN0IHRvIG1lZXQgeW91ICANCnNvbWV3aGVyZSBpbiBCbGFja3NidXJnIGluIHRoZSBuZWFy
+LWlzaCBmdXR1cmUuIEhlcmUgaXMgdGhlIHZpZGVvIG9uICANCnBlcm1pc3Npb25zIC0gaHR0cHM6
+Ly95b3V0dS5iZS9rVGpGMC1FZHh3OCBBbmQgcGxlYXNlIGRvIG5vdCBoZXNpdGF0ZSB0byAgDQpy
+ZWFjaCBvdXQgaW4gdGhlIGZ1dHVyZSEgLU1hcmsNCg0KVGl0bGU6IEdvYmxpbnMgLSBWVCBCbG9j
+a2NoYWluDQpXaGVuOiBNb24gQXByIDIwLCAyMDIwIDI6MzBwbSDigJMgM3BtIEVhc3Rlcm4gVGlt
+ZSAtIE5ldyBZb3JrDQoNCkpvaW5pbmcgaW5mbzogSm9pbiBab29tIE1lZXRpbmcNCmh0dHBzOi8v
+YmxvY2tvbmUuem9vbS51cy9qLzIzODA0NjAxOT9wd2Q9YzFneVRuRjNTV0V4YVVSR1RVVlpabkZT
+V2xoUmR6MDkgIA0KKElEOiAyMzgwNDYwMTksIHBhc3N3b3JkOiBiMThnOXowVCkNCg0KSm9pbiBi
+eSBwaG9uZQ0KKFVTKSArMSA2NDYtODc2LTk5MjMNCihISykgKzg1MiA1ODA4IDYwODgNCg0KSm9p
+bmluZyBpbnN0cnVjdGlvbnM6ICANCmh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3E9aHR0cHM6
+Ly9hcHBsaWNhdGlvbnMuem9vbS51cy9hZGRvbi9pbnZpdGF0aW9uL2RldGFpbD9tZWV0aW5nVXVp
+ZCUzRDMlMjUyRkxyM29rcFM5YSUyNTJCaUFTcENXNW9vdyUyNTNEJTI1M0QlMjZzaWduYXR1cmUl
+M0RkNGFlZWQ2NDdhNjJkYWQ4OGM1NmU0NjkwODE3ZTVkODdkMDM5YzA1YmNjNjViMDY4NjkxODc0
+NWQ3NzMwMDhhJnNhPUQmdXNnPUFPdlZhdzNyU2dKNVVGQlFPb1pUUE05emhXNWcNCg0KSm9pbmlu
+ZyBub3RlczogUGFzc3dvcmQ6IGIxOGc5ejBUDQoNCldobzoNCiAgICAgKiBtYXJrLndvb2RzQGJs
+b2NrLm9uZSAtIG9yZ2FuaXplcg0KICAgICAqIG5hdGhhbm1rQHZ0LmVkdQ0KICAgICAqIHNhbWVl
+cmRAdnQuZWR1DQogICAgICogcmFjaGVsazRAdnQuZWR1DQogICAgICogbmlsZXNyQHZ0LmVkdQ0K
+ICAgICAqIGFua2l0YTk5QHZ0LmVkdQ0K
+--0000000000004dc9cd05a3bed6e4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<span itemscope itemtype=3D"http://schema.org/EmailMessage"><p itemprop=3D"=
+description">It was great meeting you all today! And I look forward / expec=
+t to meet you somewhere in Blacksburg in the near-ish future.<p>Here is the=
+ video on permissions - <a href=3D"https://youtu.be/kTjF0-Edxw8">https://yo=
+utu.be/kTjF0-Edxw8</a><p>And please do not hesitate to reach out in the fut=
+ure!<p>-Mark</p></span><span itemscope itemtype=3D"http://schema.org/Inform=
+Action"><span style=3D"display:none" itemprop=3D"about" itemscope itemtype=
+=3D"http://schema.org/EmailMessage"><meta itemprop=3D"description" content=
+=3D"mark.woods@block.one: It was great meeting you all today! And I look fo=
+rward / expect to meet you somewhere in Blacksburg in the near-ish future. =
+Here is the video on permissions - https://youtu.be/kTjF0-Edxw8 And please =
+do not hesitate to reach out in the future! -Mark"/></span><span itemprop=
+=3D"object" itemscope itemtype=3D"http://schema.org/Event"><div style=3D"">=
+<table cellspacing=3D"0" cellpadding=3D"8" border=3D"0" summary=3D"" style=
+=3D"width:100%;font-family:Arial,Sans-serif;border:1px Solid #ccc;border-wi=
+dth:1px 2px 2px 1px;background-color:#fff;"><tr><td><meta itemprop=3D"event=
+Status" content=3D"http://schema.org/EventScheduled"/><div style=3D"padding=
+:2px"><span itemprop=3D"publisher" itemscope itemtype=3D"http://schema.org/=
+Organization"><meta itemprop=3D"name" content=3D"Google Calendar"/></span><=
+meta itemprop=3D"eventId/googleCalendar" content=3D"2v74igkft68am81mqfv40iv=
+jc3"/><h3 style=3D"padding:0 0 6px 0;margin:0;font-family:Arial,Sans-serif;=
+font-size:16px;font-weight:bold;color:#222"><span itemprop=3D"name">Goblins=
+ - VT Blockchain</span></h3><table style=3D"display:inline-table" cellpaddi=
+ng=3D"0" cellspacing=3D"0" border=3D"0" summary=3D"Event details"><tr><td s=
+tyle=3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;co=
+lor:#888;white-space:nowrap" valign=3D"top"><div><i style=3D"font-style:nor=
+mal">When</i></div></td><td style=3D"padding-bottom:10px;font-family:Arial,=
+Sans-serif;font-size:13px;color:#222" valign=3D"top"><time itemprop=3D"star=
+tDate" datetime=3D"20200420T183000Z"></time><time itemprop=3D"endDate" date=
+time=3D"20200420T190000Z"></time>Mon Apr 20, 2020 2:30pm =E2=80=93 3pm <spa=
+n style=3D"color:#888">Eastern Time - New York</span></td></tr><tr><td styl=
+e=3D"padding:0 1em 4px 0;font-family:Arial,Sans-serif;font-size:13px;color:=
+#888;white-space:nowrap" valign=3D"top"><div><i style=3D"font-style:normal"=
+>Joining info</i></div></td><td style=3D"padding-bottom:4px;font-family:Ari=
+al,Sans-serif;font-size:13px;color:#222" valign=3D"top">Join Zoom Meeting</=
+td></tr><tr><td style=3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;=
+font-size:13px;color:#888;white-space:nowrap"></td><td style=3D"padding-bot=
+tom:10px;font-family:Arial,Sans-serif;font-size:13px;color:#222" valign=3D"=
+top"><span itemprop=3D"potentialaction" itemscope itemtype=3D"http://schema=
+.org/JoinAction"><span itemprop=3D"name" content=3D"blockone.zoom.us/j/2380=
+46019?pwd..."><span itemprop=3D"target" itemscope itemtype=3D"http://schema=
+.org/EntryPoint"><span itemprop=3D"url" content=3D"https://blockone.zoom.us=
+/j/238046019?pwd=3Dc1gyTnF3SWExaURGTUVZZnFSWlhRdz09"><span itemprop=3D"http=
+Method" content=3D"GET"><a href=3D"https://blockone.zoom.us/j/238046019?pwd=
+=3Dc1gyTnF3SWExaURGTUVZZnFSWlhRdz09" style=3D"color:#20c;white-space:nowrap=
+" target=3D"_blank">blockone.zoom.us/j/238046019?pwd...</a></span></span></=
+span></span></span> <span style=3D"color:#888">(ID: 238046019, password: b1=
+8g9z0T)</span></td></tr><tr><td style=3D"padding:0 1em 10px 0;font-family:A=
+rial,Sans-serif;font-size:13px;color:#888;white-space:nowrap"></td><td styl=
+e=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-size:13px;color:=
+#222" valign=3D"top"></td></tr><td style=3D"padding:0 1em 4px 0;font-family=
+:Arial,Sans-serif;font-size:13px;color:#888;white-space:nowrap"></td><td st=
+yle=3D"padding-bottom:4px;font-family:Arial,Sans-serif;font-size:13px;color=
+:#222" valign=3D"top">Join by phone</td><tr><td style=3D"padding:0 1em 4px =
+0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-space:nowrap=
+"></td><td style=3D"padding-bottom:4px;font-family:Arial,Sans-serif;font-si=
+ze:13px;color:#222" valign=3D"top"><span style=3D"color:#888">(US) </span><=
+a href=3D"tel:+16468769923,,238046019#" style=3D"color:#20c;white-space:now=
+rap" target=3D"_blank">+1 646-876-9923</a> </td></tr><tr><td style=3D"paddi=
+ng:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;whit=
+e-space:nowrap"></td><td style=3D"padding-bottom:10px;font-family:Arial,San=
+s-serif;font-size:13px;color:#222" valign=3D"top"><span style=3D"color:#888=
+">(HK) </span><a href=3D"tel:+85258086088,,238046019#" style=3D"color:#20c;=
+white-space:nowrap" target=3D"_blank">+852 5808 6088</a> </td></tr><tr><td =
+style=3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;c=
+olor:#888;white-space:nowrap"></td><td style=3D"padding-bottom:10px;font-fa=
+mily:Arial,Sans-serif;font-size:13px;color:#222" valign=3D"top"></td></tr><=
+tr><td style=3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size=
+:13px;color:#888;white-space:nowrap"></td><td style=3D"padding-bottom:10px;=
+font-family:Arial,Sans-serif;font-size:13px;color:#222" valign=3D"top"><a h=
+ref=3D"https://www.google.com/url?q=3Dhttps://applications.zoom.us/addon/in=
+vitation/detail?meetingUuid%3D3%252FLr3okpS9a%252BiASpCW5oow%253D%253D%26si=
+gnature%3Dd4aeed647a62dad88c56e4690817e5d87d039c05bcc65b0686918745d773008a&=
+amp;sa=3DD&amp;usg=3DAOvVaw3rSgJ5UFBQOoZTPM9zhW5g" style=3D"color:#20c;whit=
+e-space:nowrap" target=3D"_blank">Joining instructions</a></td></tr><tr><td=
+ style=3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;=
+color:#888;white-space:nowrap" valign=3D"top">Joining notes</td><td style=
+=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-size:13px;color:#=
+222" valign=3D"top">Password: b18g9z0T</td></tr><tr><td style=3D"padding:0 =
+1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-spa=
+ce:nowrap" valign=3D"top"><div><i style=3D"font-style:normal">Who</i></div>=
+</td><td style=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-siz=
+e:13px;color:#222" valign=3D"top"><table cellspacing=3D"0" cellpadding=3D"0=
+"><tr><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;font-siz=
+e:13px;color:#222"><span style=3D"font-family:Courier New,monospace">&#x202=
+2;</span></td><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;=
+font-size:13px;color:#222"><div><div style=3D"margin:0 0 0.3em 0"><span ite=
+mprop=3D"attendee" itemscope itemtype=3D"http://schema.org/Person"><span it=
+emprop=3D"name" class=3D"notranslate">mark.woods@block.one</span><meta item=
+prop=3D"email" content=3D"mark.woods@block.one"/></span><span itemprop=3D"o=
+rganizer" itemscope itemtype=3D"http://schema.org/Person"><meta itemprop=3D=
+"name" content=3D"mark.woods@block.one"/><meta itemprop=3D"email" content=
+=3D"mark.woods@block.one"/></span><span style=3D"font-size:11px;color:#888"=
+> - organizer</span></div></div></td></tr><tr><td style=3D"padding-right:10=
+px;font-family:Arial,Sans-serif;font-size:13px;color:#222"><span style=3D"f=
+ont-family:Courier New,monospace">&#x2022;</span></td><td style=3D"padding-=
+right:10px;font-family:Arial,Sans-serif;font-size:13px;color:#222"><div><di=
+v style=3D"margin:0 0 0.3em 0"><span itemprop=3D"attendee" itemscope itemty=
+pe=3D"http://schema.org/Person"><span itemprop=3D"name" class=3D"notranslat=
+e">nathanmk@vt.edu</span><meta itemprop=3D"email" content=3D"nathanmk@vt.ed=
+u"/></span></div></div></td></tr><tr><td style=3D"padding-right:10px;font-f=
+amily:Arial,Sans-serif;font-size:13px;color:#222"><span style=3D"font-famil=
+y:Courier New,monospace">&#x2022;</span></td><td style=3D"padding-right:10p=
+x;font-family:Arial,Sans-serif;font-size:13px;color:#222"><div><div style=
+=3D"margin:0 0 0.3em 0"><span itemprop=3D"attendee" itemscope itemtype=3D"h=
+ttp://schema.org/Person"><span itemprop=3D"name" class=3D"notranslate">same=
+erd@vt.edu</span><meta itemprop=3D"email" content=3D"sameerd@vt.edu"/></spa=
+n></div></div></td></tr><tr><td style=3D"padding-right:10px;font-family:Ari=
+al,Sans-serif;font-size:13px;color:#222"><span style=3D"font-family:Courier=
+ New,monospace">&#x2022;</span></td><td style=3D"padding-right:10px;font-fa=
+mily:Arial,Sans-serif;font-size:13px;color:#222"><div><div style=3D"margin:=
+0 0 0.3em 0"><span itemprop=3D"attendee" itemscope itemtype=3D"http://schem=
+a.org/Person"><span itemprop=3D"name" class=3D"notranslate">rachelk4@vt.edu=
+</span><meta itemprop=3D"email" content=3D"rachelk4@vt.edu"/></span></div><=
+/div></td></tr><tr><td style=3D"padding-right:10px;font-family:Arial,Sans-s=
+erif;font-size:13px;color:#222"><span style=3D"font-family:Courier New,mono=
+space">&#x2022;</span></td><td style=3D"padding-right:10px;font-family:Aria=
+l,Sans-serif;font-size:13px;color:#222"><div><div style=3D"margin:0 0 0.3em=
+ 0"><span itemprop=3D"attendee" itemscope itemtype=3D"http://schema.org/Per=
+son"><span itemprop=3D"name" class=3D"notranslate">nilesr@vt.edu</span><met=
+a itemprop=3D"email" content=3D"nilesr@vt.edu"/></span></div></div></td></t=
+r><tr><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;font-siz=
+e:13px;color:#222"><span style=3D"font-family:Courier New,monospace">&#x202=
+2;</span></td><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;=
+font-size:13px;color:#222"><div><div style=3D"margin:0 0 0.3em 0"><span ite=
+mprop=3D"attendee" itemscope itemtype=3D"http://schema.org/Person"><span it=
+emprop=3D"name" class=3D"notranslate">ankita99@vt.edu</span><meta itemprop=
+=3D"email" content=3D"ankita99@vt.edu"/></span></div></div></td></tr></tabl=
+e></td></tr></table></div></td></tr></table></div></span></span>
+--0000000000004dc9cd05a3bed6e4--

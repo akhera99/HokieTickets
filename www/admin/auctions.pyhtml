@@ -1,0 +1,97 @@
+<%!
+import libgoblin, goblin_auth, json
+from datetime import datetime as dt
+
+def today_to_date():
+    return dt.now().strftime("%Y%m%d%H%M")
+def format_date(date_time):
+    if len(date_time) != 12:
+        return ""
+    date = int(date_time) // 10000   # Take off HHMM
+    obj = dt(date // 10000, (date // 100) % 100, date % 100) #, hour=(time // 100), minute=(time % 100))
+    return obj.strftime("%a. %B %d, %Y")
+%>
+<%
+	user, session = goblin_auth.get_user(c)
+%>
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+        <title>Admin Auctions Page</title>
+        <link rel="stylesheet" href="/static/style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap" rel="stylesheet"> 
+        <script src="/static/admin.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    </head>
+    <body>
+        <div class="banner">
+		    <img src="/static/images/vt-logo-white.svg" alt="VT Logo">
+            % if user == "hokipoki":
+                ADMIN
+			% endif
+        </div>
+		<nav>
+            <div class="nav-section" id="user-logout">
+                <p>You are logged in as <b>${user}</b></p>
+                <a href="/logout.pyhtml">Logout</a>
+            </div>
+            <div class="nav-section" id="pages">
+				<ul>
+					<li><a href="/admin/attendance.pyhtml">ATTENDANCE</a></li>
+                    <li><a href="/admin/auctions.pyhtml">AUCTIONS</a></li>
+					<li><a href="/admin/lottery.pyhtml">LOTTERY</a></li>
+                    <li><a href="/admin/transfer.pyhtml">TRANSFER</a></li>
+					<li><a href="/admin/accounts.pyhtml">ACCOUNTS</a></li>
+				</ul>
+            </div>
+		</nav>
+        <div class="content">
+            % if user == "hokipoki":
+                <h1>Manage Auctions</h1>
+                <p>Execute lotteries for available games.</p>
+                
+                <h2>AVAILABLE GAMES</h2>
+                <% raw = libgoblin.filtered_date_games(today_to_date()) %>
+                <table><thead>
+                <tr>
+                    <th>EVENT</th>
+                    <th>DATE</th>
+                    <th># AUCTIONS</th>
+                    <th></th>
+                </thead><tbody>
+                % if len(raw) == 0:
+                    <tr><td>Table is empty</td>
+                % else:
+                % for i, r in list(enumerate(raw)):
+                    <tr style="background-color: ${"#ddd" if i % 2 == 1 else "#f9f9f9"};">
+                        <td><h3>${r.name}</h3></td>
+                        <td><p>${format_date(r.date)}</p></td>
+                        <%  
+                        auctions = json.loads(libgoblin.get_auctions_by_game(r.id))
+                        num_auctions = "None"
+                        if 'Success' in auctions:
+                            num_auctions = len(auctions['Success'])
+                        %>
+                        <td><p>${num_auctions}</p></td>
+                        % if num_auctions == 0:
+                            <td><p>No Auctions</p></td>
+                        % else:
+                        <td><button class="actionButton" onclick="openWindow('${r.id}', 'exec_all_auctions', {'event_name': '${r.name}', 'num_auctions': '${num_auctions}'})">Execute All Auctions</button></td>
+                        % endif
+                % endfor
+                </tbody></table>
+                % endif
+			% else:
+				You do not have permission to access this page.
+			% endif
+        </div>
+        <div id="window" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeWindow()">&times;</span>
+                <div class="modal-body"></div>
+                <div class="button-area"></div>
+            </div>
+        </div>
+    </body>
+</html>

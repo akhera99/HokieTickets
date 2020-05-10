@@ -1,0 +1,368 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:d082:0:0:0:0 with SMTP id k2csp4060212pju;
+        Mon, 10 Feb 2020 07:43:03 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzdWRMVefqKHYoRCqLsmGIOuq1PKo2Y9W94SQkvIpA/S7MThT0VnjzOVTqppXAvuWuW4ul+
+X-Received: by 2002:ac8:140c:: with SMTP id k12mr10410241qtj.117.1581349383684;
+        Mon, 10 Feb 2020 07:43:03 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1581349383; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=T8vCflgO847HWYzAJeVMxjlw0aCnnnwLha7ftrJhNN6weWxEnirtSx1R/AwgSx4qOd
+         m1PHKWase8j9CEx+qRjJx5HsXdOBlBzLNzM6ViGhrYSxvyVklfGPaxeJcU9y961bBtlU
+         EXeCJmbjWlK423q+KSIxkbmNJvLPsB32H8fPhZPBfzydUUubfPrG3OvjUjkoiUQFcGHR
+         vyh378h31M1CVOV94ZEX7X2MKpj3xQF4uIyBkyYo62eVB+LNvpmdhtROFScjRNFAxejC
+         Q3Yk2c8CO+dgVXJtDELgNRvp+Zm0x1rU8TCLpWGsjl7aPfgiw//ZSSYlDp4DQP1mQkH7
+         jg3g==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:auto-submitted:content-transfer-encoding:mime-version
+         :subject:message-id:to:reply-to:from:date:dkim-signature
+         :dkim-signature:delivered-to;
+        bh=3TkgTbReMW20DTs69QUOSEsTBUlEH37NuoVLbRwvJBQ=;
+        b=vI7rtRdzzj/w5TWhvCV+k6CTWFkBEBoxi1UBUUQcgfmD3BoXi8EUV3yxCHOqVqBUKc
+         RYDbvhc2u4xbhHJkx+tthTb/2JLMv84uirZT6EmpA41NAIUNoH/i2T0aCMiBkJOoxNVB
+         dFw7MOpDc33d/ELj+Lvw2Jk/F0oEgeDoe+fwZUS6wIQXZSyxVhNL8eGFK/W9t5AMUwNN
+         G+CZxwos3F2VmEnyLkbFhugnT2lxDlorznBLrg54Q1NOLXXf40SJLfd01OpbclriAQ8z
+         1hF1dF54vEBv9VsPgLkbSRYRTmgfJFwfk6PKBLVKZ9Xkl4tKKgmWtDPPhZ29VLBmuGHC
+         gmkg==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=VqBqy+bw;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=ZIfd5tVW;
+       arc=pass (i=1 spf=pass spfdomain=amazonses.com dkim=pass dkdomain=instructure.com dkim=pass dkdomain=amazonses.com);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr1.cc.vt.edu (omr1.cc.ipv6.vt.edu. [2607:b400:92:8300:0:c6:2117:b0e])
+        by mx.google.com with ESMTPS id w23si299410qkf.143.2020.02.10.07.43.03
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 Feb 2020 07:43:03 -0800 (PST)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) client-ip=2607:b400:92:8300:0:c6:2117:b0e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=VqBqy+bw;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=ZIfd5tVW;
+       arc=pass (i=1 spf=pass spfdomain=amazonses.com dkim=pass dkdomain=instructure.com dkim=pass dkdomain=amazonses.com);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu"
+Received: from mr2.cc.vt.edu (mr2.cc.ipv6.vt.edu [IPv6:2607:b400:92:8400:0:90:e077:bf22])
+	by omr1.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 01AFh3Nk009442
+	for <nilesrogoff@gmail.com>; Mon, 10 Feb 2020 10:43:03 -0500
+Received: from mail-il1-x146.google.com (mail-il1-x146.google.com [IPv6:2607:f8b0:4864:20::146])
+	by mr2.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 01AFgwCQ015840
+	for <nilesrogoff@gmail.com>; Mon, 10 Feb 2020 10:43:03 -0500
+Received: by mail-il1-x146.google.com with SMTP id h87so6955600ild.11
+        for <nilesrogoff@gmail.com>; Mon, 10 Feb 2020 07:43:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-signature:dkim-signature:date
+         :from:reply-to:to:message-id:subject:mime-version
+         :content-transfer-encoding:auto-submitted:feedback-id;
+        bh=3TkgTbReMW20DTs69QUOSEsTBUlEH37NuoVLbRwvJBQ=;
+        b=NWeeJAcPwaCHoZDSKOIqEsLl8IbzXzczsb663RDkeger1M7tyQNxOnUYPXtKsHszs/
+         Su2/S8ekeK82vQZbfMDLn1TW/d4jlfahQOsfU+vBQznWm1OCPo28Yv5ZwP7MBN7rStaR
+         16q256ZVKfEJ++5VTsyf0RSNS69bpC1J+LrqHGsMJQFMPgcdvFfm4dWn12/5LEwWLr9j
+         GWs0xChTcql7EnHQ65S7HLwPKIjcShLKY2nxQhp21sBSo7NwIewEFpgwrsrhRCqVeE+7
+         8DNDgBduj6V6SbIAfHMnZgOfZUUFpaP2Mme91TbtscLckQtG+3agwQ4Jtd3aTprHbgN9
+         b8IA==
+X-Gm-Message-State: APjAAAUxHI9AT3rhdSHZCLcYtqtI8SjuBKCHDF0Y71WW8j+3JfQrxE/b
+	d9vSWDyEKgIdwi4mi/gC6hJ3MTuUuxwS+fQEoFrEIvvrR7Rk/4y3xdeGhl3yKA8m8LdjLsvXNBz
+	aof+1I+GXut3WEGq9UqDKRt6QeJRo75MEfDj4zQOIGfx3n+P31k4=
+X-Received: by 2002:a02:c4da:: with SMTP id h26mr10730725jaj.47.1581349377931;
+        Mon, 10 Feb 2020 07:42:57 -0800 (PST)
+X-Received: by 2002:a02:c4da:: with SMTP id h26mr10730701jaj.47.1581349377558;
+        Mon, 10 Feb 2020 07:42:57 -0800 (PST)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:ac22:0:0:0:0:0 with SMTP id i31csp4950758imb;
+        Mon, 10 Feb 2020 07:42:56 -0800 (PST)
+X-Received: by 2002:aed:36a5:: with SMTP id f34mr9955501qtb.57.1581349376235;
+        Mon, 10 Feb 2020 07:42:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581349376; cv=none;
+        d=google.com; s=arc-20160816;
+        b=k73oZiSNagzueJANn7ULKlfSDJSlluJ61b9j4BNqnPMcj9j/BEDB/5Nd1nZVhqDfnB
+         tZzJQ59/QgsqoanGcQ/u/mBkj8rs8zlVoPxnOfB8BOAA4bb5tLRXp23TZx9uHW1tg0sx
+         wHa/drxvGThPmxO5A1AD2/Pfes7nAHpcsZsPRjts2agaGscIAlKDR2qujCAGDdFNBzpO
+         nwK84QHRv+8A4j+MN/J6Egu0VCSZ9aBy6xCfGqJXQoUcoIJwnMp+gnmxXhI3UR+mBK7p
+         qZlY/xnkeFa8VUlYz1tqFRbvoCdL9k2Cq6v+Jw3eIQ7HRYwvjtLQay7iOHuLQyg5byzl
+         68nA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:auto-submitted:content-transfer-encoding:mime-version
+         :subject:message-id:to:reply-to:from:date:dkim-signature
+         :dkim-signature;
+        bh=3TkgTbReMW20DTs69QUOSEsTBUlEH37NuoVLbRwvJBQ=;
+        b=u99RNCGqN439KuWWuPCc+MsomH95Xk850Hm9R2wZlsee9pU31kJSXpafgxqTHfXqvf
+         OTmqgpWh2nkkaeGeJjDVcwlSlvglnmLoJfbF60ShSRnlrjvkJL+rDjgRs3dxQjDh54GD
+         M0FS9XrKANSoKw5c7VW9o8tLH42lRLRO+exFJzgjGBXP5yTHBwNIdJcyUj640EmSLNQc
+         ehIFJg6DWqhTrWwFq9dA2wpPxAFdr6QVq30yP1NMI1vZThZl4IXcof3TFI7JNMcruWYB
+         E6gLZZFq75xeIHZakrb3w50dywupqbyMq7mnwj2pftQfcm6Xmj3IYN59GS79ayTkJp9v
+         ZtkA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@instructure.com header.s=6s5mwthdy2mujaxi3xuxuckrikhn6her header.b=VqBqy+bw;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=ZIfd5tVW;
+       spf=pass (google.com: domain of 010001702fc48db5-f20faa78-de36-4e58-b41b-77fb0f9e84da-000000@amazonses.com designates 54.240.14.1 as permitted sender) smtp.mailfrom=010001702fc48db5-f20faa78-de36-4e58-b41b-77fb0f9e84da-000000@amazonses.com
+Received: from mr2.cc.vt.edu (mr2.cc.ipv6.vt.edu. [2607:b400:92:8400:0:90:e077:bf22])
+        by mx.google.com with ESMTPS id m15si302130qkh.147.2020.02.10.07.42.56
+        for <nilesr@vt.edu>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 Feb 2020 07:42:56 -0800 (PST)
+Received-SPF: pass (google.com: domain of 010001702fc48db5-f20faa78-de36-4e58-b41b-77fb0f9e84da-000000@amazonses.com designates 54.240.14.1 as permitted sender) client-ip=54.240.14.1;
+Received: from a14-1.smtp-out.amazonses.com (a14-1.smtp-out.amazonses.com [54.240.14.1])
+	by mr2.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 01AFgQ17015102
+	for <nilesr@vt.edu>; Mon, 10 Feb 2020 10:42:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6s5mwthdy2mujaxi3xuxuckrikhn6her; d=instructure.com;
+	t=1581349375;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding;
+	bh=JmUA6NOH/5RYu4erSbYX6SqiEQUE2pDv98syQDsiy4g=;
+	b=VqBqy+bwmrfSTT+o/EHDzSHSVkIEs0kq3MTjCp9BAKGCOJr28PJ3ESqt4bSJOmz4
+	mfiz48/X7zisbfx9CwHPQze0yGWalg1cMqYm4ZUmS4wyta7pHxYURQKJ5b4Pf4OooT8
+	2I0MI6LgxPPFd4u07dv1WLo75ZbjqvKe1B/h2hko=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1581349375;
+	h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=JmUA6NOH/5RYu4erSbYX6SqiEQUE2pDv98syQDsiy4g=;
+	b=ZIfd5tVWpVXTw8FQTjny7F6AKALbMZMcdForLsDYVWdmxk1OoHNc5+dtfQTIM+87
+	zFq1txBECaiksgWGLXsRsefSqYkq+8WFZbKaPUvf46yrMQXKML/VHJlnFpnx5rD4VoT
+	eQ1Fy4OpwU5++tz62Qnh1Blz4kaevzZWONUYJAkU=
+X-On-bounce-route-to: notification-service-failures-prod
+Date: Mon, 10 Feb 2020 15:42:55 +0000
+From: Systems & Networking Capstone <notifications@instructure.com>
+Reply-To: reply+07634e4ba9a728bf-4511~167602014-1581349373@notifications.canvaslms.com
+To: nilesr@vt.edu
+Message-ID: <010001702fc48db5-f20faa78-de36-4e58-b41b-77fb0f9e84da-000000@email.amazonses.com>
+Subject: Intel NUC Access by Group (kronk.cs.vt.edu): Systems & Networking
+ Capstone
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5e4179ff2fb5f_14a66a3bdc99963";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Auto-Submitted: auto-generated
+X-SES-Outgoing: 2020.02.10-54.240.14.1
+Feedback-ID: 1.us-east-1.6bnAGrq+H33YQMZ/rl7AdPgJjS+jB1rbcCIER0hXfVM=:AmazonSES
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+
+----==_mimepart_5e4179ff2fb5f_14a66a3bdc99963
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+          Hi Everyone,=0D
+=0D
+The Intel NUC systems are operational and have been tested somewhat. Keep=
+ in mind that in many ways, the EOSIO software is in beta, so while I hop=
+e it works well for you, there will likely be challenges ahead. The best =
+advice I can give is to start early and ask questions as soon as they com=
+e up. I addition to B1 engineers that will likely come online for us next=
+ week, you can send technical questions to EOSIO forums and to the VT Blo=
+ckchain Challenge Slack Channel for VT:=0D
+=0D
+[SLACK HELP CHANNEL] (https://join.slack.com/t/computerscien-vq52414/shar=
+ed_invite/enQtOTE0MTgxMzQyNzkxLTNhYTMwZWFlMmQ2Y2YyNTUwZTNjNzliMzQ4NzJmMGE=
+1MTc3ZjI1MDdmODhjM2MwMTRjM2U2YmMwMjcyMjBlNzI)=0D
+=0D
+For the NUC Systems, below are some details, but the first step is for yo=
+u to [READ THIS PAGE] (http://kronk.cs.vt.edu)=C2=A0for the Kronk system =
+which contains the full instructions for getting an account and access to=
+ a node.=0D
+=0D
+We will allocate ONE NUC NODE PER TEAM. The nodes have pre-installed the =
+EOSIO package. Please designate a team lead for the NUC and have them fol=
+low the instructions and apply for an account and node with Jon Bernard (=
+[jobernar@vt.edu] (mailto:jobernar@vt.edu)).=0D
+=0D
+Jon will ask each user for a public key from the system you plan to use.=0D=
+
+=0D
+Please read the [Kronk.cs.vt.edu] (http://kronk.cs.vt.edu) Webpage to get=
+ started.=0D
+=0D
+=0D
+https://canvas.vt.edu/courses/104581/announcements/690072=0D
+=0D
+=0D
+=0D
+=0D
+=0D
+=0D
+          ________________________________________=0D
+=0D
+          You received this email because you are participating in one or=
+ more classes using Canvas.  To change or turn off email notifications, v=
+isit:=0D
+https://canvas.vt.edu/profile/communication=0D
+=0D
+
+----==_mimepart_5e4179ff2fb5f_14a66a3bdc99963
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+<head>=0D
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width">=0D
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">=0D
+  <style type=3D"text/css">=0D
+/*=0D
+Changes to font size (14->16) for smaller screens=0D
+table[class=3Dbody] is the only selector that works for all vendors=0D
+*/=0D
+@media only screen and (max-width: 620px) {=0D
+  table[class=3Dbody] p,=0D
+  table[class=3Dbody] ul,=0D
+  table[class=3Dbody] ol,=0D
+  table[class=3Dbody] td,=0D
+  table[class=3Dbody] span,=0D
+  table[class=3Dbody] a {=0D
+    font-size: 16px !important;=0D
+  }=0D
+  /* remove padding for mobile so no gray shows */=0D
+  table[class=3Dbody] .bodycell {=0D
+    padding: 0 !important;=0D
+    width: 100% !important;=0D
+  }=0D
+  /* reduce padding from 20->10 for mobile */=0D
+  table[class=3Dbody] .maincell {=0D
+    padding: 10px !important;=0D
+  }=0D
+}=0D
+/*=0D
+ExternalClass fixes Outlook.com / Hotmail emails=0D
+*/=0D
+@media all {=0D
+  .ExternalClass {=0D
+    width: 100%;=0D
+  }=0D
+  .ExternalClass,=0D
+  .ExternalClass p,=0D
+  .ExternalClass span,=0D
+  .ExternalClass font,=0D
+  .ExternalClass td,=0D
+  .ExternalClass div {=0D
+    line-height: 100%;=0D
+  }=0D
+}=0D
+  </style>=0D
+</head>=0D
+<!--=0D
+background: white (could be gray)=0D
+default sans serif fonts, 14px, 1.3, #444444=0D
+vendor prefixes for Outlook (-ms) and iOS (-webkit)=0D
+Margin is capitalized to fix Outlook.com=0D
+-->=0D
+<body class=3D"" style=3D"background-color:#ffffff; font-family:'Open San=
+s', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', T=
+ahoma, 'Sans Serif'; font-size:14px; color: #444444; line-height:1.3; Mar=
+gin:0; padding:0; -ms-text-size-adjust:100%; -webkit-font-smoothing:antia=
+liased; -webkit-text-size-adjust:100%;">=0D
+=0D
+  <!-- body: background table (if body has a color, this should match) --=
+>=0D
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"body" =
+style=3D"border-collapse:separate; background-color:#ffffff; width:100%; =
+box-sizing:border-box; mso-table-lspace:0pt; mso-table-rspace:0pt;">=0D
+    <tr>=0D
+      <!-- width and max-width so it can scale for mobile -->=0D
+      <td class=3D"bodycell" style=3D"max-width:600px; width:100%; font-f=
+amily:'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida S=
+ans Unicode', Tahoma, 'Sans Serif'; font-size:14px; vertical-align:top; d=
+isplay:block; box-sizing:border-box; padding:10px; Margin:0 auto !importa=
+nt;">=0D
+=0D
+<!-- for older versions of Outlook that don't support max-width -->=0D
+<!--[if (gte mso 9)|(IE)]>=0D
+<table width=3D"600" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0"><tr><td>=0D
+<![endif]-->=0D
+=0D
+        <!-- main: white box for content -->=0D
+        <table class=3D"main" style=3D"background:#fff; width:100%; borde=
+r-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; ">=0D
+          <tr>=0D
+            <td class=3D"maincell" style=3D"font-family:sans-serif; font-=
+size:14px; vertical-align:top; box-sizing:border-box; padding:20px;">=0D
+=0D
+                    =0D
+<p>Hi Everyone,</p>=0D
+<p>The Intel NUC systems are operational and have been tested somewhat. K=
+eep in mind that in many ways, the EOSIO software is in beta, so while I =
+hope it works well for you, there will likely be challenges ahead. The be=
+st advice I can give is to start early and ask questions as soon as they =
+come up. I addition to B1 engineers that will likely come online for us n=
+ext week, you can send technical questions to EOSIO forums and to the VT =
+Blockchain Challenge Slack Channel for VT:</p>=0D
+<p><a href=3D"https://join.slack.com/t/computerscien-vq52414/shared_invit=
+e/enQtOTE0MTgxMzQyNzkxLTNhYTMwZWFlMmQ2Y2YyNTUwZTNjNzliMzQ4NzJmMGE1MTc3ZjI=
+1MDdmODhjM2MwMTRjM2U2YmMwMjcyMjBlNzI">SLACK HELP CHANNEL</a></p>=0D
+<p>For the NUC Systems, below are some details, but the first step is for=
+ you to <a href=3D"http://kronk.cs.vt.edu">READ THIS PAGE</a>=C2=A0for th=
+e Kronk system which contains the full instructions for getting an accoun=
+t and access to a node.</p>=0D
+<p>We will allocate ONE NUC NODE PER TEAM. The nodes have pre-installed t=
+he EOSIO package. Please designate a team lead for the NUC and have them =
+follow the instructions and apply for an account and node with Jon Bernar=
+d (<a href=3D"mailto:jobernar@vt.edu">jobernar@vt.edu</a>).</p>=0D
+<p>Jon will ask each user for a public key from the system you plan to us=
+e.</p>=0D
+<p>Please read the <a href=3D"http://kronk.cs.vt.edu">Kronk.cs.vt.edu</a>=
+ Webpage to get started.</p>=0D
+=0D
+=0D
+=0D
+            </td>=0D
+          </tr>=0D
+        </table>=0D
+        <!-- /.main -->=0D
+=0D
+        <!-- logo: branding -->=0D
+        <table class=3D"logo" style=3D"width:100%; box-sizing:border-box;=
+ border-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; ">=
+=0D
+          <tr>=0D
+            <td class=3D"logocell" style=3D"text-align:center; vertical-a=
+lign:top; box-sizing:border-box; padding:10px;">=0D
+              <img src=3D"https://du11hjcvx0uqb.cloudfront.net/dist/image=
+s/email_signature-d2c5880612.png" alt=3D"">=0D
+            </td>=0D
+          </tr>=0D
+        </table>=0D
+        <!-- /.logo -->=0D
+=0D
+        <!-- footer: gray text below main -->=0D
+        <table class=3D"footer" style=3D"width:100%; box-sizing:border-bo=
+x; border-collapse:separate; mso-table-lspace:0pt; mso-table-rspace:0pt; =
+">=0D
+          <tr>=0D
+            <td class=3D"footercell" style=3D"font-family:sans-serif; fon=
+t-size:14px; vertical-align:top; color:#a8b9c6; font-size:12px; text-alig=
+n:center; padding:10px; box-sizing:border-box; ">=0D
+=0D
+                <a href=3D"https://canvas.vt.edu/courses/104581/announcem=
+ents/690072">=0D
+    View announcement=0D
+  </a> &nbsp;|&nbsp;=0D
+=0D
+              <a href=3D"https://canvas.vt.edu/profile/communication" sty=
+le=3D"white-space: nowrap;">Update your notification settings</a>=0D
+=0D
+            </td>=0D
+          </tr>=0D
+        </table>=0D
+        <!-- /.footer -->=0D
+=0D
+<!--[if (gte mso 9)|(IE)]>=0D
+</td></tr></table>=0D
+<![endif]-->=0D
+=0D
+      </td>=0D
+    </tr>=0D
+  </table>=0D
+  <!-- /.body -->=0D
+=0D
+</body>=0D
+</html>=0D
+
+----==_mimepart_5e4179ff2fb5f_14a66a3bdc99963--

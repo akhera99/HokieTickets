@@ -1,0 +1,259 @@
+Delivered-To: nilesrogoff@gmail.com
+Received: by 2002:a17:90a:b381:0:0:0:0 with SMTP id e1csp2480371pjr;
+        Thu, 30 Apr 2020 12:52:44 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKhQTSLtSmI+gedP3N58izzTvh3uTOmuhuT/kWIBPDZPyLni2N/1+Dvg7nYz+U+IQ2kvbGS
+X-Received: by 2002:ac8:3844:: with SMTP id r4mr190088qtb.32.1588276364679;
+        Thu, 30 Apr 2020 12:52:44 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1588276364; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=OK33zF/lj2qrYoJnMza7sjdZ9X0VDFLxWUQNNramVPclo6H78srn0hhcnRKVJiGnFw
+         YM0O0eOYtSL9q/dU98ewahI5CvSf0qE986NUkJvFMJME1QX/MrJQ7PHsTnHk4AUghje3
+         gOvjwHkV7oPUrA5WZ5Z7J0Zywt9T8pQvNY63G8sx6zaj4ueFgABdHM8i2k3XvC1D2jzL
+         81GhFGVKgryIFBWxDSh73HfSmbEG08kB+5eFSDLbokXLMYDyUP/cSl6RxjpBswgMGq9b
+         Nq5EUcg42GFTSoEQwQYA7s1gcM48v7Ql9hM3Ll5FkkYjD+PuVTYDEczVZ+sZuAIqG0EL
+         Voeg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:delivered-to;
+        bh=SJb74t1LTvKui7wWpkRGvXvUhRhpGq721eQsyfkbPZY=;
+        b=H7G+5C6GY5JlRbBpfumQLRKyaPDwQSJ/+DQFUkm6wIjCrJEOj66bKf1qcY8DY9wPUJ
+         o2QNMmT5xRrARqi1aC2j95RV2U/ey9SEfJaC6cbQuqzprfTBdDdD4IegQ3OJZLc9WC7J
+         Mn06IWtusKAKSj52WF2PH2iknDge5/fLtv8VF1qswyt6sky18UR36v8GYPwjpX9anipy
+         DxffJYPSEXO96qxyjA8A7yUfVUAfzqF+GrugvJeA+hh1FxDdJVZGyV97DCmIRRIy2ysc
+         Em1l8fSfRGPeeYG5ZH+o6rQc1BYLTJMorkq+R8jkZ64Ir54cGXRB6C1Z5sRHQFGnIQBe
+         5dFQ==
+ARC-Authentication-Results: i=2; mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Return-Path: <nilesr+caf_=nilesrogoff=gmail.com@vt.edu>
+Received: from omr1.cc.vt.edu (omr1.cc.ipv6.vt.edu. [2607:b400:92:8300:0:c6:2117:b0e])
+        by mx.google.com with ESMTPS id g57si425112qtk.241.2020.04.30.12.52.43
+        for <nilesrogoff@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Apr 2020 12:52:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) client-ip=2607:b400:92:8300:0:c6:2117:b0e;
+Authentication-Results: mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=cs.vt.edu);
+       spf=pass (google.com: domain of nilesr+caf_=nilesrogoff=gmail.com@vt.edu designates 2607:b400:92:8300:0:c6:2117:b0e as permitted sender) smtp.mailfrom="nilesr+caf_=nilesrogoff=gmail.com@vt.edu";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vt.edu
+Authentication-Results: smtp.cs.vt.edu; dkim=permerror (bad message/signature format)
+Received: from mr1.cc.vt.edu (smtp.ipv6.vt.edu [IPv6:2607:b400:92:9:0:9d:8fcb:4116])
+	by omr1.cc.vt.edu (8.14.4/8.14.4) with ESMTP id 03UJqgXP000989
+	for <nilesrogoff@gmail.com>; Thu, 30 Apr 2020 15:52:42 -0400
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com [209.85.166.200])
+	by mr1.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 03UJqbfQ031138
+	for <nilesrogoff@gmail.com>; Thu, 30 Apr 2020 15:52:42 -0400
+Received: by mail-il1-f200.google.com with SMTP id y2so2452165ilm.8
+        for <nilesrogoff@gmail.com>; Thu, 30 Apr 2020 12:52:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-original-authentication-results:x-gm-message-state:delivered-to
+         :from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=SJb74t1LTvKui7wWpkRGvXvUhRhpGq721eQsyfkbPZY=;
+        b=aO3/dXdc32EEbBrxhPusDVKDRgJuRJw4PIeC5xOoF8j3B03BxJNXKQdJnHIaoYfAjf
+         Od9tQ3ERUnitOQMHdctprWMfhA3zD5ymRcapQbO3w2B8xcm7O6QhMgExD9jMkOBXt/DV
+         1GBWQe8gl3aymOeWorJFA+BfAwINBSMBph5bFzwy95X3aXATArkcPtB7Ou/Eum2yL4qt
+         mrHmUPZL8aXfOFJVV60eeFmVn9aFbMMXzFAoMvndGhG4KJ3ztez9HL5plBPgOls+X5Eh
+         WBLSIiBqxq9+Ac60CHPD6cdl+R/HcdZJylSufriR3Sb7uxVG0AGd1B4hlhlDwfy7wPE+
+         zJfQ==
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com: domain vt.edu configured 2607:b400:92:8300:0:7b:e2b1:6a29 as internal address) smtp.mailfrom=juliapc7@cs.vt.edu
+X-Gm-Message-State: AGi0PuaEaevBnQDcCXyWmWIO39WXvtyb3LsS8fFw4ADNFxUD87t+jUyL
+	sTVVfVvGNcUX8VRdaZMw48Fn/xcc8IxzlQgQfHWlFwoQsDKGTJmh2400mDY9Jc8MdigZd8N5ves
+	k6iRrcg1rNZFTzTZlN69rFwGwly+0aQD3sDHbjwS9392qLPeqBYw=
+X-Received: by 2002:a02:23c1:: with SMTP id u184mr6698jau.11.1588276356898;
+        Thu, 30 Apr 2020 12:52:36 -0700 (PDT)
+X-Received: by 2002:a02:23c1:: with SMTP id u184mr6682jau.11.1588276356637;
+        Thu, 30 Apr 2020 12:52:36 -0700 (PDT)
+X-Forwarded-To: nilesrogoff@gmail.com
+X-Forwarded-For: nilesr@vt.edu nilesrogoff@gmail.com
+Delivered-To: nilesr@vt.edu
+Received: by 2002:ac0:f38f:0:0:0:0:0 with SMTP id l15csp2504291imn;
+        Thu, 30 Apr 2020 12:52:35 -0700 (PDT)
+X-Received: by 2002:a37:6117:: with SMTP id v23mr182394qkb.100.1588276355119;
+        Thu, 30 Apr 2020 12:52:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588276355; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0yMjsdi6C7rpoEuXmjpbag1jO9CSwLERuOUo+mtdaAdYGlBt+g861xouARRctgcFpV
+         nUoln8Kx4YY4MyZ9rnnqrN4dKa+W44BmNfidB8159QH4rVw8PwvdE9+7i2xFycSuYdcA
+         TnR2NGtaC8/Z4kM/aepCpFGs9BQ1VA8IAAtmiKlIENLBLwRvqrkiJ8mZWhHHPIXMX5Uf
+         4GRzRlSH/6ex4qZYtR1MVDWyyWjLDxDcgHsnC5kN9RTKIopEQ6q0cEu/z70RaTNA9zML
+         9/vHw9yxqVQgi2HnjxvBkACEzr3B4DBYs0z1sorQHk2wIGgmQGVw1JCQi/yXHgs1qlZ4
+         FwCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from;
+        bh=SJb74t1LTvKui7wWpkRGvXvUhRhpGq721eQsyfkbPZY=;
+        b=OWJGXUZJJFGLtue/oRNHR0gleYyYLBq45su/ZRz59pha/WZhjuDLe+cSOl4SiJipTg
+         lP3Sc3qb86SiK/3txnoNVR7ubIV1bR6MV919s7FwhXIO1H7tsMwBAQzXhnbFZEpz/kI6
+         ukI3VNdfCGvICJAUjmYtex+O0QtIY8tuFKPeblOYIx8zY/DGQRZovJHit1p0qrFTasjm
+         uzAY5md435ZobiTdFSrteXjk0+a2Woh8doSinAs2rD1o8QxjDptMe8emJR4wm2/p6HcN
+         1vQJHN8l0dACRqLD/mPYDI2+8lEAcM46zjFaEKbOd44LUqSVh60Un8I4SK3782xwa+gu
+         qisA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain vt.edu configured 2607:b400:92:8300:0:7b:e2b1:6a29 as internal address) smtp.mailfrom=juliapc7@cs.vt.edu
+Received: from mr4.cc.vt.edu (mr4.cc.ipv6.vt.edu. [2607:b400:92:8300:0:7b:e2b1:6a29])
+        by mx.google.com with ESMTPS id k28si429125qtf.185.2020.04.30.12.52.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Apr 2020 12:52:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain vt.edu configured 2607:b400:92:8300:0:7b:e2b1:6a29 as internal address)
+Received: from smtp.cs.vt.edu (smtp.cs.ipv6.vt.edu [IPv6:2001:468:c80:212a:5054:ff:fe00:401])
+	by mr4.cc.vt.edu (8.14.7/8.14.7) with ESMTP id 03UJqTsq001258;
+	Thu, 30 Apr 2020 15:52:34 -0400
+From: "Julia Costello" <juliapc7@cs.vt.edu>
+To: <cs-source@cs.vt.edu>
+Subject: Blockchain Challenge Finale Agenda
+Date: Thu, 30 Apr 2020 15:52:10 -0400
+Message-ID: <033c01d61f28$d73d25b0$85b77110$@cs.vt.edu>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_033D_01D61F07.502CBE30"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdYfKGvYmKzRwPCgQjes4MmnnRueeA==
+Content-Language: en-us
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_033D_01D61F07.502CBE30
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi All,
+
+ 
+
+Here is the agenda for the Blockchain Challenge finale on Monday, May 4.
+I'll send you the zoom link Monday morning.
+
+ 
+
+Wishing you the best for all your hard work!
+
+ 
+
+Julia
+
+ 
+
+Agenda
+
+ 
+
+3:00 PM - 3:15 PM Welcome and Overview of VT BC
+
+3:15 PM - 3:30 PM SLim's Crew: Electric Boogaloo (Video/1.5, Demo/5, Q&A/5)
+
+3:30 PM - 3:45 PM VTRADE (Video/1.5, Demo/5, Q&A/5)
+
+3:45 PM - 4:00 PM The Goblins (Video/1.5, Demo/5, Q&A/5)
+
+4:00 PM - 4:15 PM block.two (Video/1.5, Demo/5, Q&A/5)
+
+4:15 PM - 4:30 PM Judges' Meeting
+
+4:30 PM - Presentation of Winners and Closing
+
+ 
+
+ 
+
+ 
+
+
+------=_NextPart_000_033D_01D61F07.502CBE30
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hi All,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Here is the =
+agenda for the Blockchain Challenge finale on Monday, May 4. I&#8217;ll =
+send you the zoom link Monday morning.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Wishing you =
+the best for all your hard work!<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Julia<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText><b>Agenda<o:p></o:p></b></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>3:00 =
+PM - 3:15 PM Welcome and Overview of VT BC<o:p></o:p></p><p =
+class=3DMsoPlainText>3:15 PM - 3:30 PM SLim's Crew: Electric Boogaloo =
+(Video/1.5, Demo/5, Q&amp;A/5)<o:p></o:p></p><p =
+class=3DMsoPlainText>3:30 PM - 3:45 PM VTRADE (Video/1.5, Demo/5, =
+Q&amp;A/5)<o:p></o:p></p><p class=3DMsoPlainText>3:45 PM - 4:00 PM The =
+Goblins (Video/1.5, Demo/5, Q&amp;A/5)<o:p></o:p></p><p =
+class=3DMsoPlainText>4:00 PM - 4:15 PM block.two (Video/1.5, Demo/5, =
+Q&amp;A/5)<o:p></o:p></p><p class=3DMsoPlainText>4:15 PM - 4:30 PM =
+Judges' Meeting<o:p></o:p></p><p class=3DMsoNormal>4:30 PM - =
+Presentation of Winners and Closing<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_033D_01D61F07.502CBE30--
+

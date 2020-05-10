@@ -1,0 +1,30 @@
+<%!
+	import goblin_auth
+%>
+<%
+	success = goblin_auth.destroy_session(c)
+%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Logout of HokieTickets</title>
+		<link rel="stylesheet" href="/static/style.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit|Lato&display=swap"> 
+	</head>
+	<body style="background-color: #f9f9f9;">
+		<div class="banner">
+		<img src="/static/images/vt-logo-white.svg" alt="VT Logo">
+		</div>
+		<div class="content">
+			<h1>Logout of HokieTickets</h1>
+			% if success:
+				<h3>You have been logged out.</h3>
+			% else:
+				<h3>You were not logged in</h3>
+			% endif
+			<p>Redirecting you to login...<p>
+			<meta http-equiv="Refresh" content="1; url=/login.pyhtml" />
+		</div>
+	</body>
+</html>
+

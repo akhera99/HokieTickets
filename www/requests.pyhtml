@@ -1,0 +1,119 @@
+## THIS FILE IS USED FOR HTTP REQUESTS TO THE BACKEND
+## Send request data as a JSON
+
+<%!
+    import libgoblin, goblin_auth, json
+    from datetime import datetime as dt
+
+    def today_to_date():
+        return dt.now().strftime("%Y%m%d%H%M")
+    def format_date(date_time):
+        if len(date_time) != 12:
+            return ""
+        date = int(date_time) // 10000   # Take off HHMM
+        obj = dt(date // 10000, (date // 100) % 100, date % 100) #YYYY,MM,DD
+        return obj.strftime("%a. %B %d, %Y")
+    def format_time(date_time):
+        if len(date_time) != 12:
+            return ""
+        date = int(date_time) // 10000  # Take off HHMM
+        time = int(date_time) % 10000   # Just HHMM
+        obj = dt(date // 10000, (date // 100) % 100, date % 100, hour=(time // 100), minute=(time % 100)) #YYYY,MM,DD
+        return obj.strftime("%-I:%M %p")
+%><% 
+
+#Authentication
+#user, session = goblin_auth.get_user(c)
+
+# Data comes in as a JSON with requested data
+data = []
+if d:
+    data = json.loads(d)
+
+# Default response (for example, a GET request)
+resp = json.dumps({"response": "This is requests.pyhtml"})
+
+# ADMIN ACTIONS
+if "admin" in data and "action" in data:
+    # Lottery
+    if data['action'] == "execute_lottery":
+        resp = libgoblin.execute_lottery(data['game_id'])
+    elif data['action'] == "open_lottery":
+        resp = libgoblin.open_lottery(data['game_id'])
+
+    # User info
+    elif data['action'] == "get_tickets" and "user" in data:
+        resp = libgoblin.to_json(libgoblin.user_tickets(data['user']))
+    
+    # Auctions
+    elif data['action'] == "exec_all_auctions":
+        resp = libgoblin.execute_all_auctions(data['game_id'])
+
+    # All student accounts
+    elif data['action'] == "get_all_students":
+        students = {}
+        for r in libgoblin.get_raw_table('users'):
+            students[r.user] = libgoblin.format_htk(libgoblin.get_balance(r.user))
+        resp = libgoblin.to_json(libgoblin.get_raw_table('users'))
+
+    # Scan QR code
+    elif data['action'] == "scan_code":
+        resp = libgoblin.to_json(libgoblin.scan_qr_code(data['code']))       
+        
+
+# USER ACTIONS
+elif "user" in data and "action" in data:
+    # User info
+    if data['action'] == "user_balance":
+        resp = json.dumps({"balance": libgoblin.format_htk(libgoblin.get_balance(data['user']))})
+
+    # Get QR code
+    elif data['action'] == "get_qr":
+        resp = json.dumps({"url": libgoblin.get_qr_code_data_uri(data['ticket_id'])})        
+
+    # Student ticket info    
+    elif data['action'] == "get_tickets" and "user" in data:
+        
+        resp = libgoblin.to_json(libgoblin.active_tickets(data['user']))    
+
+    # Specific game info    
+    elif data['action'] == "get_game" and "game_id" in data:
+        
+        resp = libgoblin.to_json(libgoblin.get_game(data['game_id'])) 
+
+    # Available tickets
+    elif data['action'] == "available_tickets" and "user" in data:
+        
+        filtered_tickets = libgoblin.filtered_date_games(today_to_date())
+
+        tickets_json = libgoblin.to_json(filtered_tickets)
+            
+        resp = tickets_json
+
+    # Buying
+    elif data['action'] == "buy" and "game_id" in data:
+        resp = libgoblin.buy(data['user'], data['game_id'])
+
+    # Selling
+    elif data['action'] == "sell" and "ticket_id" in data:
+        resp = libgoblin.sell(data['user'], data['ticket_id'])
+
+    # Lottery
+    elif data['action'] == "enter_lottery" and "game_id" in data:
+        resp = libgoblin.enter_lottery(data['user'], data['game_id'])
+    elif data['action'] == "leave_lottery" and "game_id" in data:
+        resp = libgoblin.leave_lottery(data['user'], data['game_id'])
+
+    # Auction
+    elif data['action'] == "create_auction" and "ticket_id" in data and "initial_bid" in data and "end_date" in data:
+        resp = libgoblin.create_auction(data['user'], data['ticket_id'], data['initial_bid'], data['end_date'])
+    elif data['action'] == "cancel_auction" and "ticket_id" in data:
+        resp = libgoblin.cancel_auction(data['ticket_id'], data['user'])
+    elif data['action'] == "auction_listings" and "game_id" in data:
+        resp = libgoblin.get_auctions_by_game(data['game_id'])
+    elif data['action'] == "bid" and "ticket_id" in data and "bid_amount" in data:
+        resp = libgoblin.bid(data['ticket_id'], data['user'], data['bid_amount'])
+
+## else:
+##     resp = "Error: invalid request"
+%>${resp}

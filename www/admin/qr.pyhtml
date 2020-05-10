@@ -1,0 +1,12 @@
+<%!
+	import libgoblin, goblin_auth, json
+%><%
+	user, session = goblin_auth.get_user(c)
+	if user != "hokipoki":
+		x = {"error": "You are not logged in"}
+	elif d:
+		data = json.loads(d)["data"]
+		x = libgoblin.scan_qr_code(data)
+	else:
+		x = {"error": "No data sent"}
+%>${json.dumps(x)}

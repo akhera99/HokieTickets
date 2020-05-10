@@ -1,0 +1,45 @@
+<%!
+	import libgoblin, goblin_auth
+%>
+<%
+	block_info = False
+	exc = False
+	try:
+		block_info = libgoblin.get_info()
+	except Exception, e:
+		exc = e
+	user, session = goblin_auth.get_user(c)
+%>
+
+% if user:
+	<h1>Welcome ${user | h}</h1>
+% endif
+
+% if block_info:
+    <nav>
+        <h2><a href="/login.pyhtml">${"Login" if not user else "User Page"}</a></h2>
+    </nav>
+	<h1>Connected to local EOSIO backend via <span style="font-family: monospace;">libgoblin</span> by Niles.</h1>
+	Server version: ${block_info.server_version | h} <br />
+	Server version string: ${block_info.server_version_string | h} <br />
+	Chain ID: ${block_info.chain_id | h} <br />
+	Head block number: ${block_info.head_block_num | h} <br />
+	Head block ID: ${block_info.head_block_id | h} <br />
+	Head block time: ${block_info.head_block_time | h} <br />
+
+##	<h3><a href="/login.pyhtml">${"Login" if not user else "User Page"}</a></h3>
+	<br />
+	<% stats = libgoblin.get_currency_stats() %>
+
+	Currency Max Supply: ${libgoblin.format_htk(stats.max_supply) | h} <br />
+	Currency Supply: ${libgoblin.format_htk(stats.supply) | h} <br />
+	Currency Issuer: ${stats.issuer | h} <br />
+
+% else:
+	<h1>Failed to connect to backend.</h1>
+	% if exc:
+		${exc | h}
+	% else:
+		No exception (??)
+	% endif
+% endif
