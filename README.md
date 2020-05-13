@@ -43,13 +43,6 @@ The following folders also have related files:
 
 ![](ss/meeting1.png)
 
-Small version:
-![](ss/meeting2.png)
-
-Second round certificate:
-
-![](ss/cert-1.png)
-
 Older software diagram:
 
 ![](ss/diagram-old.png)
