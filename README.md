@@ -46,8 +46,6 @@ The following folders also have related files:
 Small version:
 ![](ss/meeting2.png)
 
-<img src="https://raw.githubusercontent.com/nilesr/HokieTickets/master/ss/sm3.jpeg" width="49%" /><img src="https://raw.githubusercontent.com/nilesr/HokieTickets/master/ss/sm4.jpeg" width="49%" />
-
 Second round certificate:
 
 ![](ss/cert-1.png)
