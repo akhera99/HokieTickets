@@ -23,10 +23,10 @@ You can see our code in the following subdirectories:
 
 |Repository Link| |
 |--|--|
-|[`www`](https://github.com/nilesr/HokieTickets/tree/master/www)|Web-based Frontend|
-|[`libgoblin`](https://github.com/nilesr/HokieTickets/tree/master/libgoblin)|Blockchain Integration Library|
-|[`hokipoki`](https://github.com/nilesr/HokieTickets/tree/master/hokipoki)|Blockchain Smart Contract|
-|[`football-tickets`](https://github.com/nilesr/HokieTickets/tree/master/football-tickets)|iOS Companion App|
+|[`www`](https://github.com/ankita99/HokieTickets/tree/master/www)|Web-based Frontend|
+|[`libgoblin`](https://github.com/ankita99/HokieTickets/tree/master/libgoblin)|Blockchain Integration Library|
+|[`hokipoki`](https://github.com/ankita99/HokieTickets/tree/master/hokipoki)|Blockchain Smart Contract|
+|[`football-tickets`](https://github.com/ankita99/HokieTickets/tree/master/football-tickets)|iOS Companion App|
 
 Each project has its own associated readme
 
@@ -34,8 +34,8 @@ The following folders also have related files:
 
 |Subdirectory Link| |
 |--|--|
-|[`documents/`](https://github.com/nilesr/HokieTickets/tree/master/documents)|Documents including our initial and final proposals, Gannt chart, workflows presentation, and other documents we used to prepare our project and our final submission|
-|[`emails/`](https://github.com/nilesr/HokieTickets/tree/master/emails)|Relevant emails|
+|[`documents/`](https://github.com/ankita99/HokieTickets/tree/master/documents)|Documents including our initial and final proposals, Gannt chart, workflows presentation, and other documents we used to prepare our project and our final submission|
+|[`emails/`](https://github.com/ankita99/HokieTickets/tree/master/emails)|Relevant emails|
 
 ![](ss/cert-1.png)
 
